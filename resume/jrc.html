@@ -1,0 +1,176 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1 id='grantholder_30_at_joint_research_centre_sep10sep12'>Grantholder 30 at Joint Research Centre (Sep&#8217;10-Sep&#8217;12)</h1>
+
+<h1 id='the_genesidec_project'>The GENESI-DEC Project</h1>
+
+<p>On Sep 2011 I started working at Joint Research Centre. I followed <a href='http://www.genesi-dec.eu'>GENESI-DEC</a>, an FP7 project. Domain: Satellite imagery orthorectification</p>
+
+<p>What I did:</p>
+
+<ul>
+<li>recover and evolution of a broken legacy system</li>
+
+<li>development of brand new applications</li>
+</ul>
+
+<p>Technologies/Skils:</p>
+
+<ul>
+<li>Chracterization Tests</li>
+
+<li>Test Driven Development</li>
+
+<li>Deployment Automation (using Fabric, Bash)</li>
+
+<li>Java</li>
+
+<li>Python</li>
+
+<li>OGC/WPS protocol</li>
+</ul>
+
+<h1 id='the_jrc_digital_repository'>The JRC Digital Repository</h1>
+<p><b>Aim:</b> Expose JRC satellite images archive to the scientist using the <a href='http://www.genesi-dec.eu'>GENESI-DEC Central Portal</a>.</p><b>Technologies:</b>
+<ul>
+<li>Apache HTTPD, CIFS, NFS, and gridsite (for certificate based authentication)</li>
+</ul>
+
+<h1 id='documents'>Documents</h1>
+
+<p>(Too) many documents I had to write whithin this project covering:Use cases, Requirements, Application Guide, Validation Plan, and Validation Report.</p>
+
+<h1 id='the_orthorectification_server'>The Orthorectification Server</h1>
+
+<p>Satellite images does not came out straight. They always appear distorted for different reasons such as the angle of the satellite camera and by the fact that Earth is not a perfect sphere (mountains).</p>
+
+<p>The process of stretching an image to make it straight is called <b>Orthorectification</b> and it is usually done manually by an expert with the aid of a GIS software.</p>
+
+<p>But at JRC we have an program able to do perform this orthorectification process by itself. I managed to get it working and exposing it as a web service to other our partners. The service was exposed using the OGC/WPS protocol, a standard interoperability protocol mainly used whitin the GIS comunity.</p>
+
+<h1 id='improvement_to_the_orthorectification_engine'>Improvement to the Orthorectification engine</h1>
+
+<p>Development of the server:</p>
+
+<ul>
+<li>Added support for accessing images protected by basic authentication</li>
+
+<li>Review and enhancement of the old legacy server design (Refactor) - Added characterization tests for fixing some</li>
+
+<li>Added documentation on how to make it work.</li>
+
+<li>Added semi-automatic deployment, then &#8230;</li>
+
+<li>&#8230; added automatic deployment (using fabric)</li>
+</ul>
+
+<p>Development of the client: - Development of the brand new client</p>
+
+<p>Technologies and skills used:</p>
+
+<ul>
+<li>java and ant</li>
+
+<li>Linux Ubuntu/Debian</li>
+
+<li>Bash scripting</li>
+
+<li>Python with lxml, pip, virtualenv, and fabric</li>
+
+<li>OGC/WPS (PyWPS on server, homemade on the client)</li>
+
+<li>Behaviour Driven Development (for the client)</li>
+
+<li>Test Driven Development</li>
+
+<li>Pomodoro Technique</li>
+
+<li>Basic knowledge of satellite images, STRM, and GeoTiff</li>
+
+<li>Scripting of Oracle VirtualBox</li>
+
+<li>gdalinfo</li>
+</ul>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

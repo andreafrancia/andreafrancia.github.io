@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Cos'è il software legacy</h1>
+<div class='post'>
+<div>
+  <img id="uykh" src="http://docs.google.com/a/andreafrancia.it/File?id=dgbjhsb4_161dn2p7jg9_b" style="WIDTH:240px; HEIGHT:240px; FLOAT:right; MARGIN-LEFT:1em; MARGIN-RIGHT:0px">Ho recentemente finito di studiare <a href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052" id="i942" title="Working Effectively with Legacy Code">Working Effectively with Legacy Code</a> di Michael Feathers.&nbsp;<br>
+  <br>
+  Come immaginerete il libro parla di codice legacy. Noi abbiamo tutti un'idea di cosa sia il codice legacy.&nbsp;<br>
+  Tutti noi ne abbiamo avuto a che fare, a volte lo abbiamo creato e forse lo stiamo pure creando. Feathers nel suo libro utilizza una definizione tutta particolare ed interessante per definirlo ma in questo post vorrei invece ragionare sulla definizione di senso comune di codice legacy.<br>
+  <br>
+  Secondo me, e penso secondo altri, il software legacy è qualcosa che possiede le seguenti caratteristiche:<br>
+  <ul>
+    <li>
+      <b>è utile:</b></li>
+    <ul>
+      <li>
+        cioé serve alla azienda, crea valore.
+      </li>
+    </ul>
+    <li>
+      <b>è difficile capirne il funzionamento:</b>
+    </li>
+    <ul>
+      <li>
+        a volte ci sono delle incosistenze,&nbsp;
+      </li>
+      <li>
+        l'interfaccia d'uso non è lineare e contiene refusi ed errori storici&nbsp;
+      </li>
+    </ul>
+    <li>
+      <b>è fragile:</b>
+    </li>
+    <ul>
+      <li>
+        ogni modifica può comportare un malfunzionamento, per esempio ti chiedono di modificare la formattazione dell'output e poi scopri che non salva più sul database!
+      </li>
+    </ul>
+    <li>
+      <b>è difficile da modificare:</b>
+    </li>
+    <ul>
+      <li>
+        a volte una "piccola" modifica ai requisiti richiede di rivedere grandi porzioni di programma, pensarci su, discutere e alla fine si riduce al cambiare una riga di codice in un certo punto magico
+      </li>
+      <li>
+        a volte invece una "piccola" modifica ai requisiti richiede di fare delle modifiche in tanti diversi posti e devi ricordarti tutti i posti in cui lo devi modificare
+      </li>
+    </ul>
+    <li>
+      (a volte) <b>è stato scritto da altre persone/enti:</b>
+    </li>
+    <ul>
+      <li>
+        questo sarebbe il vero significato del termine legacy (cioè retaggio). Però nell'uso comune della parola in ambito software gli altri aspetti sono considerati più caratterizzanti. Infatti a volte si parla anche di software legacy riferendosi a software scritto da noi stessi (intesi come persona o azienda).
+      </li>
+    </ul>
+  </ul>
+  <br>
+  La caratteristica che ritengo più importante di questo tipo di software è la prima. Cioé<br>
+</div>
+<div>
+  <blockquote>
+    <b><font size="2">si tratta di un software utile e che crea utile!</font></b>
+  </blockquote>
+  Secondo me questo punto è veramente importante.&nbsp;<br>
+  <br>
+  Il fatto che il programma, anche se brutto, crei valore è il motivo per cui i nostri capi ci chiedono di lavorarci.&nbsp;<br>
+  E' il motivo per cui dobbiamo impegnarci per manutenere il programma e rendendolo migliore, o almeno ... non peggiore.<br>
+  <br>
+</div>
+<div>
+  Però non è come dirlo. Non è facile. Ci vuole tecnica e impegno.<br>
+  <br>
+  Riguardo all'<b>impegno</b> considero politiche del tipo "cerchiamo di toccarlo il meno possibile", "moltiplichiamo per 3.14 le stime prima di darle al management", "opponiamoci ad ogni richiesta di modifica" semplicemente non professionali.<br>
+  <br>
+  Riguardo alla <b>tecnica</b>&nbsp;questa si è raccontata in questo libro e si acquisce studiandoloe applicandone gli insegnamenti.<br>
+</div>
+<br></div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

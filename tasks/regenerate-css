@@ -1,0 +1,1 @@
+pygmentize -f html -S colorful -a .highlight > css/code-highlight.css

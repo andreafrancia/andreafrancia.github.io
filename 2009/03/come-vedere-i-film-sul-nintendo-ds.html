@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Come vedere i film sul Nintendo DS</h1>
+<div class='post'>
+<pre>
+==================================
+Come vedere i film sul Nintendo DS
+==================================
+
+Lo sapevate che si possono vedere intermi film sul Nintendo DS? Sapevatelo.
+
+I filmati si possono vedere usando MoonShell, un media player per Nintendo DS.
+
+Date le limitazione hardware del dispositivo non è possibile visualizzare i 
+video nel formato originale, essi vanno ridotti a livelli di bitrate che il 
+Nintendo DS sia in grado si sopportare. Il formato di questi video a bitrate 
+ridotto si chiama DPG.
+
+Questo post spiega come convertire un video in formato .AVI in formato .DPG in 
+modo che possano essere visti sul Nintendo DS. 
+La guida è basata su Ubuntu 8.10 ma probabilmente sono sufficienti piccole 
+modifiche per applicarla ad altri sistemi GNU/Linux.
+
+Installazione
+=============
+Il software si chiama `dpgconv` ed è uno script python che richiede altri 
+due software:
+
+ - mplayer (e mencoder)
+ - mpeg_stat
+ 
+Installazione di mplayer e mencoder
+-----------------------------------
+Questi due software si installano semplicemente con::
+
+  sudo apt-get install mplayer mencoder
+
+Installazione di mpeg_stat
+--------------------------
+Il software `mpeg_stat` sembra che non abbia più una sua homepage, per 
+scaricarlo dovete cercare e trovare qualche mirror che ne abbia ancora una 
+copia. Io l'ho trovato qui: 
+ftp://ftp.riken.go.jp/pub/FreeBSD/distfiles/mpeg_stat-2.2b-src.tar.gz e l'ho 
+installato con i seguenti comandi::
+
+  cd ~/.local/src
+  wget ftp://ftp.riken.go.jp/pub/FreeBSD/distfiles/mpeg_stat-2.2b-src.tar.gz
+  mkdir mpeg_stat-2.2b
+  cd mpeg_stat-2.2b
+  tar xvfz ../mpeg_stat-2.2b-src.tar.gz
+  cd mpeg_stat
+  make
+  cd ~/.local/bin
+  ln -s ../src/mpeg_stat-2.2b/mpeg_stat
+
+Installazione di dpgconv
+------------------------
+Dato che si tratta di un semplice script la procedura di installazione 
+consiste solo nello scaricare questo script e renderlo eseguibile.
+
+Io ho fatto così::
+
+  wget http://theli.ho.com.ua/dpgconv/dpgconv-8.py
+  chmod u+x dpgconv-8.py
+
+Una volta installato verifichiamo che dpkgconv rilevi tutti i programmi che 
+servono digitando::
+
+  ./dpgconv-8.py
+
+Dovrebbe dire qualcosa di simile a::
+
+   mpeg_stat -- MPEG Analyzer for MPEG I video streams (version 2.2b)
+   MPlayer 1.0rc2-4.3.2 (C) 2000-2007 MPlayer Team
+   MEncoder 2:1.0~rc2-0ubuntu17 (C) 2000-2007 MPlayer Team
+   It seems we found all programs :)...continuing
+   ______________________________________________
+
+Conversione dei filmati
+=======================
+La conversione è semplicissima, per convertire il video `esempio.avi` si usa
+il comando::
+
+  ./dpgconv-8.py esempio.avi
+
+La conversione potrebbe durare un po', specialmente su macchine lente. Il 
+risultato della conversione è un file con lo stesso basename ma con estensione 
+.dpg (nel nostro caso `esempio.dpg`), naturalmente questo file è quello che 
+deve essere copiato sulla vostra flash card e visualizzato sul Nintendo DS.
+
+Qualità video/audio
+===================
+Non aspettatevi un'alta qualità video, il Nintendo DS non è stato progettato è 
+limitato e non è stato progettato per questo. Se avete bisogno di una 
+qualità alta forse avete bisogno di qualcos'altro, come la PSP. 
+
+References
+==========
+ - Home page di dpgconv: http://theli.is-a-geek.org/blog/static/dpgconv
+ - MoonShell on Wikipedia: http://en.wikipedia.org/wiki/MoonShell
+ - DPG on Wikipedia: http://en.wikipedia.org/wiki/NDs-mPeG
+</pre></div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

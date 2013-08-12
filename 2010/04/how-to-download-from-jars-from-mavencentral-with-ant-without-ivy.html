@@ -54,42 +54,50 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>How to download from jars from mavencentral with Ant without Ivy</h1>
+<div class='post'>
+<div>For my Ant projects I want download the dependencies from the maven repository without converting it to maven.</div> I solved putting this &quot;build.xml&quot; in the &quot;lib&quot; directory:<br><br><pre>&lt;project name=&quot;lib&quot; default=&quot;download-libs&quot; 
+         xmlns:artifact=&quot;urn:maven-artifact-ant&quot;&gt;
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+  &lt;property name=&quot;maven.ant.tasks.jar&quot; value=&quot;maven-ant-tasks-2.1.0.jar&quot; /&gt;
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+  &lt;target name=&quot;download-libs&quot; depends=&quot;-init-maven-task&quot;&gt;
+    &lt;artifact:dependencies pathId=&quot;dependencies.classpath&quot;&gt;
+      &lt;dependency groupId=&quot;org.codehaus.groovy&quot; 
+                      artifactId=&quot;groovy&quot; version=&quot;1.7.2&quot; /&gt; 
+      &lt;dependency groupId=&quot;org.ccil.cowan.tagsoup&quot; 
+                      artifactId=&quot;tagsoup&quot; version=&quot;1.2&quot; /&gt;
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+      &lt;remoteRepository id=&quot;maven-central&quot; 
+                      url=&quot;http://repo1.maven.org/maven2/&quot; /&gt;
+    &lt;/artifact:dependencies&gt;
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+    &lt;move todir=&quot;.&quot;&gt;
+      &lt;path refid=&quot;dependencies.classpath&quot;/&gt;
+    &lt;/move&gt;
+  &lt;/target&gt;
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+  &lt;target name=&quot;-init-maven-task&quot; depends=&quot;-obtain-maven-task-jar&quot;&gt;
+    &lt;available property=&quot;maven.ant.tasks.jar.exists&quot; 
+               file=&quot;${maven.ant.tasks.jar}&quot; /&gt;
+    &lt;typedef resource=&quot;org/apache/maven/artifact/ant/antlib.xml&quot; 
+             uri=&quot;urn:maven-artifact-ant&quot; classpath=&quot;${maven.ant.tasks.jar}&quot; /&gt; 
+  &lt;/target&gt;
 
+  &lt;target name=&quot;-obtain-maven-task-jar&quot;&gt;
+    &lt;available property=&quot;maven.ant.tasks.jar.exists&quot; 
+               file=&quot;${maven.ant.tasks.jar}&quot; /&gt;
+    &lt;antcall target=&quot;download-maven-jar&quot;/&gt;
+  &lt;/target&gt;
 
+  &lt;target name=&quot;download-maven-jar&quot; unless=&quot;maven.ant.tasks.jar.exists&quot;&gt;
+    &lt;property name=&quot;maven.ant.tasks.url&quot; 
+              value=&quot;http://www.apache.org/dist/maven/binaries/${maven.ant.tasks.jar}&quot; /&gt;
+    &lt;get src=&quot;${maven.ant.tasks.url}&quot; dest=&quot;${maven.ant.tasks.jar}&quot; /&gt;
+  &lt;/target&gt;
 
+&lt;/project&gt;
+</pre><br><div>To download libs just type:</div><div><font face="&#39;courier new&#39;">$ cd lib</font></div><div><font face="&#39;courier new&#39;">$ ant</font></div><div><font face="&#39;courier new&#39;">...</font></div><br>and all dependencies will be downloaded.<br><br></div>
 
         </div>
         <!-- Histats.com  START  --> 

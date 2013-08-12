@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1 id='wake_on_lan'>Wake on LAN</h1>
+
+<p>I computer che ci sono in ufficio sono delle piccole stufette elettriche: scaldano e consumano corrente. A chi ha tante workstation in ufficio conviene spegnerle la sera e riaccenderle alla mattina, fa bene all&#8217;ambiente e al portafogli.</p>
+
+<p>Ma se le macchine sono tante può essere noioso riaccenderle manualmente una ad una. In questo post racconto come è possibile automatizzare questa operazione usando <a href='http://en.wikipedia.org/wiki/Wake-on-LAN'><em>Wake on LAN</em></a>.</p>
+
+<h2 id='wake_on_lan'><em>Wake on LAN</em></h2>
+
+<p><em>Wake on LAN</em> è una tecnologia che permette di accendere un computer da remoto: mandandogli un invito di accensione via rete. Se opportunamente configurata la scheda di rete raccoglie l&#8217;invito, lo riconosce e accende il resto del computer. È una tecnologia presente su praticamente ogni computer.</p>
+
+<p>Questo &#8220;invito&#8221; è uno speciale messaggio chiamato <em>Magic Packet</em> e per essere preparato è necessario conoscere l&#8217;indirizzo MAC della scheda di rete di destinazione.</p>
+
+<p>Il programma Open Source <a href='http://code.google.com/p/gwakeonlan/'>gWakeOnLan</a> oltre a fornire una interfaccia interattiva per spedire i <em>Magic Packet</em>s ed è capace di recuperare da solo i MAC address delle schede di rete.</p>
+
+<h2 id='abilitazione_del_wake_on_lan_sul_computer_da_accendere'>Abilitazione del Wake on LAN sul computer da accendere</h2>
+
+<p>Mandare messaggi di accensione via rete non basta, bisogna configurare il computer di destinazione in modo che si risvegli quando li riceve. Infatti solitamente il <em>Wake on LAN</em> è disabilitato come impostazione di default e va abilitato esplicitamente.</p>
+
+<p>A seconda del tipo di computer l&#8217;attivazione si fa in maniera diversa. Per i Mac bisogna andare in System Preferences &gt; Energy Saver &gt; Power Adapter e abilitare la voce &#8220;Wake for network access&#8221;.</p>
+
+<p>Per i PC l&#8217;attivazione si può fare accedendo all&#8217;utility di configurazione del BIOS, solitamente sotto le voci <em>&#8220;Power Management&#8221;</em>, <em>&#8220;Wake on Network&#8221;</em> o simili.</p>
+
+<h2 id='automazione_e_schedulazione'>Automazione e schedulazione</h2>
+
+<p><em>gWakeOnLan</em> é utile per fare delle prove o per attivare le macchine da remoto. Se invece si vuole automatizzare l&#8217;esecuzione conviene usare uno script come quello che si trova su <a href='http://code.activestate.com/recipes/358449-wake-on-lan/'>activestate</a>.</p>
+
+<p>In questo caso é necessario recuperare gli indirizzi MAC Address associati alle schede di rete dei computer da accendere. Per farlo si può usare il comando arp:</p>
+
+<pre><code>$ arp nome.computer
+? (192.168.1.44) at 00:65:4F:D3:79:59 on en1 ifscope [ethernet]</code></pre>
+
+<p>Ricordandosi che <code>arp</code> funziona solo se abbiamo contattato il computer di cui vogliamo conoscere il mac address almeno una volta. Quindi se non l&#8217;abbiamo fatto possiamo mandare un ping (con <code>ping -c 1 nome.computer</code>).</p>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

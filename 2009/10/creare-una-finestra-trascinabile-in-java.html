@@ -54,42 +54,61 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>Creare una finestra trascinabile in Java</h1>
+<div class='post'>
+Oggi ho fatto un po' di esercizio con Swing di Java. Swing è uno dei GUI toolkit di Java ed è utile conoscerlo perché è compreso nella piattaforma Java. Swing non è l'unica scelta, ne esistono altre, sul web ci sono <a href="http://stackoverflow.com/questions/138722/which-gui-library-is-the-best-in-java">alcune</a> <a href="http://www.ibm.com/developerworks/java/library/os-swingswt/index.html">risorse</a> che vi possono aiutare nella scelta.<br />
+<br />
+Pero' io ho provato con Swing. Volevo provare una draggable window, una finestra senza bordi che si può spostare trascinandola con il mouse. Ecco il risultato:<br />
+<br />
+<pre class="java:nogutter" name="code">import java.awt.Container;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JWindow;
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+public class DraggableBorderlessWindow {
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+    public static void main(String[] args) {
+        final JWindow win = new JWindow();
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+        makeDraggable(win);
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+        win.setSize(100, 100);
+        win.setVisible(true);
+        win.setLocation(100, 100);
+    }
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+    private static void makeDraggable(final Container window) {
+        MouseAdapter dragger = new Dragger(window);
+        window.addMouseMotionListener(dragger);
+        window.addMouseListener(dragger);
+    }
 
+    private static class Dragger extends MouseAdapter {
 
+        private int offsetX;
+        private int offsetY;
+        private final Container window;
 
+        public Dragger(Container window) {
+            this.window = window;
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            offsetX = window.getX() - e.getXOnScreen();
+            offsetY = window.getY() - e.getYOnScreen();
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            window.setLocation(e.getXOnScreen() + offsetX,
+                               e.getYOnScreen() + offsetY);
+        }
+
+    }
+}
+
+</pre></div>
 
         </div>
         <!-- Histats.com  START  --> 

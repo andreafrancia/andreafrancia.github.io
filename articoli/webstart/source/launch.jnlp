@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://andreafrancia.it/articoli/webstart/source" href="launch.jnlp">
+    <information>
+        <title>HelloWorld</title>
+        <vendor>Andrea Francia</vendor>
+    </information>
+    <resources>
+        <j2se version="1.5+"/>
+        <jar href="helloworld.jar" main="true" download="eager"/>
+    </resources>
+    <application-desc main-class="helloworld.Main">
+    </application-desc>
+</jnlp>

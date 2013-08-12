@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Writing automatic tests using bash</h1>
+<div class='post'>
+This may be not well know but the bash shell could also be used to write automatic test. These tests could be also used with Hudson which recognizes if they are failed or not.<br />
+<br />
+This is a little integration test for a legacy application:<br />
+<br />
+<pre class="literal-block" style="margin-left: 2em; margin-right: 2em;">set -o errexit     # this tell bash to stop on any error
+set -o xtrace      # this tell bash to print any command before execution
+
+# setup the database
+mysql -u root test-database &lt;&lt; EOF
+    DELETE FROM orders_to_be_exported;
+    INSERT INTO orders_to_be_exported(id) VALUES('1235');
+    DELETE FROM order;
+    INSERT INTO order(customer_name, amount) VALUES('andrea', '1234');
+EOF
+
+# clean up filesystem
+rm /tmp/orders/exported-*.order -f
+
+# start up the application
+mvn jetty:run
+
+curl -X POST http://localhost:8080/application/export-orders
+
+test -f /tmp/exported-1235.order  # this check if the file exists
+
+# the following checks the contents of the file
+diff /tmp/exported-1235.order - &lt;&lt; EOF
+Customer: Andrea
+Amount: 1234 eur
+EOF</pre><br />
+Whenever this script fail in any of its operation it stops with an non zero exit code. This is because the&nbsp;<tt class="docutils literal">set&nbsp;<span class="pre" style="white-space: pre;">-o</span>&nbsp;errexit</tt>&nbsp;instruction. As you may known a non zero exit status often means that an error has been occured. Also Hudson knows this and when this happen it marks the build as broken.<br />
+The&nbsp;<tt class="docutils literal">set&nbsp;<span class="pre" style="white-space: pre;">-o</span>&nbsp;xtrace</tt>&nbsp;instructions tell to bash to write each command before executing it.<br />
+<dl class="docutils"><dt>This script demonstrate clearly how powerfull could be the shell, you can</dt>
+<dd style="margin-bottom: 0.5em;"><ul class="first last simple" style="margin-bottom: 1em; margin-top: 0px !important;"><li>invoke ReST web services (with&nbsp;<tt class="docutils literal">curl</tt>)</li>
+<li>inspect the contents of a file (with&nbsp;<tt class="docutils literal">diff</tt>)</li>
+<li>test for the existence of a file (with&nbsp;<tt class="docutils literal">test&nbsp;<span class="pre" style="white-space: pre;">-f</span></tt>), a directory (<tt class="docutils literal">test&nbsp;<span class="pre" style="white-space: pre;">-d</span></tt>), and many others facts about your filesystem</li>
+<li>interact with the database</li>
+</ul></dd></dl>As you know these kind of test (integration tests) are slow and when they fails is difficult to know which component is broken. Nevertheless they are a essential to know if yours unit are playing well together.<br />
+They may be also useful when you work with legacy code. You may want to put some part of the system under unit test but can't do that before of many refactoring. You could create an integration test, refactor the code toward a better modularity and then place the unit test and, maybe, delete the integration test.</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

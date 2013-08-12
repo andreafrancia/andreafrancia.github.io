@@ -54,42 +54,36 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
+            <h1>Come aggiungere un custom task a setup.py</h1>
+<div class='post'>
+
+Per avere questo comportamento:
+<pre><code>
+$ python setup.py foo
+running foo
+foo ... foo ... foo!
+</code></pre>
+
+Si fa così:
+
+    <div class="highlight"><pre><code class="python">    <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">Command</span>
+
+    <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+        <span class="n">setup</span><span class="p">(</span>
+            <span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;foo&#39;</span><span class="p">:</span><span class="n">FooCommand</span><span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">FooCommand</span><span class="p">(</span><span class="n">Command</span><span class="p">):</span>
+        <span class="n">description</span><span class="o">=</span><span class="s">&quot;Does foo-ish things.&quot;</span>
+        <span class="n">user_options</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">def</span> <span class="nf">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">pass</span>
+        <span class="k">def</span> <span class="nf">finalize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">pass</span>
+        <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">print</span><span class="p">(</span><span class="s">&quot;foo ... foo ... foo!&quot;</span><span class="p">)</span>
+
+    <span class="n">main</span><span class="p">()</span>
+    
+</code></pre></div>
 </div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
 
         </div>
         <!-- Histats.com  START  --> 

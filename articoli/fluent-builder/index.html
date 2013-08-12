@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-4316218-1";
+urchinTracker();
+</script>
+<link href="/resources/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h1 id=i5iw0>
+  Fluent Builder
+</h1>
+<h2 id=viwo1>
+  Cosa permette di fare</h2>
+Con questa libreria è possibile costruire un interfaccia un Builder Fluent per
+una data classe JavaBean.<br id=viwo2>
+La libreria permette di riscrivere il codice seguente<br id=viwo3>
+<pre id=uvk30>Person person = new Person();<br id=zvz_0>person.setFirstName("John");<br id=zvz_1>person.setLastName("Smith");<br id=zvz_2>person.getLovedThings().add("pizza");<br id=zvz_3>person.getLovedThings().add("soccer");<br id=zvz_4>person.getLovedThings().add("jogging");<br id=zvz_5>person.setAge(30);<br id=hjhy0></pre>
+nel seguente modo:<br id=hjhy1>
+<pre id=nrv80>Person person2 = Person.builder()<br id=nrv81>        .withFirstName("John")<br id=nrv82>        .withLastName("Smith")<br id=nrv83>        .withLovedThings("pizza", "soccer", "jogging")<br id=nrv84>        .withAge(30)<br id=nrv85>        .build();<br id=nrv86></pre>
+<h2 id=rzex0>
+  Utilizzo
+</h2>
+Per aggiungere l'interfaccia di fluent building alla classe Person basta
+aggiungere il seguente codice alla classe Person:<br id=g:wc0>
+<pre id=bs110>import andreafrancia.util.fluent.BuilderFactory;<br id=jvli0><br id=jvli1>...<br id=jvli2><br id=bs112>public interface Builder extends andreafrancia.util.fluent.Builder&lt;Person&gt; {<br id=bs114>    Builder withFirstName(String firstName);   <br id=bs115>    Builder withLastName(String lastName);<br id=bs116>    Builder withLovedThings(String... lovedThings);<br id=bs117>    Builder withAge(int age);<br id=bs118>    Person build();<br id=bs119>}<br id=bs1110><br id=bs1111>public static Builder builder() {<br id=bs1112>    return BuilderFactory.createBuilder(new Person(), Builder.class);<br id=bs1113>}<br id=bs1114></pre>
+<h2>Download</h2>
+<p>Binary: <a href="andreafrancia.util.jar">andreafrancia.util.jar</a></p>
+<p>Source code:<a href="andreafrancia.util-src.zip">andreafrancia.util-src.zip</a></p>
+<h2>Riferimenti</h2>
+<dl>
+<dt>Fluent interface by Martin Flower</dt>
+<dd><a href="http://www.martinfowler.com/bliki/FluentInterface.html">http://www.martinfowler.com/bliki/FluentInterface.html</a></dd>
+<dt>La tecnica utilizzata nella libreria è un'idea di Stephan Schmidt, questo è il post dove la espone.</dt>
+<dd><a href="http://stephan.reposita.org/archives/2007/10/10/fluent-interface-and-reflection-for-object-building-in-java/" rel="bookmark" title="Permanent Link to &quot;Fluent Interface and Reflection for Object Building in Java&quot;">Fluent Interface and Reflection for Object Building in Java</a></dd>
+</dl>
+<h1>Feedback</h1>
+<p>Any feedback would be appreciated, please send them to: </p>
+<p><img src="../../resources/andrea-francia-mail-address.png" alt="andrea (place a dot here) francia (place an at here) gmx (place a dot here) it" width="139" height="17"></p>
+
+
+
+  <!-- Histats.com  START  --> 
+ <a href="http://www.histats.com/it/" target="_blank" title="contatore free" > 
+ <script  type="text/javascript" language="javascript"> 
+  
+ var s_sid = 321314;var st_dominio = 4; 
+ var cimg = 0;var cwi =150;var che =30; 
+ </script> 
+ <script  type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"></script> 
+ </a> 
+ <noscript><a href="http://www.histats.com/it/" target="_blank"> 
+ <img  src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"></a> 
+ </noscript> 
+
+</body>
+</html>

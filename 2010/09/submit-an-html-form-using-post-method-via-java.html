@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Submit an HTML form using POST method via Java</h1>
+<div class='post'>
+In the recent days I'm studying how to implement HTTP/REST architecture in Java.<br />
+I decided to work without any REST framework, so nothing like <a href="https://jersey.dev.java.net/">Jersey</a> or <a href="http://www.restlet.org/">restlet</a>.&nbsp;Instead I decided to exploit the good old Servlet API which seems to use an faithful model on how the HTTP works.<br />
+<br />
+And also I decided to starts from study how to design Web applications in a way that&nbsp;uses correctly the HTTP protocol.<br />
+<br />
+During my study I didn't find a HTTP client which fit my requirements so I'm writing some client functionalities from scratch. This is the way I implemented the posting of a form with only one parameter:<br />
+<br />
+
+<div class="code">
+<div class="highlight"><pre><code class="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">InputStream</span> <span class="nf">postForm</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">url</span><span class="o">,</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">paramName</span><span class="o">,</span>
+        <span class="kd">final</span> <span class="n">String</span> <span class="n">paramValue</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span>
+<span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">Object</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="n">InputStream</span> <span class="nf">postForm</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+            <span class="n">prepareConnectionToServer</span><span class="o">();</span>
+            <span class="n">packageFormValuesInAMessage</span><span class="o">();</span>
+            <span class="n">submitTheMessage</span><span class="o">();</span>
+            <span class="k">return</span> <span class="nf">theServerReply</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">prepareConnectionToServer</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+            <span class="n">connection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">url</span><span class="o">).</span><span class="na">openConnection</span><span class="o">();</span>
+            <span class="n">connection</span><span class="o">.</span><span class="na">setDoInput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">connection</span><span class="o">.</span><span class="na">setDoOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="n">connection</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">&quot;Content-Type&quot;</span><span class="o">,</span> <span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="n">URLConnection</span> <span class="n">connection</span><span class="o">;</span>
+
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">packageFormValuesInAMessage</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">UnsupportedEncodingException</span> <span class="o">{</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&quot;%s=%s&quot;</span><span class="o">,</span> <span class="n">paramName</span><span class="o">,</span> <span class="n">URLEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">paramValue</span><span class="o">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">message</span><span class="o">;</span>
+
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">submitTheMessage</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+            <span class="n">OutputStream</span> <span class="n">output</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+            <span class="n">output</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">&quot;UTF-8&quot;</span><span class="o">));</span>
+            <span class="n">output</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="n">InputStream</span> <span class="nf">theServerReply</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">connection</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+        <span class="o">}</span>
+
+    <span class="o">}.</span><span class="na">postForm</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+</div>
+
+</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

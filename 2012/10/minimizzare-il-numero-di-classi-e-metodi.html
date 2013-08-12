@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <p>L&#8217;altro giorno mentre guidavo una sessione di pair programming, il mio collega mi ha criticato perché durante il TDD creavo troppe classi e interfacce che, secondo lui, complicavano le cose.</p>
+
+<p>Egli faceva riferimento al principio secondo il quale un design con meno elementi é più semplice di uno che ne ha di più.</p>
+
+<p>L&#8217;idea di ridurre complessità riducendo (o evitando di aumentare) il numero di elementi sembra plausibile ma non dice tutta la storia.</p>
+
+<p>Kent Beck ci é arrivato prima di me e quando l&#8217;ha inclusa nelle sue regole di &#8220;Simple Design&#8221; ha posto l&#8217;attenzione anche sulla sua importanza relativa.</p>
+
+<p>In questo contesto un design é &#8220;Simple&#8221; quando é facile da comprendere e, di conseguenza, facile da modificare. Non necessariamente un design semplice é anche facile da creare. Per arrivare a questo obbiettivo bisogna sforzarsi di ottenere il design più compatto e espressivo possibile che sia in grado di soddisfare i requisiti (attuali) dell&#8217;applicazione e nulla di più.</p>
+
+<p>Queste regole sono riportate anche nel libro &#8220;Clean Code&#8221; di Robert Martin:</p>
+
+<p>A design is &#8220;simple&#8221; when it:</p>
+
+<ol>
+<li>Runs all the tests</li>
+
+<li>Contains no duplication</li>
+
+<li>Expresses the intent of the programmer</li>
+
+<li>Minimizes the number of classes and methods</li>
+</ol>
+
+<p>Queste regole sono fornite in ordine di importanza.</p>
+
+<p>Prima di tutto il codice deve fare ciò che dovrebbe (regola 1), altrimenti non ci si pone neanche il problema del design. Finché il codice non funziona é inutile giudicarne il design!</p>
+
+<p>Poi vengono le regole 2 e 3; queste due regole arrivano quasi a pari merito: alcuni autori preferiscono riportarle con l&#8217;ordine scambiato.</p>
+
+<p>É abbastanza chiaro che la duplicazione aumenta il costo della manutenzione del codice: una modifica deve essere ripetuta in più punti invece che in uno. Ma perché contribuisce a renderlo meno semplice? Perché ogni duplicazione é una astrazione mancata. Le (buone) astrazioni riducono il numero di cose che il programmatore deve comprendere mentre legge un pezzo di codice e quindi lo rendono più facile da capire. Gli stessi motivi portano alla terza regola: il codice deve esprimere l&#8217;intento del programmatore.</p>
+
+<p>L&#8217;ultima regola serve a ridurre il numero di &#8220;elementi da capire&#8221;. Serve per controbilanciare la tendenza ad applicare (a volte inutilmente) principi o design pattern che richiedono l&#8217;aggiunta di nuovi metodi o classi non realmente necessari come, ad esempio, SRP o la riduzione del numero di linee in un metodo). La regola fa da contrappeso a tale possibile tendenza.</p>
+
+<p>Anche l&#8217;ultima regola è importante ma va applicata tenendo conto che ha la priorità più bassa. Io ad esempio all&#8217;inizio di una sessione di TDD la ritengo abbastanza flessibile e non mi faccio problemi a violarla, e aggiungo elementi ogni volta che mi sembra sensato o ne ho bisogno (ad esempio per introdurre astrazioni). Poi, man mano che procedo nello sviluppo, rimuovo le astrazioni che non si dimostrano abbastanza utili da essere mantenute.</p>
+
+<p>In questo senso considero la progettazione un processo fatto di raffinamenti successivi, dove all&#8217;inizio si cerca di far funzionare le cose con il minimo sforzo non curandosi di alcuna regola se non la prima. Poi, una volta che il codice funziona come dovrebbe passo al refactoring. Con passi incrementali di refactoring lo rendo sempre più conforme alle restanti regole considerandone l&#8217;importanza relativa.</p>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

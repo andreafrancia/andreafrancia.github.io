@@ -1,0 +1,3 @@
+ - rimuovere contenuti resume-old
+DONE:
+ - rimosso link facebook

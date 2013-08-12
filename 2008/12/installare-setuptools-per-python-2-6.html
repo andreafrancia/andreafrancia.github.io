@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Installare setuptools per python 2.6</h1>
+<div class='post'>
+<div>   <div>     <div>       Lo sapete che Python è produttivo, vero?
+
+<i style="color: rgb(0, 0, 0);">E' così produttivo che c'e' una libreria per fare gli enum. </i>
+Già inclusa nell'installazione ? No, te la devi scaricare ...
+<i style="color: rgb(0, 0, 0);">Come? Semplice! Python è produttivo, basta usare il comando easy_install! Basta fare </i>
+<pre class="literal-block"><span>    </span>easy_install enum</pre>       Ok! Bello! Ma non va. Come mai?
+<span style="color: rgb(0, 0, 0);">Perché prima ti devi installare easy_install! Basta andare sulla pagina ufficiale di </span><a style="color: rgb(0, 0, 0);" href="http://pypi.python.org/pypi/setuptools#downloads">setuptools</a><span style="color: rgb(0, 0, 0);"> per farlo.</span>
+Pero' ...
+<ul><li>io ho Windows         </li><li>           io l'ultima versione (stabile) di Python la 2.6.1
+        </li><li>           sulla pagina di Download di setuptools non c'e' l'installer per la 2.6.1!         </li></ul>      
+Va bene allora cosa posso fare? Ci sono tante possibilità (certo python è produttivo), tutte elencate nella pagina , eccole:
+      <ul><li> Posso sempre installarlo con easy_install ... -_- ... certo posso installare il programma che non ho con il programma che non ho! </li><li>           Posso installarlo usando il mio comando sh, con
+          <pre class="literal-block">sh setuptools-0.6c9-py2.6.egg</pre>         </li></ul>       <div style="margin-left: 40px;"> peccato che funziona con tutto (cygwin, linux, unix, ...) ma non con Windows ... per forza non c'e' la bash in Windows (o per lo meno non ce ne sono molte).
+      </div>      
+    </div>   </div>   La soluzione comunque c'e', ma non si trova sulla graziosa pagina di setuptools, <a href="http://mail.python.org/pipermail/distutils-sig/2008-November/010502.html" id="x9gh" title="ma si trova con google">ma si trova con google</a> ed è questa.
+ 
+  <ul><li>       Ti scarichi il file <span style="white-space: nowrap;"><a href="http://pypi.python.org/packages/source/s/setuptools/setuptools-0.6c9.tar.gz#md5=3864c01d9c719c8924c455714492295e">setuptools-0.6c9.tar.gz</a> </span>dalla pagina di <a href="http://pypi.python.org/pypi/setuptools#downloads" id="ez6d" title="setuptools">setuptools</a>      </li><li>       Lo decomprimi (con 7-Zip per esempio)     </li><li>       E crei da solo la distribuzione per Windows     </li></ul>   <pre class="literal-block" style="margin-left: 40px; font-family: Courier New;">cd setuptools-0.6c9
+
+python setup.py bdist_exe
+
+</pre>   <ul><li>       Si dovresti ottenere un file setuptools-0.6c9.win32.zip, che contiene le cartelle
+           </li><ul><li>         Python26       </li><ul><li>           Libs         </li><li>           Scripts         </li></ul></ul></ul> </div>
+<ul><li>     Le cartelle Libs e Script vanno messe sotto C:\Python26   </li><li>     La cartella C:\Python26\Scripts va aggiunta al PATH.   </li></ul>
+A questo punto dovreste essere in grado di usare easy_install...
+
+<div style="margin-left: 40px;"><span style="font-family: Courier New;">C:\Documents and Settings\Andrea>easy_install enum</span>
+<span style="font-family: Courier New;">Searching for enum</span>
+<span style="font-family: Courier New;">Reading http://pypi.python.org/simple/enum/</span>
+<span style="font-family: Courier New;">Best match: enum 0.4.3</span>
+<span style="font-family: Courier New;">...</span>
+</div>
+Finalmente posso usare gli enum ... in Java erano già dentro il linguaggio ... alla faccia della produttività.</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Python è produttivo?</h1>
+<div class='post'>
+<span style="font-size:180%;">Introduzione</span>
+In giro per la rete si dice che "Python è più produttivo di Java".
+Uno degli articoli che ne parla è http://www.ferg.org/projects/python_java_side-by-side.html. La tesi di base dell'articolo può essere riassunta con la seguente frase: "Dato che i programmi in Python sono più corti dei programmi in Java allora si fa prima a scrivere un programma in Python".
+<br/>
+Questa affermazione non mi ha mai convinto più di tanto ma sembra che sia entrata nella cultura popolare dei programmatori, almeno della parte che usa Python.
+<br/>
+Io mi sto trovando male con Python, e non mi sento più produttivo, di seguito vi racconto una delle mie ultime esperienze con Python e che dovrebbe farvi capire quali sono le mie perplessità riguardo a questa teoria della maggiore produttività.
+<br/>
+Sono conscio del fatto che potrei non essere produttivo perché non lo conosco abbastanza bene, oppure perché conosco troppo bene il Java. Il problema è: quanto studio prima di diventare "produttivi" in Python?
+<br/>
+<span style="font-size:180%;">Personalizzare la classe OptionParser.
+</span>La classe optparse.OptionParser della libreria standard di python aiuta ad
+implementare in maniera semplice un'interfaccia a linea di comando.
+<br/>
+La documentazione su http://www.python.org/doc/2.5.2/lib/module-optparse.html
+spiega come utilizzare la classe nel caso più semplice.
+<br/>
+<pre name="code" class="python:nogutter:nocontrols">
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option("-f", "--file", dest="filename",
+                  help="write report to FILE", metavar="FILE")
+parser.add_option("-q", "--quiet",
+                  action="store_false", dest="verbose", default=True,
+                  help="don't print status messages to stdout")
+
+(options, args) = parser.parse_args()
+</pre>
+<br/>
+OptionParser è configurabile. Per esempio è possibile specificare un oggetto 
+formatter diverso da quello di default per avere maggiore controllo sul 
+formato del messaggio di help.
+<br/>
+La signature del costruttore di OptionFormatter è la seguente:
+<br/>
+<pre name="code" class="python:nogutter:nocontrols">
+class OptionParser (OptionContainer):
+    def __init__(self,
+                 usage=None,
+                 option_list=None,
+                 option_class=Option,
+                 version=None,
+                 conflict_handler="error",
+                 description=None,
+                 formatter=None,
+                 add_help_option=True,
+                 prog=None,
+                 epilog=None):
+</pre>
+<br/>
+Per cui per utilizzare un oggetto formatter diverso da quello predefinito 
+basterebbe fare:
+<br/>
+<pre name="code" class="python:nogutter:nocontrols">
+from optparse import OptionParser
+
+parser = OptionParser(formatter=MyFormatter())
+parser.add_option("-f", "--file", dest="filename",
+                  help="write report to FILE", metavar="FILE")
+parser.add_option("-q", "--quiet",
+                  action="store_false", dest="verbose", default=True,
+                  help="don't print status messages to stdout")
+
+(options, args) = parser.parse_args()
+</pre>
+
+Ma rimane il problema: come costruisco la classe MyFormatter? Quali metodi 
+deve implementare? La documentazione del costruttore di OptionParser non ci 
+aiuta: non c'è! La signature del metodo non ci aiuta: in Python non è richiesto 
+e non si usa specificare l'interfaccia che un oggetto in input deve 
+implementare. Come faccio a disegnare la mia implementazione di Formatter se non 
+esiste una specifica dell'interfaccia?
+<br/>
+Perché dicono che il python è più produttivo? Dicono che Python è più 
+produttivo "perché scrivi meno codice". E' questo il codice che si risparmia 
+di scrivere? Lo scrittore di OptionParser ha risparmiato due secondi ha 
+scrivere il nome dell'interfaccia nella signature del metodo, bene. Io quanto 
+tempo devo perdere per capire quali sono i metodi che devo implementare per 
+scrivere un Formatter? Per andarmi a rivedere il codice sorgente della classe 
+OptionParser e le altre classi del modulo optparse?</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+guarda il seguente articolo...<BR/>http://code.activestate.com/recipes/425345/<BR/><BR/>ciao Loris(aka) orcim</div>
+</div>
+</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

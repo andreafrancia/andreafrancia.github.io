@@ -1,0 +1,8 @@
+
+RewriteEngine on
+
+AddType application/x-java-jnlp-file jnlp
+
+RewriteCond %{HTTP_HOST} ^andreafrancia.it$
+RewriteRule ^/?$ "http\:\/\/www\.andreafrancia\.it\/" [R=301,L]
+

@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>Large File Viewer in Java</title>
+<link href="../../resources/main.css" rel="stylesheet" type="text/css" media="all">
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-4316218-1";
+urchinTracker();
+</script>
+</head>
+<body>
+<h1>Large File Viewer in Java</h1>
+<ul>
+  <li><a href="#Introduzione">Introduzione</a></li>
+  <li><a href="#Lapplicazione">L&#39;applicazione</a></li>
+  <li><a href="#Soluzione">Soluzione</a></li>
+  <li><a href="#Codicesorgente">Codice sorgente</a></li>
+  <li><a href="#Compilazione">Compilazione ed esecuzione</a></li>
+  <li><a href="#Commenti">Commenti</a></li>
+</ul>
+<h2><a name="Introduzione"></a>1. Introduzione</h2>
+<img src="large-file-viewer.png" alt="" width="433" height="371" style="float:right" />
+<p>In questo articolo è spiegato come creare un
+visualizzatore di file di testo in grado di funzionare anche con file
+molto grandi (anche di dimensioni di un gigabyte).</p>
+<p>Scrivere un visualizzatore quando le dimensioni
+del file di testo sono ragionevoli è molto semplice, basta
+caricare tutto il file in memoria e visualizzarlo.</p>
+<p>Quando il file è molto grande non è
+possibile caricare tutto il file in memoria ma conviene invece
+caricare solo la porzione di file attualmente visualizzata.</p>
+<p>Se vuoi avviare subito l'applicazione clicca qua:
+<noscript><a href="launch.jnlp">Launch</a></noscript>
+<script src="http://java.com/js/deployJava.js"></script>
+<script>
+	var url="http://www.andreafrancia.it/articoli/large-file-viewer/launch.jnlp";
+    deployJava.createWebStartLaunchButton(url, "1.6")
+</script></p>
+<h2><a name="Lapplicazione"></a>2. L&#39;applicazione</h2>
+<p>L&#39;applicazione sarà avviata con la seguente
+linea di comando:</p>
+<p><span lang="it-IT">java -jar LargeFileViewer &lt;path-to-file&gt;</span></p>
+<p>Dove &lt;path-to-file&gt; è il percorso al file da
+visualizzare. Il file è un file di testo le cui dimensioni
+possono essere molto grandi, per esempio un 1Gb.</p>
+<p>Appena avviata l&#39;applicazione aprirà una
+finestra che contiene i seguenti componenti:</p>
+<ul>
+<li>Una JList dove sarà visualizzato il
+	testo del file.</li>
+<li>Una barra di scrrimento verticale che
+	l’utente potrà usare per scorrere il contenuto del file
+	file.</li>
+</ul>
+<p>Vogliamo che la finestra appaia subito anche se il
+file è molto grande. Quindi la lettura e l’indicizzazione
+del file deve avvenire in background.</p>
+<p>Vogliamo inoltre che se il file è molto
+grande l&#39;applicazione non carichi tutto il file in memoria ma che
+carichi solo la porzione visualizzata attualmente sullo schermo.</p>
+<h2><a name="Soluzione"></a>3. Soluzione</h2>
+<p>L&#39;applicazione sarà creata in Java
+l&#39;interfaccia grafica sarà creata usata usando la libreria
+Swing.</p>
+
+<p>La finestra principale dell&#39;applicazione contiene
+un unico componente di tipo JList chiamato fileList.</p>
+<p>La classe JList non gestisce solo la
+visualizzazione della lista e la gestione del modello della lista ad
+una classe che implementa l&#39;interfaccia ListModel. I metodi più
+importanti dell&#39;interfaccia ListModel sono quelli descritti di
+seguito:</p>
+<ol class="code">
+<li>public interface ListModel {</li>
+<li></li>
+<li>    Object getElementAt(int index);</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;int getSize();</li><li>}</li></ol>
+<i>Listato 1</i><p>Il metodo
+getSize() restituisce il numero di elementi della lista, nel nostro
+caso il numero di righe del file.</p>
+<p>Il metodo
+getElementAt() restituisce l&#39;elemento all&#39;indice specificato, nel
+nostro caso il contenuto della riga del file alla posizione
+specificata.<br>
+</p>
+<p>Tutto quello che
+dobbiamo fare è creare un implementazione di questa
+interfaccia che vada a leggere i dati da un file di testo.<br>
+</p>
+<h3>3.1 Indicizzazione</h3>
+<p>Per evitare di
+caricare tutto il file in memoria faremo in modo che getElement vada
+a leggere dal file la riga specificata.</p>
+<p>Per fare questo
+è necessario prima di tutto indicizzare il file, cioè
+associare ad ogni numero di linea la posizione nel file dove leggere
+il contenuto della riga. </p>
+<p>Il seguente
+codice si occupa di indicizzare un file:</p>
+<ol class="code">
+  <li>RandomAccessFile file new RandomAccessFile(filename, &quot;r&quot;);</li>
+<li>List&lt;Long&gt; linePositions = new ArrayList&lt;Long&gt;();</li>
+<li>String line;</li><li></li>
+<li>while ((line = file.readLine()) != null) {</li>
+<li>    &nbsp;&nbsp;&nbsp;&nbsp;linePositions.add(lineCounterFile.getFilePointer());</li>
+<li>}</li>
+</ol>
+<i>Listato 2</i><p>Con la riga 1
+apriamo il file in lettura. Usiamo la classe RandomAccessFile perché
+fornisce il metodo getFilePointer() che restituisce la posizione
+corrente da cui partirà la prossima lettura.</p>
+<p>Con la riga 2
+creiamo una lista di Long.</p>
+<p>La lista
+linePositions memorizzerà l&#39;associazione tra indice della riga
+e posizione della riga nel file.</p>
+<p>Il ciclo while
+legge tutte le righe del file e memorizza in linePositions la
+posizione di ogni riga nel file.</p>
+<p>A questo punto
+la scrittura del metodo getElementAt() è immediata:</p>
+<ol class="code">
+  <li>RandomAccessFile&nbsp; file = ... </li>
+  <li></li>
+  <li>     public&nbsp; Object getElementAt(int index) {</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;try {</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset&nbsp; = linePositions.get(index);</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.seek(offset);</li>
+  <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp; file.readLine();</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;} catch(IOException ex) {</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logger.log(Level.SEVERE,&nbsp; &amp;quot;&amp;quot;, ex);</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return       null;</li>
+  <li>&nbsp;&nbsp;&nbsp;}</li>
+  <li>}</li>
+</ol>
+<p><i>Listato 3</i></p>
+<p>Con la riga 5
+otteniamo l&#39;offset dove leggere la riga nel file. Con la riga
+spostiamo il puntatore del file all&#39;offset ottenuto e infine con la
+riga 7 leggiamo la riga dal file.<br>
+</p>
+<p>Anche
+l&#39;implementazione del metodo è getSize() è immediata,
+questa è mostrata nel listato seguente:<br>
+</p>
+<ol class="code">
+  <li>public int getSize() {</li>
+  <li>&nbsp;&nbsp;&nbsp;&nbsp;return linePositions.size();</li>
+  <li>}</li>
+</ol>
+<p><i>Listato 4</i></p>
+<h3>3.2 Indicizzazione in background</h3>
+<p style="margin-bottom: 0cm; widows: 0; orphans: 0;"><span lang="it-IT">L’indicizzazione è eseguita in
+background.</span><span lang="it-IT"> Quindi il codice del listato 1
+verrà eseguito da un diverso thread. Per garantire l’accesso
+concorrente alla lista linePositions è necessario usare il
+metodo Collections.synchronizedList() che crea una lista che crea una
+lista thread-safe:</span></p>
+<ol class="code" style="margin-bottom: 0.64cm">
+  <li>linePositions&nbsp;=&nbsp;Collections.synchronizedList(new&nbsp;ArrayList&lt;Long&gt;()); </li>
+</ol>
+<p><i>Listato 5</i></p>
+<h2><a name="Codicesorgente"></a>4. Codice sorgente</h2>
+<p>Scaricatelo qui: <a href="LargeFileViewer.zip">LargeFileViewer.zip</a></p>
+<p>Ecco i file:</p>
+<ul>
+  <li><a href="doxygen/_lazy_file_list_model_8java-source.html">LazyFileListModel.java</a></li>
+  <li><a href="doxygen/_large_file_creator_8java-source.html">LargeFileCreator.java</a></li>
+  <li><a href="doxygen/_main_8java-source.html">Main.java</a><br>
+  </li>
+</ul>
+<h2><a name="Compilazione"></a>5. Compilazione ed esecuzione</h2>
+<p>Per compilare il software &egrave; necessario ant e <a href="http://java.sun.com/javase/downloads/index.jsp">JDK 6</a>.</p>
+<p>Dopo aver scompattato l'archivio <span class="code">LargeFileViewer.zip </span>in una directory a piacere (indicata con <code>$SOURCE_DIR</code>), dare i comandi:</p>
+<pre class="code">
+cd $SOURCE_DIR
+ant jar</pre>
+<p>Questo dovrebbe creare il file jar come <code>$SOURCE_DIR/dist/LargeFileViewer.jar</code></p>
+<p>Per avviare l'applicazione:</p>
+<pre class="code">
+cd dist
+
+java -jar LargeFileViewer.jar &lt;nome-del-file&gt;
+</pre>
+<h2><a name="Commenti"></a>6. Commenti</h2>
+<p>Mandatemi una mail all'indirizzo:</p>
+<p><img src="../../resources/andrea-francia-mail-address.png" alt=""><br>
+</p>
+
+
+  <!-- Histats.com  START  --> 
+ <a href="http://www.histats.com/it/" target="_blank" title="contatore free" > 
+ <script  type="text/javascript" language="javascript"> 
+  
+ var s_sid = 321314;var st_dominio = 4; 
+ var cimg = 0;var cwi =150;var che =30; 
+ </script> 
+ <script  type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"></script> 
+ </a> 
+ <noscript><a href="http://www.histats.com/it/" target="_blank"> 
+ <img  src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"></a> 
+ </noscript> 
+
+</body>
+</html>

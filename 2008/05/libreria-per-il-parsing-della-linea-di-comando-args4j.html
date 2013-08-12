@@ -54,42 +54,20 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>Libreria per il parsing della linea di comando (args4j)</h1>
+<div class='post'>
+L'altro giorno ho trovato finalmente una libreria che aiuta a fare il parsing della linea di comando.
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+La libreria a cui mi riferisco è <a href="https://args4j.dev.java.net/">arg4j</a>.
+È una libreria open source (<a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>), creata da <a href="http://weblogs.java.net/blog/kohsuke/">Kohsuke Kawaguchi</a>che tra l'altro è il creatore di <a href="https://hudson.dev.java.net/">Hudson </a>(il sistema di continous integration che usiamo attualmente in azienda).
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+Funziona sia con le opzioni corte (es. -R) che con quelle lunghe (--recursive).
+Non usa lo stile GNU delle opzioni, quindi non potete usarlo per fare il parsing di qualcosa come
+<code>rm -Rfv</code>
+Ma riesce solo a fare il parsing di cose come:
+<code>rm -R -f -v</code>
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
+Oltre a fare il parsing genera il messaggio di help per l'utilizzo delle opzioni direttamente dalla definizione delle opzioni.</div>
 
         </div>
         <!-- Histats.com  START  --> 

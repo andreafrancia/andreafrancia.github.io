@@ -1,0 +1,158 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Schermare le RemoteException</h1>
+<div class='post'>
+Consideriamo un'applicazione architettura client server basata su RMI.
+Il client deve accedere dialoga con il server usando l'interfaccia remota di quest'ultimo. Per fissare le idee supponiamo che il server abbia la seguente interfaccia:
+<pre name="code" class="java:nogutter:nocontrols">
+public interface League extends Remote {
+    void addTeam(String name) throws RemoteException;
+    void removeTeam(String name) throws RemoteException;
+    List&lt;String&gt; getTeamList() throws RemoteException;
+    int getTeamsCount() throws RemoteException;
+}</pre>
+Come richiesto da RMI, per ogni metodo è specificato che può sollevare una RemoteException. Le RemoteException dovrebbero essere gestita dal client, ovvero le chiamate dei metodi dovrebbero essere racchiuse in un blocco try/catch come il seguente:
+<pre name="code" class="java:nogutter:nocontrols">
+    TeamManager manager = ...;
+    try {
+        n = manager.getTeamsCount();
+    } catch(RemoteException ex) {
+        // gestione dell'eccezione
+    }
+</pre>
+Se le chiamate al server sono sparse in varie parti del codice del client la gestione delle eccezioni potrebbe diventare tediosa e ripetitiva.
+Utilizzando la tecnica descritta di seguito è possibile concentrare la gestione delle RemoteException in un unico punto.
+L'idea è quella di interfacciare il codice client con interfaccia simile a quella remota che però non richieda la gestione delle RemoteException, nel nostro caso:
+<pre name="code" class="java:nogutter:nocontrols">
+public interface LocalLeague {
+    void addTeam(String name);
+    void removeTeam(String name);
+    List&lt;String&gt; getTeamList();
+    int getTeamsCount();
+}</pre>
+La soluzione si basa sul concetto di adapter.
+Creiamo un oggetto 'adapter' che implementa l'interfaccia locale e  delega le chiamate al server remoto. La gestione delle RemoteException  e gestita dall'adapter che di fatto le intercetta prima che possano  arrivare al client.
+La situazione che si vuole ottenere e schematizzata in figura.
+<div style="text-align: center;"><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://bp3.blogger.com/_bikdOOm3kpc/SEG3zW6n8aI/AAAAAAAABac/uz8bI66fTSw/s1600-h/Main.png"><img style="cursor: pointer;" src="http://bp3.blogger.com/_bikdOOm3kpc/SEG3zW6n8aI/AAAAAAAABac/uz8bI66fTSw/s400/Main.png" alt="" id="BLOGGER_PHOTO_ID_5206644737169682850" border="0" /></a>
+</div>Il client utilizza l'interfaccia semplificata (senza RemoteException).
+L'adapter inoltra le chiamate al server, e nel caso gestisce la  RemoteException catturandola prima che arrivi al client. Dato che il  client richiede comunque una risposta nel caso di un'eccezione  l'adapter interroga un oggetto fallback che fornisce il valore da  restiuire in questi casi.
+Nel nostro caso l'oggetto di fallback è il seguetne:
+<pre name="code" class="java:nogutter:nocontrols">
+LocalLeague fallback = new LocalLeague() {
+
+    public void addTeam(String name) {
+        // nothing
+    }
+
+    public void removeTeam(String name) {
+        // nothing
+    }
+
+    public List&lt;String&gt; getTeamList() {
+        return Collections.emptyList();
+    }
+
+    public int getTeamsCount() {
+        return 0;
+    }
+};
+</pre>
+In oltre l'adapter è in grado di segnalare le eccezioni  interfacciandosi con un oggetto ExceptionListener. L'interfaccia  ExceptionListener è definita nel package java.beans nel seguente modo:
+<pre name="code" class="java:nogutter:nocontrols">
+public interface ExceptionListener {
+    void exceptionThrown(Exception e);
+}
+</pre>
+Fornedo la propria implementazione di ExceptionListener il client può gestire tutte le RemoteException in un unico punto.
+La creazione dell'oggetto adapter avviene nel seguente modo:
+<pre name="code" class="java:nogutter:nocontrols">
+LocalLeague adapter = AdapterFactory.adapt(LocalLeague.class,
+                                           remoteServer,
+                                           fallback,
+                                           exceptionListener);
+</pre>
+Potete scaricare la libreria che contiene queste funzionalità da <a href="http://code.google.com/p/andreafrancia-util/">http://code.google.com/p/andreafrancia-util/</a>.</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

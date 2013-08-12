@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <p>Fortran é un linguaggio che per vari motivi é molto usato nel calcolo scientifico e che, però, a volte si rivela scomodo, sopratutto quando c&#8217;è da manipolare del testo.</p>
+
+<p>Oggi era una di quelle volte. Il problema era: stampare un numero allineato a sinistra invece di allinearlo a destra (come si fa di solito).</p>
+
+<p>Di solito i numeri sono stampati allineati a destra perché così quando sono incolonnati é più facile confrontarli a colpo d&#8217;occhio.</p>
+
+<pre><code>Alineati a destra           Allineti a sinistra
+
+ 124.345                    124.345
+   3.354                    3.354
+  23.165                    23.165</code></pre>
+
+<p>Però a me i numeri servivano allineati a sinistra!</p>
+
+<p>Il Fortran é un linguaggio pragmatico per gente seria che conosce che il modo giusto di allineare i numeri é solo uno e non ha senso mettere un opzione che consideri l&#8217;altro modo.</p>
+
+<p>Infatti, sia che il formato non sia specificato:</p>
+
+<pre><code>&gt; cat free_format.f90
+write(*,*) 5.
+end
+&gt; gfortran free_format.f90 &amp;&amp; ./a.out
+   5.00000000    </code></pre>
+
+<p>o che lo sia:</p>
+
+<pre><code>&gt; cat decimal_format.f90 
+write(*,&#39;(f10.3)&#39;) 5.
+end
+&gt; gfortran decimal_format.f90&amp;&amp; ./a.out 
+     5.000</code></pre>
+
+<p>I numeri saranno sempre allineati a destra e nel caso ve lo steste chiedendo &#8230; no, non esiste nessuna opzione per allinearli a sinistra. Ho trovato due soluzioni.</p>
+
+<h2 id='soluzione_dei_due_passi'>Soluzione dei due passi</h2>
+
+<p>Il problema si può risolvere appoggiandosi ad una variabile stringa intermedia è alla funzione adjustl (introdotta dal Fortran 90):</p>
+
+<pre><code>&gt; cat simple_left_align.f90 
+character* 255 tmp
+write(tmp,&#39;(f10.3)&#39;) 5.
+write(*,&#39;(a)&#39;) adjustl(tmp)
+end
+
+&gt; gfortran simple_left_align.f90 &amp;&amp; ./a.out 
+5.000</code></pre>
+
+<p>Il difetto di questa soluzione é che il codice é un po&#8217; scriptico ed é difficile leggere l&#8217;intento del programmatore.</p>
+
+<h2 id='soluzione_con_funzione'>Soluzione con funzione</h2>
+
+<p>In questo caso bisogna prepare una funzione come questa:</p>
+
+<pre><code>character *255 function left_align(format, number)
+    character(len=255) buffer
+    character(len=*) format
+    double precision number
+    write(buffer, format) number
+    left_align=adjustl(buffer)
+end function</code></pre>
+
+<p>e poi usarla così:</p>
+
+<pre><code>double precision :: a = 5.
+character* 255 left_align
+write(*, &#39;(a)&#39;) left_align(&#39;(f10.5)&#39;, a)
+end</code></pre>
+
+<p>Il risultato é quello che mi serviva:</p>
+
+<pre><code>&gt; gfortran left_align.f90 &amp;&amp; ./a.out
+5.00000</code></pre>
+
+<p>Questo modo funziona ma mi piacerebbe migliorarlo anche se al momento non conosco abbastanza Fortran per sapere come. Vedo i seguenti problemi:</p>
+
+<ul>
+<li>Per qualche motivo sono stato costretto a ridichiarare il tipo restituito dalla funzione <code>left_align</code> nel codice client, chissà come si può evitare?</li>
+
+<li>La funzione <code>left_align</code> opera su variabili di tipo <code>double precision</code>. Se nello stesso programma mi si ripresentasse un problema simile con un <code>real</code> o un <code>integer</code> dovrei ricreare un&#8217;altra funzione analoga? Non c&#8217;è modo di scriverne una generica che va bene per tutti?</li>
+</ul>
+
+<p>Misteri del fortran.</p>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

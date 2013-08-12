@@ -54,42 +54,57 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
+            <h1>Installare Ruby on Rails su Cygwin</h1>
+<div class='post'>
+<pre>
+In questi giorni sto imparando ad usare Ruby on Rails, un famoso framework per 
+scrivere applicazioni web. In queste note descrivo i passi necessari 
+all'installazione delle dipendenze.
+
+Prima di tutto avete bisogno di `gem` il comando per scaricare i pacchetti ruby.
+Andate sulla pagina http://rubyforge.org/frs/?group_id=126 e individuate 
+l'ultima tarball.
+
+Scaricate e installate con::
+
+    wget http://rubyforge.org/frs/download.php/60718/rubygems-1.3.5.tgz
+    tar xvfz rubygems-1.3.5.tgz
+    cd rubygems-1.3.5
+    ruby setup.rb install
+
+Ora installare rails è un gioco da ragazzi, basta fare::
+
+    gem install rails
+
+Però non è finita, qui, perché avrete bisogno di sqlite per fare le vostre 
+prove. A meno che non vogliate imbarcarvi nell'uso di mysql.
+
+Per poter usare sqlite dovrete sia installare sqlite vero e proprio sia i 
+bindings ruby. Per installare sqlite3 usate::
+
+    apt-cyg install libsqlite3_0  libsqlite3-devel
+    
+se non avete apt-cyg potete installarlo con i comandi:
+
+    wget http://apt-cyg.googlecode.com/svn/trunk/apt-cyg -O/bin/apt-cyg
+    chmod u+x /bin/apt-cyg
+
+Ora installiamo i bindings::
+    
+    gem install sqlite3-ruby
+
+Ora abbiamo quasi finito e possiamo usare rails::
+
+    rails nome-dell-applicazione
+</pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>ynw</div>
+<div class='content'>
+Ciao,<br /><br />mi chiedevo se con Cygwin è possibile installare (meglio dire compilare) Ruby utilizzando rvm come spiegato <a href="http://yeahnowow.com/2010/rvm-installare-tante-versioni-di-ruby-e-tante-versioni-di-rails/" rel="nofollow">in questo articolo</a>.<br /><br />Grazie :)</div>
 </div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
 </div>
-
-
-
 
         </div>
         <!-- Histats.com  START  --> 

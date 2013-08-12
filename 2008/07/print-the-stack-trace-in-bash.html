@@ -54,43 +54,51 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
+            <h1>Print the stack trace in bash</h1>
+<p>Ieri ho partorito una semplice funzione che trovo molto comoda per debuggare gli scritp shell, si chiama print_stack_trace.</p>
+
+<p>print_stack_trace andrebbe invocata quando si incontra una condizione di errore e si vuole risalire a qual&#8217;e&#8217; stato il flusso delle chiamate che l&#8217;ha provocata.</p>
+
+<p>Un esempio di utilizzo è il seguente::</p>
+<div class='code'>
+
+<div class='highlight'><pre><code class='bash'>save_to_file<span class='o'>()</span> <span class='o'>{</span>
+    <span class='nb'>local </span><span class='nv'>filename</span><span class='o'>=</span><span class='s2'>&quot;$1&quot;</span>
+
+    <span class='k'>if</span> <span class='o'>[[</span> -e <span class='nv'>$filename</span> <span class='o'>]]</span>; <span class='k'>then</span>
+<span class='k'>        </span><span class='nb'>echo</span> <span class='s2'>&quot;File already exists: $filename&quot;</span> &gt;2
+        print_stack_trace
+        <span class='nb'>exit </span>1
+    <span class='k'>fi</span>
+
+    ... <span class='c'># scrittura su file</span>
+<span class='o'>}</span>
+</code></pre></div>
+
 </div>
+<p>Quando per qualsiasi motivo la funzione save_to_file() è invocata con un argomento non valido stampa un messaggio di errore seguito dall&#8217;elenco delle chiamate a funzione che hanno portato all&#8217;errore. Per esempio:</p>
+<pre class='terminal'>
+File already exists: test-file
+Stack trace:
+ save_to_file(./print-stack-trace.bash:13)
+ function_three(./print-stack-trace.bash:22)
+ function_two(./print-stack-trace.bash:26)
+ function_one(./print-stack-trace.bash:30)
+ main(./print-stack-trace.bash:33)
+</pre>
+<p>La funzione print_stack_trace è la seguente:</p>
+<div class='code'>
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+<div class='highlight'><pre><code class='bash'><span class='c'># print_stack_trace: print the stack trace in bash</span>
+print_stack_trace<span class='o'>()</span> <span class='o'>{</span>
+    <span class='nb'>echo</span> <span class='s2'>&quot;Stack trace:&quot;</span>
+    <span class='k'>for</span> <span class='o'>((</span> <span class='nv'>i</span><span class='o'>=</span>1; i&lt;<span class='k'>${#</span><span class='nv'>FUNCNAME</span><span class='p'>[@]</span><span class='k'>}</span>; i++<span class='o'>))</span>; <span class='k'>do</span>
+<span class='k'>        </span><span class='nb'>echo</span> <span class='s2'>&quot; ${FUNCNAME[$i]}(${BASH_SOURCE[$i]}:${BASH_LINENO[$i-1]})&quot;</span>
+    <span class='k'>done</span>
+<span class='o'>}</span> 
+</code></pre></div>
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
 </div>
-
-
-
-
         </div>
         <!-- Histats.com  START  --> 
 <script async type="text/javascript" language="javascript"> 

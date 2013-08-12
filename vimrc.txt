@@ -1,0 +1,6 @@
+set nocp ai hid
+set ai et sta
+set ts=8 sw=4 sts=4   
+set is hls 
+set tw=78 cc=+1
+syn on

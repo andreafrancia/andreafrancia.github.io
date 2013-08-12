@@ -54,42 +54,56 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>Building Chandler on an am64 Ubuntu</h1>
+<div class='post'>
+After many days of tries finally I managed to run <a href="http://chandlerproject.org/">Chandler Desktop</a> on my Ubuntu.
+I had tried the binary installation but it didn't work, running chandler the following problem is reported:
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+<pre name="code" class="shell:nogutter:nocontrol">
+$ chandler
+...
+ImportError: /home/andrea/.python-eggs/PyICU-0.8-py2.5-linux-i686.egg-tmp/_PyICU.so: wrong ELF class: ELFCLASS32
+</pre>
+Fortunately you can always build it from sources. Unfortunately downloading the sources and compiling take much time and is not so easy know which packages you need to build it.
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+To install all(? surely I missed someone) the needed packages do:
+<pre name="code" class="shell:nogutter:nocontrol">
+sudo apt-get install libicu-dev
+sudo apt-get install libssl-dev
+sudo apt-get install python-gdata
+sudo apt-get install ant
+sudo apt-get install default-jdk
+sudo apt-get install lib32icu38
+sudo apt-get install curl
+</pre>
+To get the sources and build them:
+<pre name="code" class="shell:nogutter:nocontrol">
+svn checkout http://svn.osafoundation.org/chandler/trunk chandler
+cd chandler
+cd external
+export BUILD_ROOT=$(pwd)
+make world # wait ... wait ... wait
+</pre>
+Now, if the build succeed you can run chandler with:
+<pre name="code" class="shell:nogutter:nocontrol">
+cd ../chandler
+./chandler
+</pre>
+If the build fails you, probably, need to install some package that I missed. To discover which package you can use google. For example if you got this error:
+<pre name="code" class="shell:nogutter:nocontrol">
+SWIG/_m2crypto.i:23: Error: Unable to find 'openssl/opensslv.h'
+</pre>
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+You should search on google these words <a href="http://www.google.it/search?q=openssl%2Fopensslv.h+Ubuntu+filelist">"openssl/opensslv.h Ubuntu filelist"</a>, the first results should be the page of missing package, in this case is
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+<quote>
+<span style="font-style: italic;">  http://packages.ubuntu.com/feisty/amd64/</span><span style="font-weight: bold; font-style: italic;">libssl-dev</span><span style="font-style: italic;">/filelist</span>
+</quote>
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
+So it's simple add the needed package:
+<pre name="code" class="shell:nogutter:nocontrol">
+apt-get install libssl-dev
+</pre></div>
 
         </div>
         <!-- Histats.com  START  --> 

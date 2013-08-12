@@ -54,42 +54,9 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
+            <h1>How Compare Word Documents in TortoiseHG using TortoiseSVN</h1>
+<div class='post'>
+<h4>Introduction</h4><div>TortoiseSVN is a mature and complete product that provides some useful features like comparison of non text based files like Word, PowerPoint, Excels and images files.</div><div>The TortoiseHg hasn't this feature so you can't, for example, visual compare Word files. Nevertheless we can configure TortoiseHg in a way that it can use the comparison features &nbsp;of TortoiseSVN. In this post I will choose you how to do such configuration.</div><h4>Create an the invoke-tortoisesvn-diff.cmd</h4><div>First of all we create a command that will invoke TortoiseSVN Diff.</div><div>Create a file named <font class="Apple-style-span" face="'Courier New'">invoke-tortoisesvn-diff.cmd</font> with the code:</div><div><blockquote><font class="Apple-style-span" face="'Courier New'">SET LEFT=%1<br>SET RIGHT=%2<br>SET PROC=C:\Program Files\TortoiseSVN\bin\TortoiseProc.exe<br>"%PROC%" /command:diff /path:%LEFT% /path2:%RIGHT%</font></blockquote></div><div>Place it when you want, for example in <font class="Apple-style-span" face="'Courier New'">C:\Program Files\TortoiseHg</font>.</div><div>Before continuing test the command, for example comparing two word files:</div><blockquote><font class="Apple-style-span" face="'Courier New'"><font size="2">invoke-tortoisesvn-diff.cmd C:\path\to\left\document.doc C:\path\to\right\document.doc</font></font></blockquote><div>Using absolutes path is essential.</div><h4>Integrate invoke-tortoisesvn-diff in TortoiseHg</h4><div>Next we tells to TortoiseHg to use this command editing the mercurial.ini.</div><div>Placed in <font class="Apple-style-span" face="'Courier New'">C:\Documents and Settings\&lt;user&gt;\mercurial.ini</font>.</div><div><br></div><div>And add the followings::</div><blockquote>[extdiff]<br>cmd.tortoise_svn_diff = C:\Program Files\TortoiseHg\invoke-tortoisesvn-diff.cmd</blockquote><div>Now we can test the integration with TortoiseHG. From a mercurial working directory do right click &gt; <i>TortoiseHG...</i> &gt; <i>Visual Diff </i>and the usual&nbsp;<b>"Visual Diffs"</b>&nbsp;window should be displayed.</div><div><div style="text-align: center" id="d6b1"><img src="http://docs.google.com/a/andreafrancia.it/File?id=dgbjhsb4_119f9jc2bg4_b" style="width: 418px; height: 223px"></div><br></div><div>From the tools dropdown list choose&nbsp;<i>tortoise_svn_diff <span style="font-style: normal;">and then&nbsp;</span><span style="font-style: normal">double click the document name and the differences should be shown in a new word document.</span></i></div><div><br></div><br></div>
 
         </div>
         <!-- Histats.com  START  --> 

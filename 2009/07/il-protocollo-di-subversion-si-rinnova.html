@@ -54,42 +54,9 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
+            <h1>Il protocollo di Subversion si rinnova</h1>
+<div class='post'>
+<div><div>Avete presente il protocollo HTTP di Subversion? Lo stanno migliorando e studiare come gestiscono questa miglioria mi aiuta a capire come gestire i progetti software.</div><div><br></div><div>Subversion supporta diversi protocolli (svn, http, e svn+ssh). Il protocollo che poggia su HTTP è forse il più comodo da usare come client perché usa solo la porta 80 (buono per i firewall e proxy trasparenti), e permette il browsing del repository con un semplice browser. Lato server il protocollo over HTTP fornisce una serie di goodies ereditate da Apache come la possibilità di usare l&#39;autenticazione LDAP, e le stessi strumenti di logging usati per Apache. Fino ad ora questa comodità si pagava in termini di prestazioni. Come ammette lo stesso <a href="http://svnbook.red-bean.com/en/1.5/svn.serverconfig.choosing.html#svn.serverconfig.choosing.apache">manuale</a> di Subversion il protocollo over HTTP è più lento degli altri due.</div>  <div><br></div><div>Oltre alla velocità ci sono questioni di semplicità e di leggibilità che riguardano il protocollo. Se ho capito bene <a href="http://blog.red-bean.com/sussman/?p=139">questo post</a> che lo letto il problema sta nel fatto che il protocollo Subversion over HTTP è stato su una specifica over-ingegnerizzata: <a href="http://www.ietf.org/rfc/rfc3253.txt">l&#39;estensione di versioning di WebDAV</a>.</div>  <div><br></div><div>Ora si è deciso di cambiare! La modifica è stata definita in una <a href="http://svn.collab.net/repos/svn/trunk/notes/http-protocol-v2.txt">nuova specifica</a>. In questo nuovo protocollo sono state rimosse tutte le complicazioni non necessarie. La parte interessante (per me) è vedere come la modifica è gestita!</div>  <div><br></div><div>Le specifiche sono scritte in un documento testo semplice messo sotto controllo di versione e automaticamente messe a disposizione su HTTP (grazie all&#39;uso di Subversion over HTTP tra l&#39;altro).</div>  <div><br></div><div>All&#39;inizio c&#39;e&#39; una introduzione che contestualizza le modifiche e di seguito le specifiche sono dettagliate in senso top down. Lo stesso documento funge da report sullo stato del lavoro. Scendendo nel documento si trovano infatti gli elenchi di cose da implementare taggati con la scritta [DONE] o [STARTED]. Scorrendo indietro nella storia si potrebbe addirittura vedere la storia del documento e come si è evoluto il design e lo stato di implementazione.</div>  <div><br></div><div>Molto istruttivo.</div><div>-- <br>Andrea Francia<br><a href="http://andreafrancia.blogspot.com/">http://andreafrancia.blogspot.com/</a><br> </div></div> </div>
 
         </div>
         <!-- Histats.com  START  --> 

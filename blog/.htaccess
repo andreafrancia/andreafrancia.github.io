@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^blog.andreafrancia.it$ [OR]
+RewriteCond %{HTTP_HOST} ^www.blog.andreafrancia.it$
+RewriteRule ^(.*)$ http://andreafrancia.blogspot.com [R=301,L]
+

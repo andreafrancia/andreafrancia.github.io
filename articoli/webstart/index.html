@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Java Web Start</title>
+</head>
+
+<body>
+<h1 id="trps0">Java Web Start</h1>
+<ul>
+  <li><a href="#cose">Cos'è</a></li>
+  <li><a href="#comesifa">Come si fa</a></li>
+  <li><a href="#installazioneautomaticadeljre">Installazione automatica del JRE</a></li>
+  <li><a href="#codicesorgente">Codice sorgente</a></li>
+  <li><a href="#netbeans">Netbeans</a></li>
+  <li><a href="#riferimenti">Riferimenti</a></li>
+</ul>
+<h2 id="zjd60"><a name="cose" id="cose"></a>Cos'è</h2>
+<p>Java Web Start è una tecnologia che semplifica l'installazione di applicazioni Java.<br id="b.ev0" />
+L'utilizzo  da parte dell'utente è semplice. L'utente accede ad una pagina web  e clicca su un bottone arancione come il seguente: </p>
+<p><img src="http://java.sun.com/products/jfc/tsc/articles/swing2d/webstart.png" alt="" name="phr11" border="0" id="phr11" /></p>
+<p>  Quando  l'utente clicca il bottone parte l'installazione dell'applicazione.<br id="pg3g1" />
+</p>
+<h2 id="qfu60"><a name="comesifa" id="comesifa"></a>Come si fa</h2>
+Consideriamo  il caso di voler distribuire l'applicazione helloworld.jar con Web  Start. Per farlo dobbiamo rendere disponibili online i seguenti file:<br id="tlak0" />
+<ol id="qfu62">
+  <li id="qfu63">Il descrittore di Web Start: launch.jnlp</li>
+  <li id="qfu63">La pagina HTML con un link a lauch.jnlp.</li>
+  <li id="qfu63">L'archivio JAR dell'applicazione: helloworld.jar.<br id="tlak1" />
+  </li>
+</ol>
+<p>Il file lauch.jnlp deve essere creato con il seguente contenuto:</p>
+<pre>&lt;jnlp spec=&quot;1.0+&quot; codebase=&quot;http://andreafrancia.it/articoli/webstart/&quot; href=&quot;launch.jnlp&quot;&gt;
+	&lt;information&gt;
+     	&lt;title&gt;HelloWorld&lt;/title&gt;
+   	&lt;vendor&gt;Andrea Francia&lt;/vendor&gt;
+   &lt;/information&gt;
+   &lt;resources&gt;
+		&lt;java version=&quot;1.5+&quot;/&gt;
+		&lt;jar href=&quot;helloworld.jar&quot;/&gt;
+	&lt;/resources&gt;
+	&lt;application-desc main-class=&quot;helloworld.Main&quot;/&gt;
+&lt;/jnlp&gt;
+</pre>
+<p>&Egrave; importante che l'attributo <strong>codebase</strong> sia specificato corretamente perché tutti gli altri path sono intesi relativi a questa URI.  </p>
+<p>Non è necessario avere a disposizione un web server per fare le proprie prove, si pò anche usare un indirizzo locale come file:///C:/Documents%20and%20Settings/Andrea/Desktop/prova-webstart/.</p>
+<p>Il significato di alcuni elementi come title e vendor si commenta da solo.</p>
+<p>  La riga</p>
+<pre>
+&lt;java version=&quot;1.5+&quot;/&gt;</pre>
+specifica che l'applicazione richiede la versione 1.5 o successiva del JRE.<br id="c00s0" />
+<p> La riga<br id="gb002" />
+<pre>
+&lt;jar href=&quot;helloworld.jar&quot;/&gt;
+</pre>
+  specifica dove andare a scaricare il pacchetto JAR che contiene il codice dell'applicazione.
+  <p>  
+  Infine con la riga: <pre>&lt;application-desc main-class=&quot;helloworld.Main&quot;/&gt;</pre>
+stiamo specificando la classe principale dell'applicazione.<br id="y7622" />
+
+<p>  Il file launch.html deve solo contenere un link al file JNLP:
+<pre>&lt;a href=&quot;launch.jnlp&quot;&gt;Installa Applicazione&lt;/a&gt;</pre>
+
+A questo punto è sufficiente mettere online i tre file, aprire con il browser launch.html e cliccare sul link.
+<h2 id="nhsr0"><a name="installazioneautomaticadeljre" id="installazioneautomaticadeljre"></a>Installazione automatica del JRE</h2>
+<p>Web Start che sulla  macchina dell'utente sia installato il JRE. Se il browser dell'utente  supporta Javascript è possibile rimuovere questo requisito. <br id="jxzk0" />
+  Usando lo script <a title="deployJava.js" href="http://java.com/js/deployJava.js" id="w_p2">deployJava.js</a> di Sun è possibile ottenere che il JRE sia installato automaticamente se necessario.</p>
+  <p>Il file launch.html va modificato in questo modo:</p>
+<pre>&lt;script src=&quot;http://java.com/js/deployJava.js&quot;&gt;&lt;/script&gt;<br />&lt;script&gt;<br />	var url=&quot;http://andreafrancia.it/articoli/webstart/esempio/launch.jnlp&quot;;<br />	deployJava.createWebStartLaunchButton(url, &quot;1.6&quot;);<br />&lt;/script&gt;</pre>
+  <h2 id="i4.o0"><a name="codicesorgente" id="codicesorgente"></a>Codice sorgente</h2>
+<ul>
+    <li><a href="source/launch.html">source/launch.html</a>: Pagina HTML,</li>
+    <li><a href="source/launch.jnlp">source/launch.jnlp</a>: File JNLP senza deployJava.js,</li>
+    <li><a href="source/launch-2.html">source/launch-2.html</a>: File JNLP con deployJava.js,</li>
+<li><a href="source/helloworld.jar">source/helloworld.jar</a>: Applicazione.<br id="z4mm0" />
+      </li>
+</ul>
+  <h2 id="z4mm1"><a name="netbeans" id="netbeans"></a>Netbeans</h2>
+<p>Netbeans supporta Web Start out-of-the box. Per attivare la creazione  del file JNLP è sufficiente selezionare il progetto, aprire il menu  contestuale selezionareProperties &gt; WebStart.</p>
+<h2 id="jjz.0"> <a name="riferimenti" id="riferimenti"></a>Riferimenti</h2>
+<ul id="elis0">
+  <li id="elis1"><a href="&lt;script http://java.sun.com/products/javawebstart/">http://java.sun.com/products/javawebstart/</a></li>
+  <li id="elis2"><a href="http://java.sun.com/javase/downloads/ea/6u10/deploymentToolkit.jsp">http://java.sun.com/javase/downloads/ea/6u10/deploymentToolkit.jsp</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://www.andreafrancia.it/articoli/large-file-viewer/" href="launch.jnlp">
+    <information>
+        <title>LargeFileViewer</title>
+        <vendor>Andrea</vendor>
+        <homepage href=""/>
+        <description>LargeFileViewer</description>
+        <description kind="short">LargeFileViewer</description>
+        <offline-allowed/>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.5+"/>
+        <jar href="LargeFileViewer.jar" main="true" download="eager"/>
+    </resources>
+    <application-desc main-class="andreafrancia.largefileviewer.Main">
+    </application-desc>
+</jnlp>

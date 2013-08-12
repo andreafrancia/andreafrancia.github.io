@@ -54,42 +54,39 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>RemotedList</h1>
+<div class='post'>
+I want to create a library to solve a problem which happens to me very often working with RMI and JPA.
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+Consider having a remote server object with an interface like this:
+<pre>public Server implements Remote{
+    List&lt;Foo&gt; getFoos() throws RemoteException;
+}
+</pre>According to the the RMI specification calling this method will cause that the resulting List is serialized and passed back over the network to the client.
+Consider the case when the resulting list is huge and you don't want pass such a big thing over the network or consider the case when the list is not serializable.
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+My remoted-list library will address these problems replacing a the actual list with a remoted version that lazily load the elements.
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+The usage of remote-list is simple. Consider the getFoos() implementation:
+<pre>List&lt;Foo&gt; getFoos() {
+   List&lt;Foo&gt; actualList = ... // create or get a list according your business logic
+   List&lt;Foo&gt; remotedList = RemotedList.remotize(actualList);
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+   return remotedList;
+}
+</pre>Instead to returning the <code>actualList</code> the method returns a <code>remotedList</code> which reflects the contents of the actualList mantaining a remote reference to <code>actualList</code>.
+The remoteList is also Serializable and ligth to serialize because it contains only a remote reference to the <code>actualList</code> instead to contains all reference of all elements.
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+Now consider the client which retrieve the remotedList from the remote object.<pre>remotedList = server.getFoos();
+...
+element = remoteList.get(index);
+</pre>When the client call <code>remoteList.get(index)</code> the <code>remoteList</code> acts like a proxy and call through RMI the <code>get(index)</code> method on the <code>actualList</code> which was left on the server JVM.
 
+This is the idea. Soon I will prepare the library and I will release it for you all!
 
-
+<span style="font-weight: bold;">UPATE 2008-05-15</span>
+I wrote the code and I put it online throuh Google Code.
+The project is hosted at <a href="http://code.google.com/p/remoted-list/">http://code.google.com/p/remoted-list/</a>.</div>
 
         </div>
         <!-- Histats.com  START  --> 

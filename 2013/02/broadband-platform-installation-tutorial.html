@@ -1,0 +1,235 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <p>In questi giorni ho dovuto installare Broadband Platform un programma per la stima della pericolosità sismica distribuito dallo SCEC (Southern California Earthquake Center).</p>
+
+<p>È un software Open Source scritto in Fortran e Python per Linux. L&#8217;unica distribuzione supportata é Fedora Core 10 ma ho scoperto che funziona bene anche con l&#8217;ultima versione 17. Ho provato anche a installarlo su Mac OS X ma mi sono scontrato con parecchi problemi di portabilità e ho dovuto lasciar perdere.</p>
+
+<p>Anche l&#8217;installazione su Fedora é parecchio macchinosa e impegnativa.</p>
+
+<p>Ad esempio per riuscire nella compilazione è necessario possedere ben tre diversi compilatori Fortran (g77, gfortran, e ifortran) e almeno due compilatori C/C++ (gcc/g++ e ipc). Sembra che ognuno dei componente di Broadband sia stato scritto per supportare uno e un solo compilatore.</p>
+
+<p>La dipendenza dai compilatori Intel é particolarmente fastidiosa. Infatti sono disponibili solo per alcune piattaforme e richiedono l&#8217;installazione di decine di pacchetti. Anche il compilatore g77 é difficile tra trovare in quanto non più attivamente supportato. Questi due compilatori rendono particolarmente difficile l&#8217;installazione su sistemi diversi da Fedora.</p>
+
+<p>Di seguito ho riportato la traccia del lavoro fatto.</p>
+
+<h2 id='installazione_delle_utilities_essenziali'>Installazione delle utilities essenziali</h2>
+
+<p>Prima di tutto ho installato alcune utilities che risulteranno utili durante l&#8217;installazione.</p>
+
+<pre><code>sudo yum install -y tmux ack wget</code></pre>
+
+<h2 id='installazione_degli_intel_compilers'>Installazione degli Intel compilers</h2>
+
+<p>Gli Intel Compilers sono disponibili solo attraverso il sito di Intel e quindi non si possono installare con <code>yum</code>. Tra l&#8217;altro il sito di Intel é un labirinto mal indicizzato e quindi é utile sapere da dove partire. Da questa pagina http://software.intel.com/en-us/non-commercial-software-development é possibile registrarsi e scaricare una versione di prova dei compilatori.</p>
+
+<p>I link da seguire sono:</p>
+
+<ul>
+<li>Intel® Fortran Composer XE 2013 for Linux</li>
+
+<li>Intel® C++ Composer XE 2013 for Linux</li>
+</ul>
+
+<p>Evidentemente Intel considra la parola &#8220;Composer&#8221; molto più trendy di &#8220;Compiler&#8221;.</p>
+
+<p>Naturalmente scarico da linea di comando:</p>
+
+<pre><code># scarico il compilatore fortran
+wget http://registrationcenter-download.intel.com/akdlm/irc_nas/2959/l_fcompxe_2013.2.146.tgz
+
+# scarico il compilatore c/c++
+wget http://registrationcenter-download.intel.com/akdlm/irc_nas/2961/l_ccompxe_2013.2.146.tgz</code></pre>
+
+<p>Prima di poter avviare l&#8217;installer é necessario installare i pre-requisiti. Da notare che se manca il comando <code>g++</code> (che é il compilatore GNU per C++) l&#8217;installer del compilatore C++ di Intel si rifiuta di continuare.</p>
+
+<pre><code>sudo yum install -y gcc-c++ java-1.7.0-openjdk glibc libstdc++ libgcc \
+    glibc.i686 libstdc++.i686 libgcc.i686 libstdc++-static.i686 lsb</code></pre>
+
+<p>Procedo con l&#8217;installazione del compilatore C/C++ di Intel:</p>
+
+<pre><code>tar xvfz l_ccompxe_2013.2.146.tgz
+cd l_ccompxe_2013
+sudo bash install.sh</code></pre>
+
+<p>Quando l&#8217;installazione é finita ricordatevi di appuntarvi la directory di installazione, nel mio caso era:</p>
+
+<pre><code>INTEL_DIR=/opt/intel/composer_xe_2013.2.146</code></pre>
+
+<p>Ora passo all&#8217;installazione del compilatore Fortran di Intel:</p>
+
+<pre><code>tar xvfz l_fcompxe_2013.2.146.tgz
+cd l_fcompxe_2013.2.146/
+sudo bash install.sh</code></pre>
+
+<p>Anche in questo caso l&#8217;installer mi suggerisce di modificare il file <code>.bashrc</code>. Trattandosi della stessa modifica fatta per il compilatore C/C++ non dobbiamo fare niente.</p>
+
+<p>Bisogna poi aggiornare i file di configurazione della shell.</p>
+
+<pre><code>cat &gt;&gt; ~/.bashrc &lt;&lt;&lt; &#39;
+source /opt/intel/composer_xe_2013.2.146/bin/compilervars.sh intel64
+&#39;
+
+cat &gt;&gt; ~/.bash_profile &lt;&lt;&lt; &#39;
+export PATH=&quot;/usr/usc/intel/composerxe-2011.4.191/bin/intel64:$PATH&quot;
+export PATH=&quot;/usr/usc/intel/composerxe-2011.4.191/mpirt/bin/intel64:$PATH&quot;
+&#39;</code></pre>
+
+<h2 id='installazione_di_broadband_platform'>Installazione di Broadband Platform</h2>
+
+<p>Verifico che l&#8217;integrità dei pacchetti.</p>
+
+<pre><code>md5sum -c bbp_data_v11.2.3.tgz.md5
+md5sum -c bbp_dist_v11.2.3.tgz.md5</code></pre>
+
+<p>Installo i pre-requisiti:</p>
+
+<pre><code>sudo yum install -y python numpy python-matplotlib pygtk2 gcc gcc-gfortran 
+sudo yum install -y compat-gcc-34-g77 ImageMagick                     
+sudo yum install -y curl dos2unix grep htop bash-completion vim man tar make</code></pre>
+
+<p>Broadband Platform richiede anche PyProj. Sfortunatamente PyProj non é disponibile attraverso <code>yum</code>, l&#8217;unico modo per installarlo é usare il sistema a pacchetti nativo di Python: PIP:</p>
+
+<pre><code>sudo yum install -y python-virtualenv python-pip
+sudo pip-python install pyproj</code></pre>
+
+<p>Ora decomprimo i due pacchetti:</p>
+
+<pre><code>tar xvfz bbp_data_v11.2.3.tgz
+tar xvfz bbp_dist_v11.2.3.tgz.md5</code></pre>
+
+<p>È necessario poi spiegare al programma dove sono si trovano queste directory:</p>
+
+<pre><code>$ vim ~/bbp_2g/comps/install_cfg.py
+    self.A_INSTALL_ROOT = &quot;/home/&lt;user&gt;/bbp_2g&quot;
+    self.A_GF_DIR = &quot;/home/&lt;user&gt;/bbp_2g_gf&quot;</code></pre>
+
+<p>E aggiungere queste configurazioni alla shell:</p>
+
+<pre><code>cat &gt;&gt; ~/.bash_profile &lt;&lt;&lt; &#39;
+export BBP=~/bbp_2g
+export PYTHONPATH=&quot;$BBP/comps:$PYTHONPATH&quot;
+&#39;</code></pre>
+
+<p>Una volta finita la configurazione é possibile passare alla compilazione.</p>
+
+<pre><code>cd /home/geo/bbp_2g/src
+make</code></pre>
+
+<p>Se questo comando fallisce é probabile che manchino alcune dipendenze (in particolare qualche compilatore).</p>
+
+<h2 id='verifica_che_tutto_funziona'>Verifica che tutto funziona</h2>
+
+<p>Ci sono due suite di test, una suite per i test di unità e una per i test di accettazione.</p>
+
+<p>Eseguo tutti i test:</p>
+
+<pre><code>cd ~/bbp_2g/tests/
+python UnitTests.py</code></pre>
+
+<p>Se qualcosa non passa conviene eseguirne uno alla volta, vederlo fallire, aggiustare e poi rieseguirlo. Per eseguire un test alla volta é sufficiente avviare il relativo script python:</p>
+
+<pre><code>python test_bband_utils.py
+python test_urs.py         
+python test_ucsb.py 
+python test_sdsu.py</code></pre>
+
+<p>Alcuni test impiegano anche 6 minuti ad eseguire. Durante l&#8217;esecuzione di questi test ho scoperto che mancavano delle dipendenze:</p>
+
+<pre><code># richiesti da test_genslip.py
+sudo yum install -y csh GMT
+
+# questi servono per zittire dei warning durante la creazione dei grafici
+sudo yum install -y stix-fonts.noarch stix-variants-fonts.noarch \
+    stix-sizes-fonts.noarch stix-pua-fonts.noarch \
+    stix-integrals-fonts.noarch</code></pre>
+
+<p>Dopo queste ultime modifiche tutti i test dovrebbero passare.</p>
+
+<p>Ora che i test di unità passano provo con i test di accettazione. Dovrebbero passare senza problemi:</p>
+
+<pre><code>python AcceptTests.py </code></pre>
+
+<p>EOF</p>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

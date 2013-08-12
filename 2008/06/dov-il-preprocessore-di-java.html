@@ -1,0 +1,151 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Dov'è il preprocessore di Java?</h1>
+<div class='post'>
+<p>
+In C e C++ c'e' il preprocessore, e in Java?
+In Java non c'è.
+Solitamente il preprocessore in C o C++ si usa per fare una delle seguenti cose:
+<ol><li>definire costanti (vedi nota sotto)</li><li>mettere funzioni inline  (vedi nota sotto)
+</li><li>gestire l'inclusione multipla degli header </li><li>includere selettivamente una parte machine dependent </li><li>attivare o disattivare il debug
+</li></ol>In Java queste necessità sono generalmente risolte in maniera diversa oppure non sono risolte perché non sono così sentite.</p>
+
+<p>Vediamole una per una.</p>
+
+<h2>1) Definire costanti</h2>
+Le costanti si definiscono con la parola chiave final, esempio:
+<pre name="code" class="java:nogutter:nocontrols">
+public static final double PI = 3,14;
+</pre><span style="font-size:180%;">2) Mettere funzioni inline</span>
+Le funzioni inline non si possono mettere in Java. In Java di solito queste ottimizzazioni di basso livello sono lasciate al compilatore e al compilatore JIT. L'unica cosa che si può fare è dichiarare una funzione final.
+<pre name="code" class="java:nogutter:nocontrols">public static final int sum(int a, int b) {
+return a+b;
+}
+</pre>Se il compilatore vuole potrebbe decidere di mettere questa funzione inline, ma non è garantito.
+
+<br/>
+<span style="font-size:180%;">3) Gestire l'inclusione multipla degli header</span>
+Questo problema in Java non esiste in quanto non ci sono header files.
+
+<br/>
+<span style="font-size:180%;">4) Includere selettivamente una parte machine dependent</span>
+Il codice machine dependent in Java solitamente viene affrontato nel seguente modo.
+Si crea una classe astratta neutrale che va bene per tutti i sistemi operativi ma che di fatto evita di implementare i metodi specifici dalla piattoforma.
+In seguito si crea per ogni piattaforma supportata una classe concreta che estende la classe astratta.
+
+<br/>
+A volte al posto di usare una classe astratta come ancestor comune si utilizza un interfaccia, ma la filosofia è sempre la stessa.
+
+<br/>
+Alcuni esempi di utilizzo di questo pattern sono le classi <a href="http://java.sun.com/javase/6/docs/api/java/lang/Process.html">java.lang.Process</a> e <a href="http://java.sun.com/javase/6/docs/api/java/io/File.html">java.io.File</a> della libreria standard.
+
+<br/>
+<h2>5) Attivare o disattivare il debug.</h2>
+L'abilitazione/disabilitazione del debug dipende dal framework di logging che si utilizza.
+I più famosi sono due:
+<ul><li>Java Logging framework</li><li>Log4J
+</li></ul>Entrambi permettono di attivare/disattivare il logging del debug sia attraverso i file di configurazione oppure per via programmatica.
+
+<br/>
+<h2>Quello che non si può fare in Java</h2>
+Come si è visto i problemi affrontati con il preprocessore in C/C++ sono in Java sono risolti in altra maniera.
+Questo non vuol dire che le soluzioni sono equivalenti.
+Ad esempio in Java non è possibile escludere una parte del codice dalla compilazione.
+Non è neanche possibile definire macro.
+
+<br/>
+In genere la mancanza di queste caratteristiche non si sente.
+Se si sente questo potrebbe indicare che Java potrebbe non essere il linguaggio giusto per il problema in esame.
+
+<br/>
+Se uno non può proprio fare a meno del preprocessore in rete ci sono progetti che estendono il linguaggio aggiungendo funzionalità simili.
+L'adozione di questi strumenti dovrebbe essere fatta responsabilmente perché può portare a dover mantenere codice scritto in un linguaggio Java modificato che quindi diventa meno accessibile perché meno conosciuto.
+
+<br/>
+<h2>Nota: costanti e funzioni inline</h2>
+Anche se in molti progetti scritti in C o C++ capita che il preprocessore sia usato per definire costanti o funzioni inline questo non vuol dire che sia una buona pratica. In questi casi la cosa migliore e fare uso delle parole chiave <span style="font-weight: bold;">const</span> e <span style="font-weight: bold;">inline</span><span> entrambe disponibili sia in C che in C++.
+</span></div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Virtual Hosts</title>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-4316218-1";
+urchinTracker();
+</script>
+</head>
+
+<body>
+<h1>Virtual Hosts</h1>
+<p>Indice:</p>
+<ol>
+  <li><a href="#_Toc175927759">Introduzione</a></li>
+  <li><a href="#_Toc175927760">Problema</a></li>
+  <li><a href="#_Toc175927761">Soluzione</a></li>
+  <li><a href="#_Toc175927765">Conclusione</a> </li>
+  <li><a href="#_Toc175927766">Riferimenti</a></li>
+  <li><a href="#_Toc17592777">Ringraziamenti</a></li>
+</ol>
+<h1><a name="_Toc175927759" id="_Toc175927759">Introduzione</a></h1>
+<p>In&nbsp; questo articolo  vedremo come &egrave; possibile configurare Apache per supportare lo sviluppo in  locale di differenti siti contemporaneamente.<br />
+A volte c&rsquo;&egrave; la  necessit&agrave; di ospitare sulla macchina di sviluppo pi&ugrave; di un sito  contemporaneamente. Per esempio potremmo voler tenere sul computer locale le  versioni di sviluppo dei siti <a href="http://www.cliente1.com/">http://www.cliente1.com</a> e <a href="http://www.cliente2.com/">http://www.cliente2.com</a>. </p>
+<h1><a name="_Toc175927760" id="_Toc175927760">Problema</a></h1>
+<p>Supponiamo che ci stiamo occupando dello sviluppo di pi&ugrave;  siti, per esempio dei siti</p>
+<ul type="disc">
+  <li><a href="http://www.cliente1.com/">http://www.cliente1.com</a>,</li>
+  <li><a href="http://www.cliente2.com/">http://www.cliente2.com</a>. </li>
+</ul>
+<p>Supponiamo che abbiamo scelto tenere la versione di sviluppo  sul nostro computer locale e di fare l&rsquo;upload del sito sulla macchina  produzione ogni qualvolta implementiamo una nuova feature. <br />
+  Se lavorassimo con un sito alla volta potremmo semplicemente  usare l&rsquo;indirizzo <a href="http://127.0.0.1/">http://127.0.0.1/</a> per  lavorare sulla versione di sviluppo.<br />
+  Per&ograve; noi vogliamo avere la possibilit&agrave; di avere due siti  contemporaneamente sul nostro server. Per esempio vorremmo avere la seguente  configurazione </p>
+<ul type="disc">
+  <li><a href="http://devel.cliente1.com/">http://devel.cliente1.com/</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  --&gt; versione di sviluppo per il       sito del cliente 1 su localhost</li>
+  <li><a href="http://devel.cliente2.com/">http://devel.cliente2.com/</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  --&gt; versione di sviluppo per il       sito del cliente 2 su localhost</li>
+</ul>
+<p>Un altro motivo per cui non risulta  comodo utilizzare l&rsquo;indirizzo <a href="http://127.0.0.1/">http://127.0.0.1/</a> potrebbe essere gi&agrave; utilizzato per altri scopi. Per esempio sul mio computer  dove &egrave; installato WAMP<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"> </a> dalla  pagina <a href="http://127.0.0.1/">http://127.0.0.1/</a> riesco ad accedere ad  una serie di utilit&agrave; come phpMyAmin, SQLite Manager ed una comoda pagina che visualizza l&rsquo;output di php_info().<br />
+  Noi vorremmo che il siti devel.cliente1.com  e devel.cliente2.com  non oscurassero l&rsquo;accesso alle risorse gi&agrave; accessibili tramite Apache.</p>
+<h1><a name="_Toc175927761" id="_Toc175927761">Soluzione</a></h1>
+<h2><a name="_Toc175927762" id="_Toc175927762">Introduzione  Virtual Hosts</a></h2>
+<p>La soluzione che viene presentata si basa sull'uso dei  virtual hosts. <br />
+  Virtual hosts &egrave; la feature di Apache con la quale &egrave;  possibile configurare una macchina per servire due siti differenti  contemporaneamente. Con Virtual Hosts possiamo fare in modo che la stessa  macchina possa essere usata per servire i contenuti sia del sito <a href="http://devel.cliente1.com/">devel.cliente1.com</a> che quelli di <a href="http://www.cliente2.com">devel.cliente2.com</a>,ed  eventualmente di altri siti ancora.<br />
+  Il server httpd di Apache supporta due modalit&agrave; di virtual  hosts: </p>
+<ol>
+  <li>name based virtual hosts (host virtuali basati sul nome  a dominio) </li>
+  <li>IP based virtual hosts (basati sull'indirizzo IP).</li>
+</ol>
+<p>La nostra soluzione prevede l'uso dei virtual host, basati  sul nome.<br />
+  Per utilizzare questa caratteristica bisogna modificare il principale  file di configurazione di apache: httpd.conf.</p>
+<h2><a name="_Toc175927763" id="_Toc175927763">Struttura  del file di configurazione httpd.conf</a></h2>
+<p>Il file di configurazione httpd.conf &egrave; organizzato in tre  sezioni:</p>
+<ol>
+  <li>configurazione globale</li>
+  <li>configurazione del 'main' server (del server       principale);</li>
+  <li>configurazione dei virtual hosts.</li>
+</ol>
+<p>Nella sezione relativa alla configurazione globale ci si occupa  di aspetti come il numero di richieste che devono poter essere gestite  contemporaneamente o su che porta TCP il server deve mettersi in ascolto.<br />
+  La sezione relativa al server principale definisce, tra le  altre cose, quale sia il nome del server e come la directory principale del  sito deve essere mappata sul file system.<br />
+  L'ultima sezione &egrave; l'oggetto del prossimo paragrafo. Come &egrave;  facile immaginare questa sezione si occupa di definire quali sono i virtual  host e quali propriet&agrave; hanno.</p>
+<h2><a name="_Toc175927764" id="_Toc175927764">Implementazione  della soluzione</a></h2>
+<p>Quello che faremo &egrave; associare il nomi devel.cliente1.com,  devel.cliente2.com  all'indirizzo IP associato all'interfaccia di loopback (cio&egrave;  127.0.0.1) e poi modificare il file httpd.conf in modo che il server  httpd risponda in modo diverso a seconda dell'hostname richiesto dal browser.<br />
+  Per associare ai nomi a dominio devel.cliente1.com  e devel.cliente2.com  l'indirizzo IP locale basta modificare il file  C:\WINDOWS\system32\drivers\etc\hosts<a href="#_ftn1" name="_ftnref1" title="" id="_ftnref1"> </a>.<br />
+  Apriamo il file con il blocco note e aggiungiamo le seguenti  righe</p>
+<pre>
+  127.0.0.1 devel.cliente1.com
+  127.0.0.1 devel.cliente2.com</pre>
+<p>Il modo pi&ugrave; semplice di verificare se le modifiche hanno  avuto effetto basta usare il comando ping.
+   Dal prompt dei comandi eseguiamo </p>
+<pre>	&gt; ping devel.cliente1.com  </pre>
+<p>Se le modifiche hanno avuto effetto apparir&agrave; l'indirizzo IP  tra parentesi nell'output del programma.  </p>
+<pre>	Esecuzione di Ping devel.cliente1.com [127.0.0.1] con 32  byte di dati:
+	&hellip;  </pre>
+<p>Se invece appare qualcosa di simile a    </p>
+<pre>	Impossibile trovare l'host devel.cliente1.com.Verificare  che il nome sia corretto e riprovare.   </pre>
+<p>vuol dire che c'e' qualcosa che non va&rsquo;. </p>
+<p>Le prossime modifiche le faremo sul file http.conf. La  posizione del file dipende da che distribuzione di Apache state usando,  solitamente il percorso &egrave; ${APACHE}\conf\httpd.conf dove ${APACHE} &egrave; la  directory di installazione di Apache. Nel mio caso il file si trova alla  posizione C:\Programmi\wamp\Apache2\conf\httpd.conf<br />
+  Apriamo il file httpd.conf e facciamo le seguenti modifiche.<br />
+  Per attivare il supporto ai virtual host aggiungiamo la riga </p>
+<pre>	NameVirtualHost *:80</pre>
+<p>  Aggiungiamo dei blocchi &lt;VirtualHost&gt; uno per ognuno  dei server che vogliamo servire.<br />
+  I server che vogliamo servire sono:</p>
+  <pre>
+    localhost
+    devel.cliente1.com
+    devel.cliente2.com</pre>
+  <p>Il server &lsquo;localhost&rsquo; ci consentir&agrave; di mantenere accessibili  le risorse (come la pagina iniziale di WAMP) che non fanno parte dei due siti  devel.cliente1.com e devel.cliente2.com.<br>
+  In ognuno dei blocchi &lt;VirtualHost&gt; specifichiamo con ServerName il  nome del server associato al virtual host.<br>
+  Per i due siti in via di sviluppo specifichiamo anche la  loro DocumentRoot. Per il server &lsquo;localhost&rsquo; lasciamo che utilizzi la DocumentRoot del  server principale.<br>
+  Apache considera il primo blocco &lt;VirtualHost&gt;  come il VirtualHost di default. Quando i virtual host sono attivi e Apache non riceve  il nome dell&rsquo;host da servire oppure riceve un nome che non conosce utilizza il  virtual host di default. <br>   
+  Il listato 1 contiene le righe da aggiungere al file  httpd.conf,<br>
+  Vi prego di notare che in ognuno dei blocchi  &lt;VirtualHost&gt;&nbsp; &egrave; specificata la  stringa &quot;*:80&quot; che deve essere uguale alla stringa specificata nella  direttiva NameVirtualHost. </p>
+  <pre>
+  NameVirtualHost *:80
+  
+  &lt;VirtualHost *:80&gt;
+  	ServerName localhost
+  &lt;/VirtualHost&gt;
+  
+  &lt;VirtualHost *:80&gt;
+  	ServerName devel.cliente1.com
+  	DocumentRoot &quot;C:/Documents and  Settings/Andrea/Documenti/workspace/articolo-virtual-host/cliente1.com&quot;
+  &lt;/VirtualHost&gt;
+
+  &lt;VirtualHost *:80&gt;
+  	ServerName devel.cliente2.com
+  	DocumentRoot &quot;C:/Documents and  Settings/Andrea/Documenti/workspace/articolo-virtual-host/cliente2.com&quot;
+  &lt;/VirtualHost&gt;
+</pre>
+<strong>
+  Listato 1</strong>
+<h1><a name="_Toc175927765" id="_Toc175927765">Conclusione</a> </h1>
+<p>Abbiamo visto come sia possibile configurare il server web Apache  per gestire due siti con nomi di dominio differente sulla stessa macchina. La  soluzione presentata fa riferimento ad un ambiente di sviluppo, ma i concetti  presentati possono essere estesi al caso in cui lo stesso server di produzione  debba servire due siti differenti. La soluzione &egrave; stata facendo riferimento  allo sviluppo sotto windows con il server web Apache incluso in WAMP. La  soluzione pu&ograve; essere estesa con poche modifiche all&rsquo;uso del server Apache  ufficiale oppure all&rsquo;ambiente Linux.</p>
+<h1><a name="_Toc175927766" id="_Toc175927766">Riferimenti</a> </h1>
+<p>Apache HTTPD server<u> </u><u><a href="http://httpd.apache.org/docs/2.2/">http://httpd.apache.org/docs/2.2/</a></u><u> </u><br />
+  Apache  Virtual Host documentation<u> <a href="http://httpd.apache.org/docs/2.2/vhosts/">http://httpd.apache.org/docs/2.2/vhosts/</a></u> <u></u><br />
+WAMP Server<u> <a href="http://www.wampserver.com/en/index.php">http://www.wampserver.com/en/index.php</a></u></p>
+<h1><a name="_Toc17592777" id="_Toc17592777">Ringraziamenti</a></h1>
+<p>Grazie a <a href="http://rebus.splinder.com/">Rebus</a> ed Elisa per aver revisionato questo articolo. </p>
+<h1>Note</h1>
+<div>
+  <div id="div">
+    <p><a href="#_ftnref1" name="_ftn1" title="" id="_ftn1"> </a> Su GNU/Linux il file da  modificare &egrave; /etc/hosts</p>
+    <p><a href="#_ftnref1" name="_ftn1" title="" id="_ftn1"> </a> WAMP &egrave; un pacchetto per  Windows che in un'unica installazione comprende Apache, Mysql e PHP gi&agrave;  configurati per lavorare in modo integrato. </p>
+  </div>
+</div>
+<div>
+  <div></div>
+</div>
+<div></div>
+
+
+  <!-- Histats.com  START  --> 
+ <a href="http://www.histats.com/it/" target="_blank" title="contatore free" > 
+ <script  type="text/javascript" language="javascript"> 
+  
+ var s_sid = 321314;var st_dominio = 4; 
+ var cimg = 0;var cwi =150;var che =30; 
+ </script> 
+ <script  type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"></script> 
+ </a> 
+ <noscript><a href="http://www.histats.com/it/" target="_blank"> 
+ <img  src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"></a> 
+ </noscript> 
+
+</body>
+</html>

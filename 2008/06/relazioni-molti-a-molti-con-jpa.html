@@ -1,0 +1,218 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Relazioni molti a molti con JPA</h1>
+<div class='post'>
+Oggi ho imparato a fare le relazioni molti a molti con JPA.
+
+E' abbastanza semplice. Ve lo spiego con un esempio.
+Abbiamo due entità
+<ol><li>Book
+</li><li>Author</li></ol>Un libro puo' essere stato scritto da uno o piu' autori.
+Un autore può aver scritto uno o piu' libri.
+
+Per rendere la relazione basta usare @ManyToMany, nel nostro caso:
+
+Book.java:
+<pre name="code" class="java:nogutter">
+public class Book implements Serializable {
+private Long id;
+private List&lt;Author&gt; authors = new ArrayList&lt;Author&gt;();
+protected String title;
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="id")
+public Long getId() {
+    return id;
+}
+
+@ManyToMany(cascade=CascadeType.PERSIST)
+public List&lt;Author&gt; getAuthors() {
+    return authors;
+}
+
+public String getTitle() {
+    return title;
+}
+
+public void setTitle(String title) {
+    this.title = title;
+}
+
+public void setId(Long id) {
+    this.id = id;
+}
+
+public void setAuthors(List&lt;Author&gt; authors) {
+    this.authors = authors;
+}
+
+}
+</pre>
+Author.java
+<pre name="code" class="java:nogutter">
+@Entity
+@Table(name="Autores")
+public class Author implements Serializable {
+private Long id;
+protected String name;
+private List&lt;Book&gt; books;
+
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name="id")
+public Long getId() {
+    return id;
+}
+
+@ManyToMany(mappedBy = "authors")
+public List&lt;Book&gt; getBooks() {
+    return books;
+}
+
+public String getName() {
+    return name;
+}
+
+public void setId(Long id) {
+    this.id = id;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public void setBooks(List&lt;Book&gt; books) {
+    this.books = books;
+}
+
+}
+</pre>
+
+Esempio di utilizzo:
+<pre name="code" class="java:nogutter">
+EntityManager em = ...
+
+Author author1 = new Author();
+Author author2 = new Author();
+Author author3 = new Author();
+
+author1.setName("Pippo");
+author1.setName("Pluto");
+author1.setName("Paperino");
+
+Book book1 = new Book();
+book1.setTitle("Vivere a topolinia");
+book1.getAuthors().add(author1);
+book1.getAuthors().add(author2);
+book1.getAuthors().add(author3);
+
+Book book2 = new Book();
+book2.setTitle("Vivere a Paperopoli");
+book2.getAuthors().add(author3);
+
+em.persist(book1);
+em.persist(book2);
+</pre><span style="font-size:180%;">Nota sul mapping</span>
+Le relazioni molti a molti non possono essere espresse direttamente sui database relazionali, è infatti necessario introdurre una tabella che faccia da ponte. Nei casi semplici è possibile ignorare questi dettagli perché sono gestiti dal provider JPA.
+
+Però nel caso la struttura del database sia già definita e necessario istruire JPA in modo che utilizzi la tabella ponte giusta. Questo si fa usando l'annotazione @JoinTable.
+
+Per esempio nel caso la tabella ponte sia definita come:
+<pre name="code" class="sql:nogutter">CREATE TABLE "LIBROS_AUTORES" (
+  "libros_id" BIGINT NOT NULL,
+  "autores_id" BIGINT NOT NULL);
+</pre>Useremo annoteremo getAuthors nel seguente modo:
+<pre name="code" class="java:nogutter"> @JoinTable(
+    name="LIBROS_AUTORES",
+    joinColumns=@JoinColumn(name="libros_id", referencedColumnName="id"),
+    inverseJoinColumns=@JoinColumn(name="autores_id",referencedColumnName="id")
+)
+public List&lt;Author&gt; getAuthors() {
+    return authors;
+}
+</pre></div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

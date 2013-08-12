@@ -54,43 +54,24 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <p>In questi giorni è stata <a href='https://github.com/mxcl/homebrew/pull/11324#issuecomment-4867716'>inclusa</a> una delle mie patch in <a href='https://github.com/mxcl/homebrew/'>Homebrew</a>, la patch aggiunge <a href='http://www.math.utah.edu/~beebe/software/ndiff/'>ndiff</a> (una specie di <code>diff</code> che ignora le eventuali piccole differenze numeriche tra file).</p>
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+<p>La cosa mi é piaciuta e servita. Facendolo ho avuto la possibilità di capire come meglio come usare Git per lo sviluppo collaborativo (con le patch e i branch per feature) e come usare anche GitHub e le &#8220;Pull request&#8221;.</p>
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+<p>L&#8217;altra cosa é che Homebrew é proprio progettato bene e studiandolo riesco a imparare molto dal suo design, sia dal modello di iterazioen con l&#8217;utente.</p>
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+<p>Al momento ho un&#8217;altra patch che ho richiesto essere inclusa. Si tratta dell&#8217;utility <code>ren</code> che in passato veniva distribuito con <a href='http://www.finkproject.org/'>Fink</a>. A differenza della mia pull-request per <code>ndiff</code> questa é ancora aperta. Mi farebbe piacere che venga accettata ma non é immediato, ci sono altre 233 richieste oltre alla mia.</p>
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+<p>Se includono o meno questo secondo pacchetto per me l&#8217;importanza è relativa.<br />Ho cominciato a lavorare su questi pacchetti perché servivano a mia moglie per il suo lavoro. Lei può comunque installare <code>ren</code> facendo riferimento al mio repository personale::</p>
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+<pre><code>brew install https://raw.github.com/andreafrancia/homebrew/ren/Library/Formula/ren.rb</code></pre>
 
+<p>Mentre per ndiff si può semplicemente usare</p>
 
+<pre><code>brew update
+brew install ndiff</code></pre>
 
-
+<p>Il <code>brew udpate</code> serve per aggiornare. Nel caso ci sia una versione vecchia di brew.</p>
         </div>
         <!-- Histats.com  START  --> 
 <script async type="text/javascript" language="javascript"> 

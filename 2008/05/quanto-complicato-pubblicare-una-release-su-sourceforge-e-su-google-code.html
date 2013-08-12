@@ -1,0 +1,198 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Quanto è  complicato pubblicare una release su Sourceforge e su Google Code</h1>
+<p>Ho due progettini opensource, uno si chiama bluetrash e sta su Sourceforge, l&#8217;altro si chiama remoted-list e sta su Google Code.</p>
+
+<p>Per farvi capire la differenza di usabilità tra i due siti vi spiego come si rilascia un nuovo pacchetto su entrambi i sistemi.</p>
+
+<h2 id='caso_google_remotedlist'>Caso Google: remoted-list.</h2>
+
+<ul>
+<li>faccio login su google code</li>
+
+<li>vado sulla pagina download del mio progetto</li>
+
+<li>clicco &#8220;new download&#8221;</li>
+
+<li>clicco Browse</li>
+
+<li>seleziono il file remoted-lists-0.0.2.jar dal mio disco</li>
+
+<li>clicco su submit file</li>
+
+<li>fine</li>
+</ul>
+
+<h2 id='caso_sourceforge_bluetrash'>Caso Sourceforge: bluetrash.</h2>
+
+<ul>
+<li>vado sulla pagina download.</li>
+
+<li>cerco il bottone &#8220;aggiungi nuova release&#8221;</li>
+
+<li>non lo trovo</li>
+
+<li>cerco meglio</li>
+
+<li>trovo File Releases tra una delle 20 voci del menu Admin</li>
+
+<li>lo clicco</li>
+
+<li>Appare la pagine File Release System, quasi ci sono</li>
+
+<li>hai definito un package? se non l&#8217;hai definito non puoi proseguire!</li>
+
+<li>ok lo definisco</li>
+
+<li>attento se cambi idea il package una volta aggiunto non puoi rimuoverlo, puoi solo marcarlo hidden!</li>
+
+<li>va be&#8217; fa niente, alla fine ne ho due bluetrash (errore marcato hidden) e trash (giusto)</li>
+
+<li>C&#8217;e&#8217; un link Add Release per ogni package (anche per quello hidden).</li>
+
+<li>Scelgo &#8220;trash&#8221; quindi devo cliccare il link Add release di trash.</li>
+
+<li>appare un paginone composto da quattro capitoli &#8220;Step 1&#8221;, 2 , 3 e 4.</li>
+
+<li>Allo step 1 mi chiede il nome della release, ok lo inserisco trash-0.1.8</li>
+
+<li>mi chiede ancora &#8220;Of which package&#8221; con scelta predefinitta &#8220;trash&#8221;. Ma se te lo detto prima!</li>
+
+<li>mi chiede il changelog, e il Release note, io non ce li ho, non li ho fatti e non li metto</li>
+
+<li>clicco i l bottone update</li>
+
+<li>Vado più sotto nel documento a leggere allo Step 2</li>
+
+<li>Mi dice che devo fare l&#8217;upload del file file. Ok dov&#8217;e il bottone browse per scegliere il mio file sul file system? Non c&#8217;e&#8217;.</li>
+
+<li>C&#8217;e&#8217; scritto che posso caricare il file con SFTP, webdav o rsync. Per me uno vale l&#8217;altro, a che mi serve scegliere?</li>
+
+<li>Decido che lo faccio con SFTP.</li>
+
+<li>Penso dimmi quelle quattro cose che mi servono l&#8217;indirizzo (hostname, path, username e password). Le avranno scritte qui&#8230; no! non ci sono. bisogna cliccare il link.</li>
+
+<li>clicco il link che apre la pagina di help.</li>
+
+<li>Scopro hostname, path, username e password.</li>
+
+<li>faccio l&#8217;upload del primo dei tre file.</li>
+
+<li>Pero&#8217; io non voglio mettere sempre la password, posso installare la mia chiave pubblica ssh? No! non si puo&#8217;! vabbe&#8217;.</li>
+
+<li>Ripeto per gli altri due file mettendo la password a mano e rinunciando al pensiero di automare un giorno la cosa con qualche script.</li>
+
+<li>Torno sulla pagina, naturalmente non è aggiornata. Devo cliccare il bottone &#8220;Add Files and/or refresh view&#8221;&#8230;. che cosa fa questo bottone? Aggiunge file oppure o anche aggiorna?</li>
+
+<li>Lo clicco</li>
+
+<li>appaiono i nomi dei file che caricato: <tt>trash-0.1.8-1.noarch.rpm</tt>, <tt>trash_0.1.8-2_all.deb</tt>, <tt>trash-0.1.8.tar.gz</tt>.</li>
+
+<li>finito? no!</li>
+
+<li>bisogna spuntare ognuno dei file e poi cliccare di nuovo il bottone omnicomprensivo : &#8220;Add Files and/or refresh view&#8221;</li>
+
+<li>Lo step 4 si popola di 3 righe, una per ogni file.</li>
+
+<li>Per ogni riga devo scegliere tipo di processore, data di rilascio, tipo di file.</li>
+
+<li>Ok li scelgo tutti poi schiaccio uno dei bottoni &#8220;update/refresh&#8221; (anche in questo caso i bottoni fanno piu&#8217; di un lavoro).</li>
+
+<li>Scopro che mi ha tenuto solo le scelte del file per cui ho premuto il bottone e le altre scelte sono andate perse.</li>
+
+<li>Ok ho capito devo modificarne e fare l&#8217;update/refresh di un file alla vota.</li>
+
+<li>finalmente</li>
+
+<li>finito.</li>
+</ul>
+<h2>Comments</h2><div class='comments'>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Io sto impazzendo su sf :(</div>
+</div>
+</div>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

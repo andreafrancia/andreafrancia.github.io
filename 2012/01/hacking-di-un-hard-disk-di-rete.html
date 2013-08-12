@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Hacking di un Hard disk di rete</h1>
+<h1 id='problema'>Problema</h1>
+
+<p>In questi giorni sono tornato a smanettare con il mio My Book World Edition.</p>
+
+<p>Lo vendono come &#8220;Harddisk di rete&#8221;, in realtà è un NAS (Network Attached Storage) cioè un computer con un grosso disco, una scheda di rete e tutto il software necessario per condividere il proprio disco con gli altri PC della LAN. Questo NAS, come molti altri dispositivi con computer integrato, nasconde al suo interno un sistema operativo Linux processore ARM.</p>
+
+<p>La distribuzione Linux usata è una versione proprietaria e soprattutto minimale. Mancano comandi quasi indispensabili come <code>screen</code>, le utility di base sono limitate (ad esempio <code>rm</code> non ha l&#8217;opzione <code>-v</code>), manca il Vim e in generale non è possibile aggiungere nuovo software.</p>
+
+<p>Per queste distribuzioni senza un proprio package manager e che girano su ARM il modo più semplice per installare software è quello di usare <strong>optware</strong>.</p>
+
+<p>In teoria dopo aver seguito le istruzioni di installazione esso dovrebbe permettere di installare i nuovi pacchetti con::</p>
+
+<pre><code>ipkg install &lt;nome-pachetto&gt;</code></pre>
+
+<p>Per installare optware basta seguire la guida su <a href='http://mybookworld.wikidot.com/first-steps-with-mbwe'>mybookworld.wikidot.com</a> dove è anche spiegato come accedere alla shell del NAS tramite SSH.</p>
+
+<p>Qui finisce la teoria e inizia la pratica perché a casa mia c&#8217;é un problema che non mi permettere di sfruttare questo utile programma: il NAS non può accedere ad Internet! Di conseguenza <strong>ipkg</strong> non potrebbe scaricare nessun pacchetto! Infatti a casa non ho l&#8217;ADSL e l&#8217;unico modo che ho per accedere alla Rete è la chiavetta Internet :-(</p>
+
+<p>Improbabili cablaggi e riconfigurazioni della tabella di routing sono fuori discussione. Si tratta di un problema soft, il mio portatile può accedere ad Internet e può accedere al NAS, quindi la soluzione deve essere soft.</p>
+
+<h1 id='soluzione'>Soluzione</h1>
+
+<p>La soluzione soft si basa sui web proxy e sui tunnel SSH e si compone di due passi:</p>
+
+<ol>
+<li>installo sul mio portatile un web proxy</li>
+
+<li>faccio in modo che ipkg usi il web proxy del portatile</li>
+</ol>
+
+<p>Ho deciso di installare <code>polipo</code>, un web proxy mono-thread che sembra più semplice di <code>squid</code>::</p>
+
+<pre><code>(portatile) $ brew install polipo
+(portatile) $ polipo
+Established listening socket on port 8123.
+...</code></pre>
+
+<p>Ora il proxy si trova in ascolto sulla porta 8123 del mio portatile; con il port-forwarding di SSH posso fare in modo che sia accessibile anche dal mio NAS::</p>
+
+<pre><code>(portatile) $ ssh -R8123:localhost:8123 nas.local</code></pre>
+
+<p>Però non so come configurare ipkg in modo che usi il proxy giusto. Fa niente, lo posso scoprire con un avvio di prova::</p>
+
+<pre><code>(nas) ~ # ipkg install nano     
+Installing nano (2.2.6-1) to root...
+Downloading http://ipkg.nslu2-linux.org/feeds/optware/cs05q1armel/cross/unstable/nano_2.2.6-1_arm.ipk
+Nothing to be done
+An error ocurred, return value: 22.
+Collected errors:
+ipkg_download: ERROR: Command failed with return value 1: `wget 
+--passive-ftp -q -P /opt/ipkg-ZFXnou http://ipkg.nslu2-linux.org
+/feeds/optware/cs05q1armel/cross/unstable/nano_2.2.6-1_arm.ipk&#39;
+Failed to download nano. Perhaps you need to run &#39;ipkg update&#39;?</code></pre>
+
+<p>Dal messaggio di errore appare chiaro che <strong>ipkg</strong> usi <code>wget</code> come backend per il download, quindi mi dovrebbe bastare configurare quello::</p>
+
+<pre><code>(nas) ~ # cat &gt;&gt; ~/.wgetrc &lt;&lt; EOF
+http_proxy = http://localhost:8123/
+use_proxy = on
+EOF</code></pre>
+
+<p>E in effetti funziona::</p>
+
+<pre><code>(nas) ~ # ipkg install nano
+Installing nano (2.2.6-1) to root...
+Downloading http://ipkg.nslu2-linux.org/feeds/optware/cs05q1armel/cross/unstable/nano_2.2.6-1_arm.ipk
+Configuring nano
+Successfully terminated.</code></pre>
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

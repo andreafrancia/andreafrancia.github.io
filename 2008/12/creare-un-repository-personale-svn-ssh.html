@@ -54,42 +54,42 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>Creare un repository personale svn+ssh://</h1>
+<div class='post'>
+<span style="font-size:180%;">Ingredienti (requisiti):</span>
+<ul><li>Un server unix (o unix-like) accessibile da internet
+</li><li>Subversion installato sul server unix</li><li>Una macchina Windows che fa da client
+</li><li>TortoiseSVN e PuTTY installati sulla macchina Windows</li><li>Una file .ppk con la propria chiave SSH
+</li></ul><span style="font-size:180%;">Procedimento:</span>
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+Accedere al server unix e creare il repository, con  i comandi:
+<code>
+mkdir ~/svn-repo
+svnadmin create  ~/svn-repo
+</code>
+Installare la propria chiave pubblica sul server unix:
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+<code>mkdir ~/.ssh
+chmod 700 ~/.ssh
+echo "echo &lt;my-rsa-key&gt; </code><code>&gt;</code><code>&gt; </code><code>.ssh/authorized_keys"</code>
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+Per conoscere la propria chiave pubblica aprite il vostro file .ppk con PuTTYgen. Se non avete un file .ppk createlo (sempre con PuTTYgen).
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+Usate Pageant per caricare la chiave .ppk.
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+Verificate che quando vi collegate con PuTTY che l'autenticazione avvenga senza dover immettere la password.
 
+A questo punto provate a collegarvi al server con TortoiseSVN usando il seguente url of repository:
+<code>
+svn+ssh://username@server-unix.com/home/username/svn-repo/
+</code>
+E' importante che l'url contenga anche la specifica dello username (la parte "serenity@") altrimenti TortoiseSVN te lo chiederebbe e ciò sarebbe noioso.
 
+Se non conoscete il path assoluto usate il comando "pwd" dalla shell del server unix.
 
+<span style="font-size:180%;">Commenti:</span>
+<ul><li>L'utilizzo di Pageant e dell'autenticazione basata su chiave pubblica è consigliato perché altrimenti  altrimenti dovresti  riscrivere più e più volte la password durante anche una singola operazione.</li><li>Il server svn+ssh:// è comodo perché è più facile da installare che il corrispondente servizio http:// ma ha una serie di svantaggi, questi sono descritti nel libro <a href="http://svnbook.red-bean.com/en/1.5/svn.serverconfig.choosing.html#svn.serverconfig.choosing.svn-ssh">svnbook</a>.
+</li></ul></div>
 
         </div>
         <!-- Histats.com  START  --> 

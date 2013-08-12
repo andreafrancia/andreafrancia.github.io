@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title></title>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+        <link rel="openid.server" href="http://www.blogger.com/openid-server.g" />
+        <link rel="openid.delegate" href="http://andreafrancia.blogspot.com/" />
+
+        <link href="/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="/css/code-highlight.css" rel="stylesheet" type="text/css" />
+
+        <link rel="alternate" type="application/rss+xml" title="Feed" href="/atom.xml" />
+
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </head>
+    <body>
+        <div id='mainnav' class='nav'>
+    <ul>
+        <li><a href="/">andreafrancia.it</a>
+        <li><a href="/archives.html">writing</a>
+        <li><a href="/resume.html">cv</a></li>
+        <li><a href='/talks.html'>speaking</a>
+        <li><a href="/code.html">coding</a></li>
+        <li class="last"><a href="/library.html">reading</a></li>
+    </ul>
+</div>
+
+        <div id="contents">
+            <h1>Utility screen</h1>
+<div class='post'>
+<pre>
+Come usare screen
+=================
+Questo articolo introduce l'utilizzo dell'utility screen. L'articolo è scritto
+per la mia fidanzata, ciò nonostante, l'articolo potrebbe risultare utile 
+anche ad altre persone.
+
+La mia fidanzata deve utilizzare PuTTY per collegarsi ai computer del lavoro 
+sui quali avvia programmi di calcolo scientifico. L'esecuzione di questi 
+programmi dura spesso parecchie ore. Il problema è che, durante l'esecuzione di 
+questi programmi, la connessione potrebbe cadere con il risultato di terminare 
+prematuramente l'esecuzione del programma. 
+
+Dato che questa scocciatura capita spesso alla mia fidanzata e dato che le 
+voglio bene le spiegherò come evitare questo problema.
+
+Nel mondo unix e linux esistono due soluzioni a questo problema e si tratta 
+delle utility `nohup` e `screen`. In questo articolo spiegherò come usare 
+`screen`. 
+
+Cos'è screen
+------------
+`screen` è un utility che permette di creare terminali virtuali che rimangono
+attivi anche dopo aver fatto il log out dal sistema o dopo che la connessione è
+interrotta.
+
+Esempio di utilizzo
+-------------------
+Dopo esserci collegati al server con PuTTY avviamo `screen`:
+
+ $ screen
+
+Apparirà una schermata che riporta qualche informazioni riguardanti il copyright
+e la licenza di utilizzo. Usiamo RETURN per chiudere questa schermata.
+ 
+A questo punto saremo entrati nel terminale virtuale di screen.
+Adesso possiamo avviare il programma di calcolo la cui durata è molto lunga. 
+Dato che io non ho tale programma ne simulerò l'esecuzione usando il comando
+
+ $ yes > /dev/null
+
+che ha durata indefinita.
+
+Ora simuliamo l'interruzione del collegamento chiudendo la finestra di PuTTY.
+Ricolleghiamoci al server (sempre con PuTTY) e scriviamo:
+
+ $ screen -r 
+
+e magicamente recuperiamo la sessione precedente dove il comando `yes` (o il 
+programma di calcolo) sta ancora girando.
+
+Adesso supponiamo che il comando non abbia ancora terminato ma vogliamo comunque
+tornare in possesso della shell. Per uscire da screen usiamo
+la combinazione di tasti "CTRL+A, D". Questo dovrebbe farci ritornare alla shell
+iniziale.
+
+    $ screen -r
+    [detached]
+    $
+
+Lo screen è passato allo stato "Detached", cioé è ancora attivo ma non è più 
+associato a nessun terminale.
+
+Per recuperare questo screen è sufficente scrivere:
+
+ $ screen -r
+
+Infine, per terminare uno screen è sufficiente terminare la shell caricata da 
+esso, quindi (quasi per tutte le shell) si tratta di usare il comando exit.
+
+ $ exit
+
+Avviare molti screen
+--------------------
+E' possibile tenere in esecuzione più di uno screen alla volta. Per avviare un 
+secondo screen è sufficiente scrivere il comando screen, anche da un terminale 
+screen.
+Con il comando "screen -ls" invece è possibile elencare gli screen attualmente 
+in esecuzione, ad esempio 
+
+ $ screen -ls
+ There are screens on:
+        2893.pts-0.ubuntu       (01/18/2009 07:40:56 PM)        (Attached)
+        2854.pts-3.ubuntu       (01/18/2009 07:37:57 PM)        (Attached)
+        2727.pts-0.ubuntu       (01/18/2009 07:35:23 PM)        (Detached)
+ 3 Sockets in /var/run/screen/S-andrea.
+
+L'output nell'esempio mostra che ci tre "screen" attivi. Due screen sono nello 
+stato "Attached" (cioè attualmente visualizzato su un terminale), mentre un 
+terzo si trova nello stato "Detached" (cioé in esecuzione in background, quindi
+non visibile su nessun terminale).
+
+Per ogni "screen" è inoltre indicato un numero identificativo. Il numero 
+identificativo è utile per specificare su quale istanza si vuole eseguire un 
+comando, per esempio è possibile scrivere:
+
+ $ screen -r 2727
+</pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrea Francia</div>
+<div class='content'>
+@Anonimo: non capisco la tua domanda. Dove non c&#39;era?</div>
+</div>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Ma non c&#39;era la possibilita&#39; di far girare i programmi remoti in batch ?</div>
+</div>
+<div class='comment'>
+<div class='author'>Ritch</div>
+<div class='content'>
+Grazie, mi hai salvato la vita!</div>
+</div>
+</div>
+
+        </div>
+        <!-- Histats.com  START  --> 
+<script async type="text/javascript" language="javascript"> 
+var s_sid = 321314;var st_dominio = 4; 
+var cimg = 0;var cwi =150;var che =30; 
+</script> 
+<script  async type="text/javascript" language="javascript" src="http://s11.histats.com/js9.js"/></script> 
+<noscript><img src="http://s103.histats.com/stats/0.gif?321314&1" alt="contatore free" border="0"/> 
+</noscript> 
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4316218-1']);
+  _gaq.push(['_setDomainName', 'andreafrancia.it']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+    </body>
+</html>

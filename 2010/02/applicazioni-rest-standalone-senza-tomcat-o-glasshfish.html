@@ -54,42 +54,74 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
+            <h1>Applicazioni REST standalone (senza Tomcat o Glasshfish)</h1>
+<div class='post'>
+<p>Ho cercato di capire come sia possibile avviare 
+<a href="https://jersey.dev.java.net/">Jersey</a> in modalità standalone, cioè 
+senza dover ricorrere ad inutili (per ora) complessità, come:<ul>
+  <li>application servers (e.g. <a href="https://glassfish.dev.java.net">Glasshfish</a>)
+  <li>web containers (e.g. <a href="http://tomcat.apache.org">Tomcat</a>)
+  <li>sistemi di build lenti e complicati (e.g.<a href="http://maven.apache.org/">maven</a>)
+</ul>
+Inoltre non volevo avere tra i piedi un file "web.xml".</p>
+<p>Ho scoperto che è possibile! La documentazione non è facile da 
+trovare, sembra quasi che Oracle (ex Sun) spinga per complicarti la vita.</p>
+<p>Se volete provare anche voi dovete prima di tutto procurarvi le librerie 
+necessarie:<ul>
+ <li><a href="http://download.java.net/maven/2/com/sun/grizzly/grizzly-http-webserver/1.9.18-e/grizzly-http-webserver-1.9.18-e.jar">grizzly-servlet-webserver-1.9.18-e.jar</a></li>
+ <li>asm-3.1.jar</li>
+ <li>jersey-core-1.1.5.jar</li>
+ <li>jersey-server-1.1.5.jar</li>
+ <li>jsr311-api-1.1.1.jar</li>
+</ul>
 
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
+La prima contiene <a href="https://grizzly.dev.java.net/">Grizzly</a> (un 
+embeddeddable web server), le restanti fanno parte della distribuzione di jersey
+e sono scaricabili in un unica soluzione: 
+<a href="http://download.java.net/maven/2/com/sun/jersey/jersey-archive/1.1.5/jersey-archive-1.1.5.zip">jersey-archive-1.1.5.zip</a>
+</p>
 
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
+<p>Una volta aggiunte le librerie al progetto potete passare alla creazione 
+della risorsa di esempio:
 
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
+<pre>
+// file Hello.java
+package learn.jersey.grizzly;
+import javax.ws.rs.*;
 
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
+@Path("/hello")
+public class Hello {
+    @GET @Produces("text/plain")
+    public String sayHello() {
+        return "Hello World!";
+    }
+}
+</pre>
+</p><p>E infine il main (che è cortissimo!):
 
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
+<pre>
+// Main.java
+package learn.jersey.grizzly;
 
+import com.sun.grizzly.tcp.Adapter;
+import com.sun.jersey.api.container.ContainerFactory;
+import com.sun.jersey.api.container.grizzly.GrizzlyServerFactory;
+import java.io.IOException;
 
+public class Main {
 
+    public static void main(String[] args) throws IOException {
+        Adapter adapter = ContainerFactory.createContainer(Adapter.class, Hello.class);
+        GrizzlyServerFactory.create("http://localhost/", adapter);
+    }
+
+}
+</pre>
+
+Dopo aver avviato verificatene il funzionamento seguendo 
+<a href="http://localhost/hello">http://localhost/hello</a>.
+</p>
+<p>Che bella la semplicità!</p></div>
 
         </div>
         <!-- Histats.com  START  --> 

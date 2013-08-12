@@ -54,42 +54,64 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
+            <h1>L'ideona del loggingDecorator</h1>
+<div class='post'>
+Oggi ho partorito l'ideona del loggingDecorator.
+Anche se sono sicuro che è già venuta a mille altre persone ve la dico lo stesso.
+
+Fate finta che vi serve aggiungere ad ogni metodo dei messaggi di debug del tipo "sono entrato nel metodo", "sto uscendo dal metodo" o simili.
+
+Uno con poca fantasia farebbe così:
+<pre name="code" class="java:nogutter">public void someMethod() {
+  logger.debug("Begin of someMethod()");
+
+  ... // corpo del metodo
+
+  logger.debug("End of someMethod()");
+}
+</pre>Io pero' dovevo debbuggare le chiamate a una classe che aveva molti metodi e non volevo usare il copia incolla. Ho preferito scomodare il design pattern decorator e la Java Reflection.
+
+Ho usato:
+<pre name="code" class="java:nogutter">    EntityManager em = ...
+  em  = LoggingDecorators.loggingDecorator(em, EntityManager.class)
+</pre>Avendo definito
+<pre name="code" class="java:nogutter">public class LoggingDecorators {
+  private static final Logger logger =
+          Logger.getLogger(LoggingDecorators.class.getName());
+
+  public static &lt;T&gt; T loggingDecorator(
+              final T target,
+              final Class&lt;T&gt; targetClass) {
+      return (T) Proxy.newProxyInstance(targetClass.getClassLoader(),
+              new Class[] { targetClass}, new InvocationHandler() {
+
+          public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+              logger.info("Begin of " + method);
+              try {
+                  return method.invoke(target, args);
+              } catch(InvocationTargetException ex) {
+                  throw ex.getCause();
+              } finally {
+                  logger.info("End of " + method);
+              }
+          }
+      });
+  }
+}
+</pre></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Andrea Francia</div>
+<div class='content'>
+Hai ragione, c'era un baco nel codice del mio post, adesso l'ho corretto.<BR/><BR/>Il secondo parametro è l'interfaccia che deve implementare il decorator.<BR/><BR/>Comunque trovi un esempio <A HREF="http://code.google.com/p/andreafrancia-util/source/browse/trunk/src/andreafrancia/util/LoggingDecorators.java#48" REL="nofollow">qui</A>, alla riga 48.</div>
 </div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
+<div class='comment'>
+<div class='author'>Anonymous</div>
+<div class='content'>
+Ciao, direi che io stavo cercando qualcosa di simile, ma non ho ben capito come funziona il tuo esempio, ecco alcune delle cose che non ho capito: tu chiami il metodo in questo modo "loggingDecorator(em)" ma quel metodo ha una segnatura diversa; poi come fai a chiamare il metodo originale?<BR/><BR/>Federico</div>
 </div>
-
-
-
+</div>
 
         </div>
         <!-- Histats.com  START  --> 

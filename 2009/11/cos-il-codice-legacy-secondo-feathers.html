@@ -54,42 +54,9 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <div class="face">
-    <img border="0" width="214" height="181" src="images/AndreaFrancia.jpg" 
-         alt="Andrea Francia"/>
-</div>
-
-<p> Sono un programmatore, pratico eXtreme Programming, sono Ingegnere
-informatico.  Amo Vim, Python, lo sviluppo server, e quello iOS.  </p>
-
-<p> Ora lavoro alla <a href="http://www.7pixel.it">7Pixel</a> dove nel team
-Nautilus allo sviluppo del sito <a href="http://www.trovaprezzi.it">
-www.trovaprezzi.it</a> e allo svliuppo applicazione Trovaprezzi per
-Windows 8.  Uso Ruby e C#.  </p>
-
-<p> Ho lavorato al <a href="http://ec.europa.eu/dgs/jrc/">Joint Research
-Centre</a> della Commissione Europea dove ho lavorato con l'Agenzia
-Spaziale Europea.</p>
-
-<p> Ho fatto il Tutor all'Universit&agrave; di Pavia insegnando Java, Fortran
-e C.</p>
-
-<p> Ho sviluppato il software open source 
-<a href="http://code.google.com/p/trash-cli">trash-cli</a>.  </p>
-<div class='contacts'>
-    <h2>Contatti</h2>
-    <ul>
-        <li><a href="https://twitter.com/andreafrancia">@andreafrancia</a> </li>
-        <li><a href="http://www.slideshare.net/andreafrancia">@slideshare</a></li>
-        <li><a href="https://github.com/andreafrancia">@github</a> </li>
-        <li><a href="http://it.linkedin.com/pub/andrea-francia/8/27b/285">@LinkedIn</a> </li>
-        <li>Tel: <a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
-        <li>Mail: <a href="mailto:sito@andreafrancia.it">me@andreafrancia.it</a></li>
-    </ul>
-</div>
-
-
-
+            <h1>Cos'è il codice legacy (secondo Feathers)?</h1>
+<div class='post'>
+<div>Come vi ho detto ho appena letto questo <a id="bbna" href="http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052" title="Working Effectively with Legacy Code">libro</a> e una delle cose più interessanti che vi ho trovato è la definizione di software legacy data usata dall'<a id="heax" href="http://www.michaelfeathers.com/" title="Michael Feathers">autore</a>. Infatti secondo Feathers l'aspetto caratterizzante del codice legacy è l'assenza dei test di unità automatici.</div><div><br></div><div>A prima vista sembra questa affermazione non abbia senso. A noi sembra che il problema dei software legacy è semplicemente che sono progettati (e scritti) male.&nbsp;</div><div><div><br></div><div>Come sappiamo questo potrebbe non essere un gran problema se solo potessimo migliorare il design esistente, magari riscrivendo qualche porzione. Questo tipo di modifiche ha pure un nome, si chiama <b><a id="b_pc" href="http://en.wikipedia.org/wiki/Refactoring" title="Refactoring">Refactoring</a></b> e consiste nel cambiare la struttura interna di un programma mantenendone intatto il comportamento esterno.</div><div style="text-align: auto;"><br></div><div style="text-align: auto;">Il refactoring comporta la modifica del codice esistente e quindi, come tutte le modifiche, se fatta in assenza del feedback di test automatici rischia di "rompere" il comportamento esistente.</div><div style="text-align: auto;"><br></div><div style="text-align: auto;">Senza test è così facile introdurre bachi durante il refactoring che presto i programmatori e managers sviluppano una grande avversione alle modifiche del codice esistente.</div><div style="text-align: auto;"><br></div><div style="text-align: auto;">Le conseguenze di questa "paura del refactoring" l'instaurarsi un circolo vizioso secondo il quale il nuovo codice non può essere scritto bene perché il codice esistente è scritto male. Quindi modifica dopo modifica il codice non migliora e, spesso, peggiora.</div><div style="text-align: auto;"><br></div><div style="text-align: auto;">Questi sono i ragionamenti che portano a pensare che la caratteristica principale del codice legacy sia l'assenza di test di unità automatici.</div><div style="text-align: auto;"><br></div><div style="text-align: auto;">A questo punto è facile capire quale sia la soluzione per interrompere il ciclo vizioso: è necessario mettere sotto test automatici le parti di applicazione che si intende modificare. Gran parte del libro è dedicata all'aggiunta dei test automatici al software legacy per abilitarne il refactoring e renderlo sempre di più un po' meno legacy.</div></div><br></div>
 
         </div>
         <!-- Histats.com  START  --> 
