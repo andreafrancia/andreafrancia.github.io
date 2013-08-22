@@ -3,12 +3,124 @@
   <title>TITLE</title>
   <link href="http://andreafrancia.it/atom.xml" rel="self"/>
   <link href="http://andreafrancia.it/"/>
-  <updated>2013-08-12T23:19:41+02:00</updated>
+  <updated>2013-08-22T11:56:23+02:00</updated>
   <id>http://andreafrancia.it/</id>
   <author>
     <name>Andrea Francia</name>
     <email>andrea@andreafrancia.it</email>
   </author>
+  
+  <entry>
+    <title>Command Line</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-08-22T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/2013/08/command-line</id>
+    <content type="html">&lt;h1 id='make_stderr_red'&gt;Make stderr red&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;command 2&amp;gt; &amp;gt;(while read line; do echo -e &amp;quot;$(tput setaf 1)$line$(tput sgr0)&amp;quot; &amp;gt;&amp;amp;2; done)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='bash_configuration'&gt;Bash Configuration&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;cat &amp;gt;&amp;gt; ~/.bashrc &amp;lt;&amp;lt; EOF
+# elephant memory
+export HISTSIZE=100000
+
+# append all commands to the history file, 
+# don&amp;#39;t overwrite it at the start of every new session
+shopt -s histappend
+EOF&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='essential_tools'&gt;Essential tools&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install -y vim-nox
+sudo apt-get install -y ack-grep
+sudo apt-get install -y bash-completion&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='essential_vim_plugins'&gt;Essential Vim plugins&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p ~/.vim/autoload ~/.vim/bundle
+curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+cd ~/.vim/bundle/
+git clone https://github.com/vim-scripts/Align.git 
+git clone https://github.com/tpope/vim-sensible.git
+git clone https://github.com/scrooloose/nerdtree.git&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='essential_vim_config'&gt;Essential Vim config&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;touch ~/.vimrc
+cat &amp;gt;&amp;gt; ~/.vimrc &amp;lt;&amp;lt; EOF
+set nocompatible 
+set autoindent 
+set hidden
+
+set expandtab 
+set smarttab 
+set tabstop=8 
+set shiftwidth=4 
+set softtabstop=4
+
+set incsearch 
+set hlsearch
+
+set textwidth=78 
+
+if exists(&amp;#39;+colorcolumn&amp;#39;) 
+   set colorcolumn=+1 
+endif
+
+&amp;quot; Integration
+set clipboard=unnamed,unnamedplus,autoselect
+
+set history=65535
+
+syntax on
+EOF&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='essential_git_config'&gt;Essential Git config&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;Andrea Francia @ $(hostname)&amp;quot;
+git config --global user.email EMAILHERE
+
+git config --global core.excludesfile &amp;quot;~/.cvsignore&amp;quot;
+git config --global core.editor vim
+git config --global color.ui auto
+git config --global alias.aa &amp;quot;add --all&amp;quot;
+git config --global alias.l &amp;quot;log --graph --pretty=format&amp;#39;:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset&amp;#39;&amp;quot;
+git config --global alias.st &amp;quot;status --short&amp;quot;
+git config --global alias.ci commit
+git config --global alias.unstage &amp;quot;reset HEAD --&amp;quot;
+git config --global alias.undo-last-commit &amp;quot;reset --soft HEAD~1&amp;quot;
+git config --global alias.commit &amp;quot;commit -v&amp;quot;
+git config --global alias.co &amp;quot;checkout&amp;quot;
+git config --global difftool.prompt false
+
+# need git v1.7.11
+git config --global push.default simple&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='open_suse'&gt;Open Suse&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# Essential packages
+sudo zypper --non-interactive install -y vim ack
+
+# how to start/stop services:
+sudo /usr/sbin/rcmysql start
+
+# how to make a service to be launched at startup
+sudo /sbin/insserv mysql&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='automate_user_creation'&gt;Automate user creation&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo /usr/sbin/useradd sysop
+echo sysop: | sudo /usr/sbin/chpasswd
+sudo mkdir -p /home/sysop
+sudo chown sysop /home/sysop
+sudo /usr/sbin/usermod -G admin sysop&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='vim_adding_plugin_with_git_submodules'&gt;Vim: adding plugin with git submodules&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/dot-files
+git submodule add https://github.com/vim-scripts/VST.git .vim/bundle/VST&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
   
   <entry>
     <title>tmux</title>
