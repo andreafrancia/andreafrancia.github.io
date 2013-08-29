@@ -3,12 +3,45 @@
   <title>TITLE</title>
   <link href="http://andreafrancia.it/atom.xml" rel="self"/>
   <link href="http://andreafrancia.it/"/>
-  <updated>2013-08-22T12:01:28+02:00</updated>
+  <updated>2013-08-29T13:28:00+02:00</updated>
   <id>http://andreafrancia.it/</id>
   <author>
     <name>Andrea Francia</name>
     <email>andrea@andreafrancia.it</email>
   </author>
+  
+  <entry>
+    <title>Dates in Cocoa</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-08-29T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/cocoa-dates</id>
+    <content type="html">&lt;p&gt;Parse an ISO8601 date (assuming UTC):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+[dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@&amp;quot;UTC&amp;quot;]];
+[dateFormatter setDateFormat:@&amp;quot;yyyy-MM-dd&amp;#39;T&amp;#39;HH:mm:ss&amp;quot;];
+
+NSDate* newTime = [dateFormatter dateFromString:@&amp;quot;2011-10-20T01:10:50&amp;quot;];
+
+STAssertEqualObjects(@&amp;quot;2011-10-20 01:10:50 +0000&amp;quot;, [newTime description], nil);&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a date from compoments:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; NSDateComponents * comps = [[NSDateComponents alloc]init];
+ comps.year = 2013
+ comps.month = 8;
+ comps.day = 8;
+ NSCalendar * gregorian = [[NSCalendar alloc]
+                           initWithCalendarIdentifier:NSGregorianCalendar];
+ NSDate * date = [gregorian dateFromComponents:comps];&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Format a date:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NSString * format = @&amp;quot;EEE dd mmm yyyy&amp;quot;;
+NSDateFormatter * format = [NSDateFormatter new];
+[format setDateFormat:format];
+NSString * text = [format stringFromDate:date];&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
   
   <entry>
     <title>Command Line</title>
@@ -32,7 +65,7 @@ EOF&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id='essential_tools'&gt;Essential tools&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code&gt;sudo apt-get install -y vim-nox
+&lt;pre&gt;&lt;code&gt;sudo apt-get install -y vim
 sudo apt-get install -y ack-grep
 sudo apt-get install -y bash-completion&lt;/code&gt;&lt;/pre&gt;
 
