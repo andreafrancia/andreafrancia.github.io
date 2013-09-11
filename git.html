@@ -54,34 +54,26 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <h1 id='make_stderr_red'>Make stderr red</h1>
+            <h1 id='essential_git_config'>Essential Git config</h1>
 
-<pre><code>command 2&gt; &gt;(while read line; do echo -e &quot;$(tput setaf 1)$line$(tput sgr0)&quot; &gt;&amp;2; done)</code></pre>
+<pre><code>git config --global user.name &quot;Andrea Francia @ $(hostname)&quot;
+git config --global user.email EMAILHERE
 
-<h1 id='bash_configuration'>Bash Configuration</h1>
+git config --global core.excludesfile &quot;~/.cvsignore&quot;
+git config --global core.editor vim
+git config --global color.ui auto
+git config --global alias.aa &quot;add --all&quot;
+git config --global alias.l &quot;log --graph --pretty=format&#39;:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset&#39;&quot;
+git config --global alias.st &quot;status --short&quot;
+git config --global alias.ci commit
+git config --global alias.unstage &quot;reset HEAD --&quot;
+git config --global alias.undo-last-commit &quot;reset --soft HEAD~1&quot;
+git config --global alias.commit &quot;commit -v&quot;
+git config --global alias.co &quot;checkout&quot;
+git config --global difftool.prompt false
 
-<pre><code>cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-# elephant memory
-export HISTSIZE=100000
-
-# append all commands to the history file, 
-# don&#39;t overwrite it at the start of every new session
-shopt -s histappend
-EOF</code></pre>
-
-<h1 id='essential_tools'>Essential tools</h1>
-
-<pre><code>sudo apt-get install -y vim
-sudo apt-get install -y ack-grep
-sudo apt-get install -y bash-completion</code></pre>
-
-<h1 id='automate_user_creation'>Automate user creation</h1>
-
-<pre><code>sudo /usr/sbin/useradd sysop
-echo sysop: | sudo /usr/sbin/chpasswd
-sudo mkdir -p /home/sysop
-sudo chown sysop /home/sysop
-sudo /usr/sbin/usermod -G admin sysop</code></pre>
+# need git v1.7.11
+git config --global push.default simple</code></pre>
         </div>
         <!-- Histats.com  START  --> 
 <script async type="text/javascript" language="javascript"> 

@@ -54,34 +54,16 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <h1 id='make_stderr_red'>Make stderr red</h1>
+            <h1 id='open_suse'>Open Suse</h1>
 
-<pre><code>command 2&gt; &gt;(while read line; do echo -e &quot;$(tput setaf 1)$line$(tput sgr0)&quot; &gt;&amp;2; done)</code></pre>
+<pre><code># Essential packages
+sudo zypper --non-interactive install -y vim ack
 
-<h1 id='bash_configuration'>Bash Configuration</h1>
+# how to start/stop services:
+sudo /usr/sbin/rcmysql start
 
-<pre><code>cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-# elephant memory
-export HISTSIZE=100000
-
-# append all commands to the history file, 
-# don&#39;t overwrite it at the start of every new session
-shopt -s histappend
-EOF</code></pre>
-
-<h1 id='essential_tools'>Essential tools</h1>
-
-<pre><code>sudo apt-get install -y vim
-sudo apt-get install -y ack-grep
-sudo apt-get install -y bash-completion</code></pre>
-
-<h1 id='automate_user_creation'>Automate user creation</h1>
-
-<pre><code>sudo /usr/sbin/useradd sysop
-echo sysop: | sudo /usr/sbin/chpasswd
-sudo mkdir -p /home/sysop
-sudo chown sysop /home/sysop
-sudo /usr/sbin/usermod -G admin sysop</code></pre>
+# how to make a service to be launched at startup
+sudo /sbin/insserv mysql</code></pre>
         </div>
         <!-- Histats.com  START  --> 
 <script async type="text/javascript" language="javascript"> 

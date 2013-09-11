@@ -3,7 +3,7 @@
   <title>TITLE</title>
   <link href="http://andreafrancia.it/atom.xml" rel="self"/>
   <link href="http://andreafrancia.it/"/>
-  <updated>2013-08-29T13:28:00+02:00</updated>
+  <updated>2013-09-11T17:28:09+02:00</updated>
   <id>http://andreafrancia.it/</id>
   <author>
     <name>Andrea Francia</name>
@@ -11,11 +11,55 @@
   </author>
   
   <entry>
+    <title>Open Suse</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-09-11T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/open-suse</id>
+    <content type="html">&lt;h1 id='open_suse'&gt;Open Suse&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;# Essential packages
+sudo zypper --non-interactive install -y vim ack
+
+# how to start/stop services:
+sudo /usr/sbin/rcmysql start
+
+# how to make a service to be launched at startup
+sudo /sbin/insserv mysql&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Git</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-09-11T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/git</id>
+    <content type="html">&lt;h1 id='essential_git_config'&gt;Essential Git config&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;Andrea Francia @ $(hostname)&amp;quot;
+git config --global user.email EMAILHERE
+
+git config --global core.excludesfile &amp;quot;~/.cvsignore&amp;quot;
+git config --global core.editor vim
+git config --global color.ui auto
+git config --global alias.aa &amp;quot;add --all&amp;quot;
+git config --global alias.l &amp;quot;log --graph --pretty=format&amp;#39;:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset&amp;#39;&amp;quot;
+git config --global alias.st &amp;quot;status --short&amp;quot;
+git config --global alias.ci commit
+git config --global alias.unstage &amp;quot;reset HEAD --&amp;quot;
+git config --global alias.undo-last-commit &amp;quot;reset --soft HEAD~1&amp;quot;
+git config --global alias.commit &amp;quot;commit -v&amp;quot;
+git config --global alias.co &amp;quot;checkout&amp;quot;
+git config --global difftool.prompt false
+
+# need git v1.7.11
+git config --global push.default simple&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+  
+  <entry>
     <title>Dates in Cocoa</title>
     <link href="http://andreafrancia.it"/>
     <updated>2013-08-29T00:00:00+02:00</updated>
     <id>http://andreafrancia.it/cocoa-dates</id>
-    <content type="html">&lt;p&gt;Parse an ISO8601 date (assuming UTC):&lt;/p&gt;
+    <content type="html">&lt;h1 id='parse_an_iso8601_date_assuming_utc'&gt;Parse an ISO8601 date (assuming UTC):&lt;/h1&gt;
 
 &lt;pre&gt;&lt;code&gt;NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@&amp;quot;UTC&amp;quot;]];
@@ -25,7 +69,7 @@ NSDate* newTime = [dateFormatter dateFromString:@&amp;quot;2011-10-20T01:10:50&a
 
 STAssertEqualObjects(@&amp;quot;2011-10-20 01:10:50 +0000&amp;quot;, [newTime description], nil);&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Create a date from compoments:&lt;/p&gt;
+&lt;h1 id='create_a_date_from_compoments'&gt;Create a date from compoments:&lt;/h1&gt;
 
 &lt;pre&gt;&lt;code&gt; NSDateComponents * comps = [[NSDateComponents alloc]init];
  comps.year = 2013
@@ -35,7 +79,7 @@ STAssertEqualObjects(@&amp;quot;2011-10-20 01:10:50 +0000&amp;quot;, [newTime de
                            initWithCalendarIdentifier:NSGregorianCalendar];
  NSDate * date = [gregorian dateFromComponents:comps];&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Format a date:&lt;/p&gt;
+&lt;h1 id='format_a_date'&gt;Format a date:&lt;/h1&gt;
 
 &lt;pre&gt;&lt;code&gt;NSString * format = @&amp;quot;EEE dd mmm yyyy&amp;quot;;
 NSDateFormatter * format = [NSDateFormatter new];
@@ -44,32 +88,11 @@ NSString * text = [format stringFromDate:date];&lt;/code&gt;&lt;/pre&gt;</conten
   </entry>
   
   <entry>
-    <title>Command Line</title>
+    <title>Vim</title>
     <link href="http://andreafrancia.it"/>
     <updated>2013-08-22T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2013/08/command-line</id>
-    <content type="html">&lt;h1 id='make_stderr_red'&gt;Make stderr red&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;command 2&amp;gt; &amp;gt;(while read line; do echo -e &amp;quot;$(tput setaf 1)$line$(tput sgr0)&amp;quot; &amp;gt;&amp;amp;2; done)&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id='bash_configuration'&gt;Bash Configuration&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;cat &amp;gt;&amp;gt; ~/.bashrc &amp;lt;&amp;lt; EOF
-# elephant memory
-export HISTSIZE=100000
-
-# append all commands to the history file, 
-# don&amp;#39;t overwrite it at the start of every new session
-shopt -s histappend
-EOF&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id='essential_tools'&gt;Essential tools&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install -y vim
-sudo apt-get install -y ack-grep
-sudo apt-get install -y bash-completion&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id='essential_vim_plugins'&gt;Essential Vim plugins&lt;/h1&gt;
+    <id>http://andreafrancia.it/vim</id>
+    <content type="html">&lt;h1 id='essential_vim_plugins'&gt;Essential Vim plugins&lt;/h1&gt;
 
 &lt;pre&gt;&lt;code&gt;mkdir -p ~/.vim/autoload ~/.vim/bundle
 curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
@@ -109,37 +132,54 @@ set history=65535
 syntax on
 EOF&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h1 id='essential_git_config'&gt;Essential Git config&lt;/h1&gt;
+&lt;h1 id='vim_adding_plugin_with_git_submodules'&gt;Vim: adding plugin with git submodules&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;Andrea Francia @ $(hostname)&amp;quot;
-git config --global user.email EMAILHERE
+&lt;pre&gt;&lt;code&gt;cd ~/dot-files
+git submodule add https://github.com/vim-scripts/VST.git .vim/bundle/VST&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Essential Bash Configuration</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-08-22T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/2013/08/essential-bash-configuration</id>
+    <content type="html">&lt;h1 id='bash_configuration'&gt;Bash Configuration&lt;/h1&gt;
 
-git config --global core.excludesfile &amp;quot;~/.cvsignore&amp;quot;
-git config --global core.editor vim
-git config --global color.ui auto
-git config --global alias.aa &amp;quot;add --all&amp;quot;
-git config --global alias.l &amp;quot;log --graph --pretty=format&amp;#39;:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset&amp;#39;&amp;quot;
-git config --global alias.st &amp;quot;status --short&amp;quot;
-git config --global alias.ci commit
-git config --global alias.unstage &amp;quot;reset HEAD --&amp;quot;
-git config --global alias.undo-last-commit &amp;quot;reset --soft HEAD~1&amp;quot;
-git config --global alias.commit &amp;quot;commit -v&amp;quot;
-git config --global alias.co &amp;quot;checkout&amp;quot;
-git config --global difftool.prompt false
+&lt;pre&gt;&lt;code&gt;cat &amp;gt;&amp;gt; ~/.bashrc &amp;lt;&amp;lt; EOF
+# elephant memory
+export HISTSIZE=100000
 
-# need git v1.7.11
-git config --global push.default simple&lt;/code&gt;&lt;/pre&gt;
+# append all commands to the history file, 
+# don&amp;#39;t overwrite it at the start of every new session
+shopt -s histappend
+EOF&lt;/code&gt;&lt;/pre&gt;</content>
+  </entry>
+  
+  <entry>
+    <title>Command Line</title>
+    <link href="http://andreafrancia.it"/>
+    <updated>2013-08-22T00:00:00+02:00</updated>
+    <id>http://andreafrancia.it/2013/08/command-line</id>
+    <content type="html">&lt;h1 id='make_stderr_red'&gt;Make stderr red&lt;/h1&gt;
 
-&lt;h1 id='open_suse'&gt;Open Suse&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt;command 2&amp;gt; &amp;gt;(while read line; do echo -e &amp;quot;$(tput setaf 1)$line$(tput sgr0)&amp;quot; &amp;gt;&amp;amp;2; done)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;# Essential packages
-sudo zypper --non-interactive install -y vim ack
+&lt;h1 id='bash_configuration'&gt;Bash Configuration&lt;/h1&gt;
 
-# how to start/stop services:
-sudo /usr/sbin/rcmysql start
+&lt;pre&gt;&lt;code&gt;cat &amp;gt;&amp;gt; ~/.bashrc &amp;lt;&amp;lt; EOF
+# elephant memory
+export HISTSIZE=100000
 
-# how to make a service to be launched at startup
-sudo /sbin/insserv mysql&lt;/code&gt;&lt;/pre&gt;
+# append all commands to the history file, 
+# don&amp;#39;t overwrite it at the start of every new session
+shopt -s histappend
+EOF&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='essential_tools'&gt;Essential tools&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install -y vim
+sudo apt-get install -y ack-grep
+sudo apt-get install -y bash-completion&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id='automate_user_creation'&gt;Automate user creation&lt;/h1&gt;
 
@@ -147,12 +187,7 @@ sudo /sbin/insserv mysql&lt;/code&gt;&lt;/pre&gt;
 echo sysop: | sudo /usr/sbin/chpasswd
 sudo mkdir -p /home/sysop
 sudo chown sysop /home/sysop
-sudo /usr/sbin/usermod -G admin sysop&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id='vim_adding_plugin_with_git_submodules'&gt;Vim: adding plugin with git submodules&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code&gt;cd ~/dot-files
-git submodule add https://github.com/vim-scripts/VST.git .vim/bundle/VST&lt;/code&gt;&lt;/pre&gt;</content>
+sudo /usr/sbin/usermod -G admin sysop&lt;/code&gt;&lt;/pre&gt;</content>
   </entry>
   
   <entry>

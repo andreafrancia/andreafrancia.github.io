@@ -54,7 +54,7 @@ var cimg = 0;var cwi =150;var che =30;
 </div>
 
         <div id="contents">
-            <p>Parse an ISO8601 date (assuming UTC):</p>
+            <h1 id='parse_an_iso8601_date_assuming_utc'>Parse an ISO8601 date (assuming UTC):</h1>
 
 <pre><code>NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
 [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@&quot;UTC&quot;]];
@@ -64,7 +64,7 @@ NSDate* newTime = [dateFormatter dateFromString:@&quot;2011-10-20T01:10:50&quot;
 
 STAssertEqualObjects(@&quot;2011-10-20 01:10:50 +0000&quot;, [newTime description], nil);</code></pre>
 
-<p>Create a date from compoments:</p>
+<h1 id='create_a_date_from_compoments'>Create a date from compoments:</h1>
 
 <pre><code> NSDateComponents * comps = [[NSDateComponents alloc]init];
  comps.year = 2013
@@ -74,7 +74,7 @@ STAssertEqualObjects(@&quot;2011-10-20 01:10:50 +0000&quot;, [newTime descriptio
                            initWithCalendarIdentifier:NSGregorianCalendar];
  NSDate * date = [gregorian dateFromComponents:comps];</code></pre>
 
-<p>Format a date:</p>
+<h1 id='format_a_date'>Format a date:</h1>
 
 <pre><code>NSString * format = @&quot;EEE dd mmm yyyy&quot;;
 NSDateFormatter * format = [NSDateFormatter new];

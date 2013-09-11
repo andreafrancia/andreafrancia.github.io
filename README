@@ -1,7 +1,3 @@
 # How to setup 
 # git clone --local . _site 
 # ( cd _site; git checkout master; ) 
-# update 
-bundle exec jekyll build --safe 
-( cd _site; git add --all; git commit -m "Generated"; git push; )
-git push --all origin
