@@ -1,4 +1,4 @@
-ruby '1.9.3'
+ruby '2.1.5'
 
 gem 'jekyll',     '=1.1.2'
 gem 'liquid',     '=2.5.1'
