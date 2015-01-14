@@ -3,7 +3,7 @@
   <title>TITLE</title>
   <link href="http://andreafrancia.it/atom.xml" rel="self"/>
   <link href="http://andreafrancia.it/"/>
-  <updated>2015-01-14T23:14:14+01:00</updated>
+  <updated>2015-01-14T23:19:04+01:00</updated>
   <id>http://andreafrancia.it/</id>
   <author>
     <name>Andrea Francia</name>
@@ -3162,19 +3162,6 @@ Io sto impazzendo su sf :(&lt;/div&gt;
   </entry>
   
   <entry>
-    <title>http://www.visual.paginegialle.it/on_the_road/pavia</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-05-17T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/05/http-www-visual-paginegialle-it-on-the-road-pavia</id>
-    <content type="html">&lt;h1&gt;http://www.visual.paginegialle.it/on_the_road/pavia&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Avete visto &lt;span style=&quot;font-weight: bold;&quot;&gt;On the road&lt;/span&gt; di pagine gialle?
-Impressionante.
-&lt;a href=&quot;http://www.visual.paginegialle.it/on_the_road/pavia&quot;&gt;http://www.visual.paginegialle.it/on_the_road/pavia&lt;/a&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>RemotedList</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-05-14T00:00:00+02:00</updated>
@@ -3271,18 +3258,6 @@ Maggiori dettagli li trovati sul mio sito: &lt;a href=&quot;http://www.andreafra
   </entry>
   
   <entry>
-    <title>Back from Brussels</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-04-30T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/04/back-from-brussels</id>
-    <content type="html">&lt;h1&gt;Back from Brussels&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-I&#39;m arrived from Brussels yesterday, I stayed there for only few days but however I enjoyed my trip.
-Soon I put photos online.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Large File Viewer</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-04-16T00:00:00+02:00</updated>
@@ -3291,90 +3266,6 @@ Soon I put photos online.&lt;/div&gt;
 &lt;div class=&#39;post&#39;&gt;
 Ho scritto un articolo su come creare in Java un visualizzatore di grandi file di testo, cioé di dimensioni superiori al gigabyte.
 Lo messo qua: &lt;a href=&quot;http://www.andreafrancia.it/articoli/large-file-viewer.html&quot;&gt;http://www.andreafrancia.it/articoli/large-file-viewer.html&lt;/a&gt;.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Nanà supergirl</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-02-23T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2008/02/nan-supergirl</id>
-    <content type="html">&lt;h1&gt;Nanà supergirl&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Ve la ricordate? Pian piano mi sto rivedendo tutta la serie.
-Gli episodi non sono tanti, si tratta di solo 39 puntate.
-Il cartone è molto ben fatto, lo stile del disegno è molto bello.
-Le storie sono semplici, alla portata di un pubblico non adulto, ma non eccessivamente infantili.
-Gli episodi sono sceneggiati bene e la comicità è immediata.
-Insomma una bel cartone, di qualità e adatto ai più piccoli.
-Sapevate che Nanà è creato dallo stesso gruppo che ha creato Pollon?
-&lt;object height=&quot;373&quot; width=&quot;425&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/TezLxilbe8Y&amp;amp;rel=0&amp;amp;color1=0xd6d6d6&amp;amp;color2=0xf0f0f0&amp;amp;border=1&quot;&gt;&lt;param name=&quot;wmode&quot; value=&quot;transparent&quot;&gt;&lt;embed src=&quot;http://www.youtube.com/v/TezLxilbe8Y&amp;amp;rel=0&amp;amp;color1=0xd6d6d6&amp;amp;color2=0xf0f0f0&amp;amp;border=1&quot; type=&quot;application/x-shockwave-flash&quot; wmode=&quot;transparent&quot; height=&quot;373&quot; width=&quot;425&quot;&gt;&lt;/embed&gt;&lt;/object&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Crop Circles</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-02-13T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2008/02/crop-circles</id>
-    <content type="html">&lt;h1&gt;Crop Circles&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Gli alieni esistono e ci hanno lasciato un &lt;a href=&quot;http://maps.google.it/maps?f=q&amp;amp;hl=it&amp;amp;geocode=&amp;amp;q=Strada+dei+Campi+%4045.910108,+13.507212&amp;amp;ie=UTF8&amp;amp;om=0&amp;amp;t=h&amp;amp;ll=45.910615,13.506972&amp;amp;spn=0.003755,0.00928&amp;amp;z=17&quot;&gt;messaggio&lt;/a&gt;.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Basta fare il pendolare!</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-01-26T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2008/01/basta-fare-il-pendolare</id>
-    <content type="html">&lt;h1&gt;Basta fare il pendolare!&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;Da gennaio la mia azienda si è trasferita a Pavia.
-Questo vuol dire che non farò più il pendolare per andare al lavoro. Basta ritardi dei treni e basta multe perché mi dimentico di fare l&#39;abbonamento.
-Questa è la strada che devo fare ogni mattina :)
-
-
-&lt;iframe width=&quot;300&quot; height=&quot;300&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; src=&quot;http://maps.google.it/maps?f=d&amp;amp;hl=en&amp;amp;geocode=&amp;amp;time=&amp;amp;date=&amp;amp;ttype=&amp;amp;saddr=Via+lovati,+20,+pavia&amp;amp;daddr=via+ferrata+1+pavia&amp;amp;sll=45.189724,9.148105&amp;amp;sspn=0.020022,0.080338&amp;amp;ie=UTF8&amp;amp;om=0&amp;amp;s=AARTsJoFbqIhamHAQpqeZrEzAaem6rd6qg&amp;amp;ll=45.198369,9.139252&amp;amp;spn=0.018144,0.025749&amp;amp;z=14&amp;amp;output=embed&quot;&gt;&lt;/iframe&gt;&lt;br /&gt;&lt;small&gt;&lt;a href=&quot;http://maps.google.it/maps?f=d&amp;amp;hl=en&amp;amp;geocode=&amp;amp;time=&amp;amp;date=&amp;amp;ttype=&amp;amp;saddr=Via+lovati,+20,+pavia&amp;amp;daddr=via+ferrata+1+pavia&amp;amp;sll=45.189724,9.148105&amp;amp;sspn=0.020022,0.080338&amp;amp;ie=UTF8&amp;amp;om=0&amp;amp;ll=45.198369,9.139252&amp;amp;spn=0.018144,0.025749&amp;amp;z=14&amp;amp;source=embed&quot; style=&quot;color:#0000FF;text-align:left&quot;&gt;View Larger Map&lt;/a&gt;&lt;/small&gt;
-
-&lt;/div&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>L'ADSL se ne è andata</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-12-18T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2007/12/l-adsl-se-ne-andata</id>
-    <content type="html">&lt;h1&gt;L&#39;ADSL se ne è andata&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Il giorno  12 dicembre 2007 è arrivata l&#39;ADSL.
-Il giorno 17 dicembre 2007 l&#39;ADSL ha smesso di funzionare.
-
-Che record!
-Ben (ironico) 5 giorni di funzionamento prima del primo inconveniente tecnico.
-Ho chiamato l&#39;assistenza, mi dicono che &quot;Ci sono problemi sulla linea.&quot;.
-
-Aspetto speranzoso che vengano risolti.
-
-PS alle 19.33: Stasera quando sono tornato si è rimessa a funzionare!
-L&#39;allora l&#39;assistenza serve a qualcosa ...&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>E' arrivata l'ADSL</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-12-12T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2007/12/e-arrivata-l-adsl</id>
-    <content type="html">&lt;h1&gt;E&#39; arrivata l&#39;ADSL&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Finalmente è arrivata l&#39;ADSL a casa.
-Sono finiti i tempi bui, adesso sarò connesso 24 su 24.
-Ho preso una ADSL flat a 4 mega di Wind. Ho scelto Wind perché era la più economica.
-Mi hanno dato anche la linea fissa.
-
-Stamattina mi è arrivata la notifica via mail di Wind che l&#39;ADSL è attiva , oggi sono andato a comprare il modem e il filtro. Stasera appena torno a casa sarò connesso.&lt;/div&gt;
 </content>
   </entry>
   
