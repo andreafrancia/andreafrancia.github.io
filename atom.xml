@@ -3,7 +3,7 @@
   <title>TITLE</title>
   <link href="http://andreafrancia.it/atom.xml" rel="self"/>
   <link href="http://andreafrancia.it/"/>
-  <updated>2015-01-03T16:48:34+01:00</updated>
+  <updated>2015-01-14T23:14:14+01:00</updated>
   <id>http://andreafrancia.it/</id>
   <author>
     <name>Andrea Francia</name>
@@ -1872,23 +1872,6 @@ Bel post: il tuo papà rassomiglia al mio!&lt;/div&gt;
   </entry>
   
   <entry>
-    <title>Chiedere dei (pseudo) rimborsi a Trenitalia</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2009-06-03T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2009/06/chiedere-dei-pseudo-rimborsi-a-trenitalia</id>
-    <content type="html">&lt;h1&gt;Chiedere dei (pseudo) rimborsi a Trenitalia&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Per gli utenti dei treni a lunga percorrenza come me ecco il mio consiglio.
-
-Non so se lo sapete ma se il treno arriva in ritardo potete chiedere un bonus (non è un vero rimborso, è un bonus) con il quale vi sconteranno il prossimo biglietto. Dato che ogni mese faccio circa un 2Mm (due megametri = 2000km :) in treno mi porto sempre dietro una copia del modulo di rimborso e lo compilo appena il treno arriva.
-
-Il modulo lo trovate nelle stazioni. Quando riesco lo lascio direttamente in stazione al mio arrivo così non devo neanche spedirlo per posta.
-
-Questo &lt;a href=&quot;http://blog.moduli.it/2008/02/02/treni-ritardi-cancellazioni-e-mancato-funzionamento-dellimpianto-di-climatizzazione/&quot;&gt;post&lt;/a&gt; spiega i dettagli ma le informazioni ufficiali le trovate sul sito di &lt;a href=&quot;http://www.trenitalia.com/cms/v/index.jsp?vgnextoid=ef0b82b0368ea110VgnVCM1000003f16f90aRCRD&quot;&gt;trenitalia&lt;/a&gt;.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Milano XPUG 13/5/09: Deep Dynamics and Lean Startups</title>
     <link href="http://andreafrancia.it"/>
     <updated>2009-05-14T00:00:00+02:00</updated>
@@ -2192,28 +2175,6 @@ Grazie, mi hai salvato la vita!&lt;/div&gt;
   </entry>
   
   <entry>
-    <title>Scrivania</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2009-01-07T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2009/01/scrivania</id>
-    <content type="html">&lt;h1&gt;Scrivania&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Avete presente la Scrivania del computer? 
-Come no, mah sì quella cosa che c&#39;e&#39; dietro tutte le finestre, quella dove ci puoi mettere lo sfondo... come? Voi la chiamate &quot;Desktop&quot;? ... Sì in effetti anch&#39;io ho sempre fatto così, ... chissà poi che cosa si sono fumati i traduttori della versione italiana di Gnome? 
-
-Avete un installazione di GNU/Linux con Gnome con lingua di sistema italiana? Provate un po&#39; a vedere in che modo improponibile hanno chiamato la cartella che dovrebbe essere &quot;/home/andrea/Desktop&quot; ... l&#39;hanno chiamata &quot;/home/andrea/Scrivania&quot; !&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;DaZeroALinux&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-:D&lt;BR/&gt;E&#39; vero, anche se ho visto traduzioni peggiori, come quando vogliono italianizzare termini intraducibili...&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Creare un repository personale svn+ssh://</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-12-30T00:00:00+01:00</updated>
@@ -2254,24 +2215,6 @@ Se non conoscete il path assoluto usate il comando &quot;pwd&quot; dalla shell d
 &lt;span style=&quot;font-size:180%;&quot;&gt;Commenti:&lt;/span&gt;
 &lt;ul&gt;&lt;li&gt;L&#39;utilizzo di Pageant e dell&#39;autenticazione basata su chiave pubblica è consigliato perché altrimenti  altrimenti dovresti  riscrivere più e più volte la password durante anche una singola operazione.&lt;/li&gt;&lt;li&gt;Il server svn+ssh:// è comodo perché è più facile da installare che il corrispondente servizio http:// ma ha una serie di svantaggi, questi sono descritti nel libro &lt;a href=&quot;http://svnbook.red-bean.com/en/1.5/svn.serverconfig.choosing.html#svn.serverconfig.choosing.svn-ssh&quot;&gt;svnbook&lt;/a&gt;.
 &lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Pixel nostalgia</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-12-26T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2008/12/pixel-nostalgia</id>
-    <content type="html">&lt;h1&gt;Pixel nostalgia&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Per i nostalgici, per quelli che dicono &quot;non fanno più i giochi di una volta&quot;, per quelli che si ricordano quando si riusciva a contare i pixel degli sprites e che magari hanno provato pure a riprodurre i personaggi  su carta millimetrata ... per tutti voi questo &lt;a href=&quot;http://www.spritestitch.com/&quot;&gt;sito&lt;/a&gt; fa per voi.
-
-&lt;br/&gt;
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://www.spritestitch.com/wp-content/uploads/2008/09/epicmariodone.jpg&quot;&gt;&lt;img style=&quot;cursor: pointer; width: 500px; height: 141px;&quot; src=&quot;http://www.spritestitch.com/wp-content/uploads/2008/09/epicmariodone.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://www.spritestitch.com/wp-content/uploads/2008/08/mariopowerups.jpg&quot;&gt;&lt;img style=&quot;cursor: pointer; width: 120px; height: 150px;&quot; src=&quot;http://www.spritestitch.com/wp-content/uploads/2008/08/mariopowerups.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
-
-&lt;br/&gt;
-Se volete farmi un regalo, avete tempo e sapete ricamare prendete pure spunto dal sito in questione. Anche le torte fatte a quadratini vanno bene.
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://www.spritestitch.com/wp-content/uploads/2008/08/marioafghan.jpg&quot;&gt;&lt;img style=&quot;cursor: pointer; width: 450px; height: 338px;&quot; src=&quot;http://www.spritestitch.com/wp-content/uploads/2008/08/marioafghan.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/div&gt;
 </content>
   </entry>
   
@@ -2417,60 +2360,6 @@ guarda il seguente articolo...&lt;BR/&gt;http://code.activestate.com/recipes/425
   </entry>
   
   <entry>
-    <title>Pronti ad iscrivervi al Registro degli Operatori di Comunicazione?</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-11-11T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2008/11/pronti-ad-iscrivervi-al-registro-degli-operatori-di-comunicazione</id>
-    <content type="html">&lt;h1&gt;Pronti ad iscrivervi al Registro degli Operatori di Comunicazione?&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Ecco la notizia:
-&lt;a href=&quot;http://punto-informatico.it/2468674/PI/News/camera-manda-avanti-ddl-anti-blog.aspx&quot;&gt;http://punto-informatico.it/2468674/PI/News/camera-manda-avanti-ddl-anti-blog.aspx&lt;/a&gt;
-
-Vado a letto, la commenterò un&#39;altra volta.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Gita Grazzano Visconti</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-10-20T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/10/gita-grazzano-visconti</id>
-    <content type="html">&lt;h1&gt;Gita Grazzano Visconti&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a style=&quot;&quot; onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://1.bp.blogspot.com/_bikdOOm3kpc/SP0ALtgXmcI/AAAAAAAABeo/WVRpDgIr6zE/s1600-h/100_2883-1.JPG&quot;&gt;&lt;img style=&quot;margin: 0pt 0pt 10px 10px; float: right; cursor: pointer;&quot; src=&quot;http://1.bp.blogspot.com/_bikdOOm3kpc/SP0ALtgXmcI/AAAAAAAABeo/WVRpDgIr6zE/s200/100_2883-1.JPG&quot; alt=&quot;&quot; id=&quot;BLOGGER_PHOTO_ID_5259360141032528322&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
-Sabato scorso io e la mia fidanzata (che amo tantissimo) siamo andati a visitare Grazzano Visconti.
-
-L&#39;idea è stata di Elisa, io guardavo con sospetto l&#39;idea di visitare un paese medievale ricostruito. Nonostante questo ho scoperto che un certo fascino nostalgico questo posto ce l&#39;ha soprattutto per la sua storia. Ma cominciamo dall&#39;inizio...
-
-Cos&#39;è Grazzano Visconti? E&#39; un paese dall&#39;aspetto e storia particolare. Lo chiamano Villaggio Medievale, in realtà si tratta di una ricostruzione neo-mediovale che hai giorni nostri assomiglia più che altro ad un parco a tema.
-
-Sebbene sia facile obiettare che non si tratta affatto del tipico villaggio medievale (a quei tempi le case erano piu&#39; che altro di legno non di muratura) dopo uno sguardo più attento ci si accorge del suo vera essenza: il tentativo di preservare una serie di stili e costumi che all&#39;inizio del secolo stavano per andare perduti.
-
-Le case del borgo sono state costruite riprendendo gli stili e in certi casi copiando edifici storici destinati alla distruzione per fare posto a edifici più moderni. L&#39;artefice di tutto questo era il facoltoso &lt;a href=&quot;http://it.wikipedia.org/wiki/Giuseppe_Visconti&quot;&gt;Giuseppe Visconti&lt;/a&gt; che in pieno spirito romantico voleva preservare il piu&#39; possibile il mondo che stava scomparendo sotto i suoi occhi.
-
-Il borgo fu anche sede di un esperimento di socialismo utopico da parte dello stesso Visconti. L&#39;idea era quella di costruire una società ideale che si auto-preservasse nel tempo. L&#39;economia del borgo si sarebbe basata sulle botteghe d&#39;arte gestite dai suoi abitanti. Per avviare quest&#39;idea Giuseppe istituì una scuola d&#39;arte presso il paese e predispose che le case fossero costruite per ospitare le botteghe.
-
-Ogni casa era a due piani. Al primo piano vi sarebbe dovuta essere la bottega al secondo l&#39;abitazione. In questo modo la città sarebbe rimasta sempre attiva perché la gente avrebbe abitato e lavorato nello stesso luogo e il paese non sarebbe diventato deserto di sera.
-
-Secondo la visione socialista di Giusppe tutti dovevano perlomeno apparire uguali nonostante le differenze di status sociale. Fu istituito il costume ufficiale del paese (in stile medievale) che tutti (dal più povero al più ricco) usavano.
-
-Adesso l&#39;esperimento non so dire se l&#39;esperimento abbia funzionato o meno. Magari ha funzionato in parte. Credo che oggi l&#39;economia del borgo si basi essenzialmente sul turismo e oggi non si usano più gli abiti ufficiali. Il paese pero&#39; è rimasto e le case che implementano gli stili che Giuseppe voleva preservare ci sono ancora e probabilmente il turismo aiuterà a preservarle.
-
-&lt;span style=&quot;font-weight: bold;font-size:100%;&quot; &gt;Update 2008-10-22 &lt;/span&gt;
-Ecco le foto:
-&lt;embed type=&quot;application/x-shockwave-flash&quot; src=&quot;http://picasaweb.google.com/s/c/bin/slideshow.swf&quot; width=&quot;144&quot; height=&quot;96&quot; flashvars=&quot;host=picasaweb.google.com&amp;captions=1&amp;RGB=0x000000&amp;feed=http%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2Fandrea.francia%2Falbumid%2F5259357678008382737%3Fkind%3Dphoto%26alt%3Drss%26authkey%3DV6Img539XMc&quot; pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot;&gt;&lt;/embed&gt;&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;Ely&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-Che belli che siamo in questa foto :-)&lt;BR/&gt;&lt;BR/&gt;Era da tanto che nn accedevo al tuo blog, da questo post. Mi dispiace, senza rendermene conto ti stavo trascurando..scusa&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>To change this template, choose Tools | Templates</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-10-16T00:00:00+02:00</updated>
@@ -2573,27 +2462,6 @@ Avviare il programma /usr/bin/program.
   </entry>
   
   <entry>
-    <title>Mediaset ha detto "Basta!"</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-08-04T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/08/mediaset-ha-detto-basta</id>
-    <content type="html">&lt;h1&gt;Mediaset ha detto &quot;Basta!&quot;&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Come sapete Mediaset &lt;a href=&quot;http://www.mediaset.it/corporate/salastampa/2008/comunicatostampa_4550_it.shtml&quot;&gt;ha depositato &lt;/a&gt;un atto di citazione contro YouTube e Google per illecita diffusione e sfruttamento commerciale di file audio-video di proprietà delle società del Gruppo.
-
-Hanno chiesto &lt;a href=&quot;http://www.google.it/search?hl=it&amp;amp;safe=off&amp;amp;q=quanto+%C3%A8+500000000+eur+in+eur%3F&amp;amp;btnG=Cerca&amp;amp;meta=&quot;&gt;500 fantamilioni di dobloni spaziali&lt;/a&gt; come risarcimento.
-
-Sulla blogosfera un sacco di gente si schiera dalla parte di YouTube. Io mi chiedo: Perchè?
-
-Io non so se YouTube deve dare tutti questi spaziodollari a Mediaset, ma mi chiedo: &quot;Perché no?&quot;. Io sono sicuro che YouTube guadagna molti soldi grazie ai video di cui non si pone neanche il problema di avere il diritto di ridistribuire. Altrimenti la Google non l&#39;avrebbe comprata.
-
-Quello che mi fa ridere e pensare che YouTube potrebbe semplicemente difenderci dicendo: &quot;Ma non li ho messi io! Li hanno messi gli utenti ... vai a chiedere i soldi a loro...&quot; Mi fa ridere pensare che questi utenti siano le stesse persone che difenderebbero YouTube.
-
-Cari utenti YouTube avete &lt;a href=&quot;http://www.youtube.com/watch?v=jWg-xN9JvH4&quot;&gt;toppato&lt;/a&gt;.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Print the stack trace in bash</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-07-30T00:00:00+02:00</updated>
@@ -2674,18 +2542,6 @@ Sul mio sito su google sites ho creato una &lt;a href=&quot;http://sites.google.
 ma usare una virtual machine no? :-D&lt;BR/&gt;&lt;BR/&gt;Ciao&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Un nuovo dottore</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-07-17T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/07/un-nuovo-dottore</id>
-    <content type="html">&lt;h1&gt;Un nuovo dottore&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://images4.wikia.nocookie.net/en.futurama/images/thumb/e/e6/Clamps.jpg/200px-Clamps.jpg&quot;&gt;&lt;img style=&quot;margin: 0pt 0pt 10px 10px; float: right; cursor: pointer; width: 148px; height: 168px;&quot; src=&quot;http://images4.wikia.nocookie.net/en.futurama/images/thumb/e/e6/Clamps.jpg/200px-Clamps.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;Da oggi abbiamo un nuovo &lt;span style=&quot;font-size:78%;&quot;&gt;ingegnereedilebarra&lt;/span&gt;Architetto.
-Complimenti Ingegnere!&lt;/div&gt;
 </content>
   </entry>
   
@@ -2793,26 +2649,6 @@ Hai ragione, c&#39;era un baco nel codice del mio post, adesso l&#39;ho corretto
 &lt;div class=&#39;author&#39;&gt;Anonymous&lt;/div&gt;
 &lt;div class=&#39;content&#39;&gt;
 Ciao, direi che io stavo cercando qualcosa di simile, ma non ho ben capito come funziona il tuo esempio, ecco alcune delle cose che non ho capito: tu chiami il metodo in questo modo &quot;loggingDecorator(em)&quot; ma quel metodo ha una segnatura diversa; poi come fai a chiamare il metodo originale?&lt;BR/&gt;&lt;BR/&gt;Federico&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Foto del viaggio a Londra</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-06-23T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/06/foto-del-viaggio-a-londra</id>
-    <content type="html">&lt;h1&gt;Foto del viaggio a Londra&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-La mia dolce metà (Elisa) ha messo su picasa le &lt;a href=&quot;http://picasaweb.google.it/princess.of.scotland/Londra2008061317?authkey=VGW0LPNlGlk&quot;&gt;foto&lt;/a&gt; che abbiamo fatto a Londra durante il nostro ultimo viaggio. Guardatele se vi va.
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://lh3.ggpht.com/princess.of.scotland/SGAAwF0u2EI/AAAAAAAAAT0/ZWgFLaT5H8s/100_2617.JPG?imgdl=1&quot;&gt;&lt;img style=&quot;cursor: pointer; width: 250px; height: 187px;&quot; src=&quot;http://lh3.ggpht.com/princess.of.scotland/SGAAwF0u2EI/AAAAAAAAAT0/ZWgFLaT5H8s/100_2617.JPG?imgdl=1&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;il pinz&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-che bellini che siete&lt;BR/&gt;&lt;BR/&gt;TENERIIIIIIIIIII&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </content>
@@ -3380,38 +3216,6 @@ The project is hosted at &lt;a href=&quot;http://code.google.com/p/remoted-list/
   </entry>
   
   <entry>
-    <title>Visit to Agliè Castle</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-05-11T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/05/visit-to-agli-castle</id>
-    <content type="html">&lt;h1&gt;Visit to Agliè Castle&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;span style=&quot;font-weight: bold;&quot;&gt;English (short):&lt;/span&gt;
-Today, I and my friend Elisa went to Agliè Castle in Piedmont which is also known because is one of the location of the Italian fiction &quot;Elisa di Rivombrosa&quot;.
-The foto we take are availables on my picasa space: &lt;a href=&quot;http://picasaweb.google.it/andrea.francia/20080511CastelloDiAgliConElisa&quot;&gt;http://picasaweb.google.it/andrea.francia/20080511CastelloDiAgliConElisa&lt;/a&gt;
-
-&lt;span style=&quot;font-weight: bold;&quot;&gt;Italiano (completo):&lt;/span&gt;
-Oggi, io ed la mia amica Elisa siamo andati al Castello di Agliè in Piemonte conosciuto anche per essere una delle location di &quot;Elisa di Rivombrosa&quot;.
-Il castello è interessante, peccato che l&#39;80% delle sale non si poteva vedere perché lo stavano restaurando. Stavano restaurando tutto! Anche nelle sale che si poteva visitare capitava che la guida dicesse: &quot;In questa sala c&#39;era un mobile bellissimo che però oggi non potete vedere perché lo stanno restaurando&quot;. Eh vabbe&#39;.
-
-Ho messo le foto che abbiamo fatto sul picasa:
-&lt;a href=&quot;http://picasaweb.google.it/andrea.francia/20080511CastelloDiAgliConElisa&quot;&gt;http://picasaweb.google.it/andrea.francia/20080511CastelloDiAgliConElisa&lt;/a&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Foto di Brussels</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2008-05-07T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2008/05/foto-di-brussels</id>
-    <content type="html">&lt;h1&gt;Foto di Brussels&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Ho messo online le foto di brussels.
-&lt;a href=&quot;http://picasaweb.google.com/andrea.francia/20080425BruxellesAndGantWithMarzena?authkey=hiR-8hLl5-w&quot;&gt;http://picasaweb.google.com/andrea.francia/20080425BruxellesAndGantWithMarzena?authkey=hiR-8hLl5-w&lt;/a&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Libreria per il parsing della linea di comando (args4j)</title>
     <link href="http://andreafrancia.it"/>
     <updated>2008-05-06T00:00:00+02:00</updated>
@@ -3575,20 +3379,6 @@ Stamattina mi è arrivata la notifica via mail di Wind che l&#39;ADSL è attiva 
   </entry>
   
   <entry>
-    <title>Foto di Dublino</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-11-06T00:00:00+01:00</updated>
-    <id>http://andreafrancia.it/2007/11/foto-di-dublino</id>
-    <content type="html">&lt;h1&gt;Foto di Dublino&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://bp1.blogger.com/_bikdOOm3kpc/RzBjODwT-wI/AAAAAAAAA_8/dsSllcbRR9E/s1600-h/100_1536.JPG&quot;&gt;&lt;img style=&quot;margin: 0pt 0pt 10px 10px; float: right; cursor: pointer;&quot; src=&quot;http://bp1.blogger.com/_bikdOOm3kpc/RzBjODwT-wI/AAAAAAAAA_8/dsSllcbRR9E/s200/100_1536.JPG&quot; alt=&quot;&quot; id=&quot;BLOGGER_PHOTO_ID_5129709068752255746&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
-Ho messo online le foto di Dublino.
-Le trovate all&#39;indirizzo &lt;a href=&quot;http://picasaweb.google.it/andrea.francia/Dublin2007&quot;&gt;http://picasaweb.google.it/andrea.francia/Dublin2007&lt;/a&gt;
-Non ho messo on-line tutte le foto che ho fatto, ho cercato di ridurle per non annoiarvi troppo.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>Dublino</title>
     <link href="http://andreafrancia.it"/>
     <updated>2007-10-29T00:00:00+01:00</updated>
@@ -3623,65 +3413,6 @@ Il tempo all&#39;internet cafè sta scadendo ... ciao a tutti.&lt;/div&gt;
 Venerdì questo (26 ottobre) parto per &lt;a href=&quot;http://it.wikipedia.org/wiki/Dublino&quot;&gt;Dublino&lt;/a&gt; ci starò 10 giorni, fino a domenica 4 novrembre 2007!
 
 Ciao a tutti :)&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Foto della Biennale</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-08-26T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/08/foto-della-biennale</id>
-    <content type="html">&lt;h1&gt;Foto della Biennale&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a href=&quot;http://picasaweb.google.it/andrea.francia/BiennaleDiVenezia2007&quot;&gt;&lt;img style=&quot;margin: 10px 10px 0pt 0pt; float: left;&quot; alt=&quot;&quot; title=&quot;&quot; src=&quot;http://lh5.google.it/andrea.francia/RtGKIvYRn7I/AAAAAAAAAzE/o6YN-_1fA-I/s144/100_1459.JPG&quot; /&gt;&lt;/a&gt;Ho messo online le foto che ho fatto ieri alla Biennale di venezia.
-Eccole:
-&lt;a href=&quot;http://picasaweb.google.it/andrea.francia/BiennaleDiVenezia2007&quot;&gt;http://picasaweb.google.it/andrea.francia/BiennaleDiVenezia2007&lt;/a&gt;&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Sabato alla Biennale</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-08-23T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/08/sabato-alla-biennale</id>
-    <content type="html">&lt;h1&gt;Sabato alla Biennale&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;img src=&quot;http://www.labiennale.org/62/76917.jpg&quot; style=&quot;margin: 0pt 0pt 10px 10px; float: right;&quot; title=&quot;Biennale&quot; /&gt;Questo sabato (25 agosto 2007) vado alla &lt;a href=&quot;http://www.labiennale.org/it/arte/&quot;&gt;Biennale&lt;/a&gt;, quella di Venezia naturalmente.
-Per ora siamo in due che vengono sicuro e un&#39;altra persona che mi deve ancora dire se viene o meno.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Foto a tradimento</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-08-06T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/08/foto-a-tradimento</id>
-    <content type="html">&lt;h1&gt;Foto a tradimento&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a href=&quot;http://www.flickr.com/photos/webmatch/265977348/in/set-72157594321411708/&quot;&gt;&lt;img src=&quot;http://static.flickr.com/102/265977348_ad6c3cc0d5_s.jpg&quot; alt=&quot;webmatch @smau&quot; border=&quot;0&quot;/&gt;&lt;/a&gt;
-
-Ecco mi hanno fatto una foto mentre facevo una domanda stupida allo SMAU dell&#39;anno scorso (era il 9 novembre 2006).
-
-La domanda non era stupida, in realtà ero troppo avanti rispetto ai tempi, era all&#39;avanguardia e gli altri erano rimasti ancora allo studio della prospettiva.&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;Anonymous&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-sei sempre troppo avanti francia...&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Foto della Festa Hawaiana</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-30T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/foto-della-festa-hawaiana</id>
-    <content type="html">&lt;h1&gt;Foto della Festa Hawaiana&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Ho messo online le foto della Festa Hawaiana.&lt;br&gt;&lt;a href=&quot;http://picasaweb.google.it/andrea.francia/20070719FestaHawaiana/&quot;&gt;http://picasaweb.google.it/andrea.francia/20070719FestaHawaiana/&lt;/a&gt;&lt;br&gt;Devo darvi il codice per vederle, chiedetemelo su messenger&lt;/div&gt;
 </content>
   </entry>
   
@@ -3755,31 +3486,6 @@ Adesso ho scoperto come mettere la mia macchina nella white list e OSSEC non mi 
   </entry>
   
   <entry>
-    <title>Andando in Piazza</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-13T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/andando-in-piazza</id>
-    <content type="html">&lt;h1&gt;Andando in Piazza&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Era un po&#39; che avevo cominciato &quot;ad andare in piazza&quot;
-A Cesare Ragazzi non ci crede piu&#39; nessuno ...
-
-Ma la soluzione c&#39;e&#39; ! Far finta che l&#39;hai deciso tu ... e rasare tutto.
-Comunque si vede che non avrei potuto scegliere  ...
-
-Pero&#39; così sto meglio :-)&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;pinz&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-ti sei rasato???? come il tinassa !!!!! gli anni passano...&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
     <title>WinMerge</title>
     <link href="http://andreafrancia.it"/>
     <updated>2007-07-11T00:00:00+02:00</updated>
@@ -3806,112 +3512,6 @@ Utilissimo per lo sviluppatore.
 &lt;div class=&#39;author&#39;&gt;Pinz&lt;/div&gt;
 &lt;div class=&#39;content&#39;&gt;
 miiiiii...&lt;BR/&gt;tutte queste cose tecniche !!!!!&lt;BR/&gt;hai fatto un blog solo per programmmatori ????&lt;BR/&gt;Viva le cagate !!!!!!!!!!!!!!!!!!&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Referendum sulla legge elettorale</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-11T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/referendum-sulla-legge-elettorale</id>
-    <content type="html">&lt;h1&gt;Referendum sulla legge elettorale&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Avete presente la &quot;porcata&quot; di Calderoli.
-Mi riferisco alla legge elettorale votata alla fine dell&#39;ultima legislatura.
-
-Sembra che a molti questa legge non piaccia e c&#39;e&#39; chi vorrebbe cambiarla.
-
-Da un po&#39; si stanno raccogliendo le firme per il referendum. Io me ne sono accorto solo adesso perché sono lento a seguire la Politica.
-
-Io non ho ancora chiaro che cosa voterò se e quando ci sarà il referendum.  Però penso che andrò a firmare per il referendum.
-
-Se volete firmare per il referendum dovete rivolgervi al vostro comune di residenza. Va bene anche un altro comune ma è meglio quello di residenza, firmando in un altro comune si rischia che la vostra firma non sia registrata in tempo.&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>FilZip</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-11T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/filzip</id>
-    <content type="html">&lt;h1&gt;FilZip&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-Basta usare WinZip!
-
-Non potete usarlo senza pagare la licenza, anche se funziona lo stesso.
-
-E poi cosa lo usate a fare che da Windows XP i file .zip ve li apre Explorer? Sì, ok è lentissimo.
-WinRar e WinAce? Anche loro a pagamento.
-
-Se volete continuare ad aprire gli archivi e essere in regola senza pagare usate FilZip che è gratuito.
-Estrae anche gli archivi  RAR .
-
-&lt;a href=&quot;http://www.filzip.com/&quot;&gt;http://www.filzip.com/&lt;/a&gt;&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;Andrea Francia&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-C&#39;era qualcosa dell&#39;interfaccia che non mi piaceva in 7-zip. Non mi ricordo cosa&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;Rebus&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-7zip, questo sconosciuto...&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Mostra su Botero a Milano</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-10T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/mostra-su-botero-a-milano</id>
-    <content type="html">&lt;h1&gt;Mostra su Botero a Milano&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://www.turismo.comune.milano.it/pls/milano/src?lang=2&amp;obj=52493&quot;&gt;&lt;img style=&quot;margin: 0pt 10px 10px 0pt; float: left; cursor: pointer; width: 91px; height: 85px;&quot; src=&quot;http://www.turismo.comune.milano.it/pls/milano/src?lang=2&amp;obj=52493&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;
-Avete presente quei quadri con i personaggi grassi grassi grassi?
-
-Li fa un signore che si chiama Botero e che abita a Pietrasanta (Toscana)
-&lt;a href=&quot;http://www.turismo.comune.milano.it/pls/milano/%21dettaglio?lang=2&amp;amp;evento_id=285511&quot;&gt;http://www.turismo.comune.milano.it/pls/milano/!dettaglio?lang=2&amp;amp;evento_id=285511&lt;/a&gt;
-
-Io probabilmente ci vado giovedì sera...&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;ironmike&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-Botero piace alle donne perchè guardando una sua opera si sentono tutte meno culone&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Il Libro delle Antiche Invezioni</title>
-    <link href="http://andreafrancia.it"/>
-    <updated>2007-07-10T00:00:00+02:00</updated>
-    <id>http://andreafrancia.it/2007/07/il-libro-delle-antiche-invezioni</id>
-    <content type="html">&lt;h1&gt;Il Libro delle Antiche Invezioni&lt;/h1&gt;
-&lt;div class=&#39;post&#39;&gt;
-&lt;a onblur=&quot;try {parent.deselectBloggerImageGracefully();} catch(e) {}&quot; href=&quot;http://www.deastore.com/covers_13/978/883/441/batch2/9788834413500.jpg&quot;&gt;&lt;img style=&quot;margin: 0pt 0pt 10px 10px; float: right; cursor: pointer; width: 112px; height: 144px;&quot; src=&quot;http://www.deastore.com/covers_13/978/883/441/batch2/9788834413500.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; /&gt;&lt;/a&gt;Ho appena finito di leggere questo libro, mi è piaciuto molto.
-Sono 670 pagine !
-
-Non vi siete mai chiesti &quot;Ma come facevano a chiamarsi quando non esisteva il cellulare?&quot;
-Beh questo libro va un po&#39; oltre.
-
-Dopo averlo letto ti rendi conto di quanto fosse simile la nostra vita quotidiana a quella degli antichi. Ti rendi conto di quanto i nostri antenati fossero intelligenti, che trovavano soluzioni a problemi che oggi crediamo che non siano risolvibili senza un computer, la plastica, o la catena di montaggio.
-
-&lt;a href=&quot;http://www.deastore.com/product.asp?productid=IE776905&amp;cookie%5Ftest=1&quot;&gt;http://www.deastore.com/product.asp?productid=IE776905&amp;amp;cookie%5Ftest=1&lt;/a&gt;&lt;/div&gt;
-&lt;h2&gt;Comments&lt;/h2&gt;
-&lt;div class=&#39;comments&#39;&gt;
-&lt;div class=&#39;comment&#39;&gt;
-&lt;div class=&#39;author&#39;&gt;Anonymous&lt;/div&gt;
-&lt;div class=&#39;content&#39;&gt;
-Se la sfiga valesse oro tu saresti Briatore&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </content>
