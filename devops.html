@@ -71,50 +71,39 @@ window._fbq.push(['track', '6023428788789', {'value':'0.01','currency':'USD'}]);
 </div>
 
         <div id="contents">
-            <h1 id='sviluppo_professionale_ios'>Sviluppo Professionale iOS</h1>
+            <h1 id='pure_bash_devops'>Pure Bash DevOps</h1>
 
-<p>All’inizio lo <strong>sviluppo di una nuova App</strong> è sempre lineare e veloce, i problemi arrivano dopo.</p>
+<p>&#8220;Bash Only Deployment&#8221;</p>
 
-<p>Man mano che il tempo passa rispondere ai cambi di rotta del cliente diventa sempre più difficile. Ci vuole sempre più tempo per implementare le nuove feature. Le stime diventano sempre meno realistiche. Poi, come al solito, scopri che il design scelto non era il migliore possibile; sapresti anche come migliorarlo ma hai paura a farlo: non sia mai che poi si rompe tutto! Ti viene voglia di riscriverlo da capo… se solo ci fosse il tempo!</p>
+<p>Il mondo degli strumenti scelti per il deployment è drogato dalla presenza di &#8220;strumenti innovativi&#8221; che vengono spinti dai rispettivi produttori (anche se open) come soluzione a tutti i problemi di deployment o provisioning. Si tratta per lo più di prodotti &#8220;nuovi&#8221;, partiti nell&#8217;ultima decade. La cosa strana è che in ambiente Unix{,-like} l&#8217;automazione è stata presente fin da subito e questi stessi problemi venivano risolti anche senza questi bisogno di questi nuovi strumenti, spesso usando semplicemente lo Shell scripting.</p>
 
-<p>La cattiva notizia è che il tempo di farlo non ci sarà mai. La buona notizia è che <strong>si può fare diversamente</strong>.</p>
-
-<p>Argomenti del corso:</p>
+<p>La mia tesi è che usando l&#8217;onnipresente Bash sia possibile ottenere gli stessi o migliori risultati rispetto all&#8217;uso degli strumenti nuovi. Chiarmente, usando questo approccio, ci sono delle differenze:</p>
 
 <ul>
-<li>La meccanica del Test Driven Development</li>
+<li>La Bash non offre tutte le astrazioni di questi &#8220;strumenti innovativi&#8221;, ma non introduce nemmeno indirezioni o inutili astrazioni che ti obbligano a debuggare i problemi su due livelli.</li>
 
-<li>Test di integrazione e test di unità: quando usare cosa</li>
+<li>La Bash &#8220;non ha un modulo/ricetta/plugin&#8221; per ogni problema di provisioning, ma non ti obbliga nemmeno a doverti scrivere un plugin per poter lanciare quell&#8217;unico ultimo commando che ti manca per finire il lavoro.</li>
 
-<li>Il framework XCTest</li>
-
-<li>Il Simple Design</li>
-
-<li>Strategie di testing</li>
-
-<li>Deploy veloce delle beta con TestFlight</li>
-
-<li>La relazione tra TDD e Behaviour Driven Design</li>
-
-<li>Il design incrementale (refactoring)</li>
+<li>Se usi la Bash non ha <em>un</em> sito corporate che ti offre una estensiva documentazione di tutti i comandi per il deployment o il provisioning, ma non sei nemmeno limitato nel numero di risorse che posso contenere la soluzione al tuo problema.</li>
 </ul>
 
-<p>Il corso è organizzato in collaborazione con Avanscoperta.</p>
-<!-- Begin MailChimp Signup Form --><link href='//cdn-images.mailchimp.com/embedcode/slim-081711.css' rel='stylesheet' type='text/css' /><style type='text/css'>
-	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style><div id='mc_embed_signup'>
-<form action='//andreafrancia.us10.list-manage.com/subscribe/post?u=275eb30b607a3a0c6cd9a848f&amp;id=4d751d5316' class='validate' id='mc-embedded-subscribe-form' method='post' name='mc-embedded-subscribe-form' target='_blank'>
-    <div id='mc_embed_signup_scroll'>
-	<label for='mce-EMAIL'>Se vuoi essere informato sul corso iscriviti alla newsletter</label>
-	<input class='email' id='mce-EMAIL' name='EMAIL' placeholder='email address' required='true' type='email' value='' />
-    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-    <div style='position: absolute; left: -5000px;'><input name='b_275eb30b607a3a0c6cd9a848f_4d751d5316' tabindex='-1' type='text' value='' /></div>
-    <div class='clear'><input class='button' id='mc-embedded-subscribe' name='subscribe' type='submit' value='Subscribe' /></div>
-    </div>
-</form>
-</div><!--End mc_embed_signup-->
+<p>La verità vera è che, alla fine (tolti i fronzoli), questi &#8220;strumenti innovativi&#8221;, sotto sotto, richiedono al sistema operativo di fare le stesse cose che potrebbe fare la Bash.</p>
+
+<p>D&#8217;altra parte sia chiaro che io non voglio convincere nessuno, se sei uno che preferisce usare questi &#8220;strumenti innovativi&#8221; perché: 1) pensi che &#8220;siano nati per questo scopo&#8221;, 2) credi che tu non possa fare meglio, 3) consideri la Bash un linguaggio inefficace. Se pensi queste queste cose allora il talk non fa per te, non ne otteresti nessun beneficio.</p>
+
+<p>Se invece, come me pensi che imparare a fare &#8220;Bash-Only Deployment&#8221; ti possa abilitare a:</p>
+
+<ul>
+<li>capire cosa sta succedendo sotto</li>
+
+<li>ridurre il tempo di debugging</li>
+
+<li>darti la possibiltà di scegliere lo strumento &#8220;innovativo&#8221; solo quando effettivamente ti porta vantaggio</li>
+</ul>
+
+<p>Allora ti consiglio di venire. Seguendo questo talk potrai scoprire quali sono le astuzie che mi hanno permesso di re-ingegnerizzare il sistema di deployment di un mostruoso e-commerce scritto in simil-Enterprise Java. Questo lavoro ha contribuito ad abbassare la trasformare la frequenza di deployment da &#8220;facciamo un deploy ogni 3 mesi&#8221; ad &#8220;stiamo portando in produzione con nuove feature ogni due giorni&#8221;.</p>
+
+<p>Iscriviti qui: <a href='http://eepurl.com/bVraUj'>http://eepurl.com/bVraUj</a></p>
         </div>
         <!-- Histats.com  START  --> 
 <script async type="text/javascript" language="javascript"> 
