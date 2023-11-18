@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>TITLE</title>
+  <link href="http://andreafrancia.it/atom.xml" rel="self"/>
+  <link href="http://andreafrancia.it/"/>
+  <updated>2023-11-18T07:58:50-06:00</updated>
+  <id>http://andreafrancia.it/</id>
+  <author>
+    <name>Andrea Francia</name>
+    <email>andrea@andreafrancia.it</email>
+  </author>
+  
+</feed>

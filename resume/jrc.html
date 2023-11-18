@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Grantholder 30 at Joint Research Centre | andreafrancia.it</title>
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Grantholder 30 at Joint Research Centre" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="/resume/jrc" />
+<meta property="og:url" content="/resume/jrc" />
+<meta property="og:site_name" content="andreafrancia.it" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Grantholder 30 at Joint Research Centre" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Grantholder 30 at Joint Research Centre","url":"/resume/jrc"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="andreafrancia.it" /><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">andreafrancia.it</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/come-lavoro/">Come lavoro</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="grantholder-30-at-joint-research-centre-sep10-sep12">Grantholder 30 at Joint Research Centre (Sep’10-Sep’12)</h1>
+
+<h1 id="the-genesi-dec-project">The GENESI-DEC Project</h1>
+
+<p>On Sep 2011 I started working at Joint Research Centre. I followed <a href="http://www.genesi-dec.eu">GENESI-DEC</a>, an FP7 project.  Domain:
+Satellite imagery orthorectification</p>
+
+<p>What I did:</p>
+<ul>
+  <li>recover and evolution of a broken legacy system</li>
+  <li>development of brand new applications</li>
+</ul>
+
+<p>Technologies/Skils:</p>
+<ul>
+  <li>Chracterization Tests</li>
+  <li>Test Driven Development</li>
+  <li>Deployment Automation (using Fabric, Bash)</li>
+  <li>Java</li>
+  <li>Python</li>
+  <li>OGC/WPS protocol</li>
+</ul>
+
+<h1 id="the-jrc-digital-repository">The JRC Digital Repository</h1>
+
+<p><b>Aim:</b> Expose JRC satellite images archive to the scientist using the <a href="http://www.genesi-dec.eu">GENESI-DEC Central Portal</a>.</p>
+
+<p><b>Technologies:</b></p>
+<ul>
+  <li>Apache HTTPD, CIFS, NFS, and gridsite (for certificate based
+ authentication)</li>
+</ul>
+
+<h1 id="documents">Documents</h1>
+
+<p>(Too) many documents I had to write whithin this project covering:Use cases,
+Requirements, Application Guide, Validation Plan, and Validation Report.</p>
+
+<h1 id="the-orthorectification-server">The Orthorectification Server</h1>
+
+<p>Satellite images does not came out straight. They always appear distorted for
+different reasons such as the angle of the satellite camera and by the fact
+that Earth is not a perfect sphere (mountains).</p>
+
+<p>The process of stretching an image to make it straight is called
+<b>Orthorectification</b> and it is usually done manually by an expert with the
+aid of a GIS software.</p>
+
+<p>But at JRC we have an program able to do perform this orthorectification
+process by itself. I managed to get it working and exposing it as a web service
+to other our partners. The service was exposed using the OGC/WPS protocol, a 
+standard interoperability protocol mainly used whitin the GIS comunity.</p>
+
+<h1 id="improvement-to-the-orthorectification-engine">Improvement to the Orthorectification engine</h1>
+<p>Development of the server:</p>
+<ul>
+  <li>Added support for accessing images protected by basic authentication</li>
+  <li>Review and enhancement of the old legacy server design (Refactor)
+    <ul>
+      <li>Added characterization tests for fixing some</li>
+    </ul>
+  </li>
+  <li>Added documentation on how to make it work.</li>
+  <li>Added semi-automatic deployment, then …</li>
+  <li>… added automatic deployment (using fabric)</li>
+</ul>
+
+<p>Development of the client:</p>
+<ul>
+  <li>Development of the brand new client</li>
+</ul>
+
+<p>Technologies and skills used:</p>
+<ul>
+  <li>java and ant</li>
+  <li>Linux Ubuntu/Debian</li>
+  <li>Bash scripting</li>
+  <li>Python with lxml, pip, virtualenv, and fabric</li>
+  <li>OGC/WPS (PyWPS on server, homemade on the client)</li>
+  <li>Behaviour Driven Development (for the client)</li>
+  <li>Test Driven Development</li>
+  <li>Pomodoro Technique</li>
+  <li>Basic knowledge of satellite images, STRM, and GeoTiff</li>
+  <li>Scripting of Oracle VirtualBox</li>
+  <li>gdalinfo</li>
+</ul>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">andreafrancia.it</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list"><li><a class="u-email" href="mailto:sito@andreafrancia.it">sito@andreafrancia.it</a></li><li><a href='tel:+39 320 9437233'>+39 320 9437233</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/andreafrancia"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">andreafrancia</span></a></li><li><a href="https://www.linkedin.com/in/andreafrancia"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">andreafrancia</span></a></li><li><a href="https://www.twitter.com/andreafrancia"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">andreafrancia</span></a></li><li><a href="https://www.slideshare.net/andreafrancia/presentations"><img class="svg-icon" src="/assets/slideshare.svg"> <span class="username">andreafrancia</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p></p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

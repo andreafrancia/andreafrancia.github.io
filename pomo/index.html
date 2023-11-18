@@ -1,0 +1,76 @@
+<html>
+<head>
+    <!-- Copyright (c) Andrea Francia 2009 -->
+    <!-- Licensed under the GPLv2 -->
+    <title>Pomodoro</title>
+    <script type="text/javascript" src="pomo.js"></script>
+    <script type="text/javascript">
+        var timer = createTimer();
+        timer.getEndTime = function() { return parseDate(location.hash);};
+        timer.hasEndTime = function() { return timer.getEndTime() instanceof Date; };
+        timer.display = function(text) {
+            document.getElementById('display').innerHTML=text;
+            document.title = text;
+        };
+        timer.setEndTime = function(endtime) {
+            location.hash="#" + dateInISO8601(endtime);
+            updateLinksToTimer(endtime);
+        };
+        timer.clearEndTime = function() {
+            location.hash = "";
+            clearLinksToTimer();
+        };
+        timer.now = function() { return new Date()};
+
+        function setupTimer() {
+            timer.boot();
+            setInterval(timer.updateDisplay,500);
+        }
+        
+        function updateLinksToTimer(endtime) {
+            setLinkToTimer(locationForTimerEndingAt(endtime));
+            setLinkToTimerPlusFive(locationForTimerEndingAt(addMinutes(endtime, 5)));
+        }
+
+        function clearLinksToTimer() {
+            setLinkToTimer("");
+            setLinkToTimerPlusFive("");
+        }
+
+        function locationForTimerEndingAt(date) {
+            return locationWithReplacedHashPart(location, "#" + dateInISO8601(date));
+        }
+        
+        function setLinkToTimer(value) {
+            document.getElementById('link-to-this-timer').value = value;
+        }
+
+        function setLinkToTimerPlusFive(value) {
+            document.getElementById('link-to-this-timer-plus-5-min').value = value;
+        }
+
+        function length() {
+            return document.getElementById('length').value;
+        }
+    </script>
+</head>
+
+<body onload="setupTimer()">
+    <input id="start" type="button" value="Start" onclick="timer.start(length());"/>
+    <input id="length" type="text" value="25" size="2"/>
+    <input id="stop" type="button" value="Stop" onclick="timer.stop();"/>
+    <div style="font-size:1000%" id="display"></div><br/>
+    <br/>
+    Link to this timer: <input id="link-to-this-timer" type="text" value="" size="100"/><br/>
+    Link to this timer (+5 minutes): <input id="link-to-this-timer-plus-5-min" type="text" value="" size="100"/><br/>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4316218-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>    
+</body>
+</html>
